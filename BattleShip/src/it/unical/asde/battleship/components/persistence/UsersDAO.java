@@ -19,10 +19,10 @@ public class UsersDAO {
 	
 	@PostConstruct
 	public void init() {
-		save(new User("Dennis","1234"));
-		save(new User("Francesco","abcd"));
-		save(new User("Pierpaolo","P1"));
-		save(new User("Dario","dario"));
+//		save(new User("Dennis","1234"));
+//		save(new User("Francesco","abcd"));
+//		save(new User("Pierpaolo","P1"));
+//		save(new User("Dario","dario"));
 		
 	}
 	
@@ -35,6 +35,7 @@ public class UsersDAO {
 			tx = session.beginTransaction();
 			session.save(user);
 			tx.commit();
+			System.out.println("Data saved");
 
 		} catch (Exception e) {
 			tx.rollback();
@@ -48,6 +49,18 @@ public class UsersDAO {
 		Session openSession = sessionFactory.openSession();
 		Query<User> query = openSession.createQuery("from User as u where u.username=:n and u.password=:p", User.class)
 			.setParameter("n", user.getUsername()).setParameter("p", user.getPassword());
+		
+		boolean result = query.uniqueResult() != null;
+		openSession.close();
+		return result;
+	}
+	
+	
+	
+	public boolean userExists(String username) {
+		Session openSession = sessionFactory.openSession();
+		Query<User> query = openSession.createQuery("from User as u where u.username=:n", User.class)
+			.setParameter("n", username);
 		
 		boolean result = query.uniqueResult() != null;
 		openSession.close();
