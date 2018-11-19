@@ -48,6 +48,12 @@ public class User {
 		this.password = password;
 	}
 
+	
+	@Override
+	public String toString() {
+		return username;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

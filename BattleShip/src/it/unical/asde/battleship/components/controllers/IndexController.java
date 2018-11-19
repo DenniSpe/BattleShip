@@ -13,10 +13,10 @@ public class IndexController {
 	@GetMapping("/")
 	public String goToIndex(Model model, HttpSession session) {
 		
-		if (session.getAttribute("user") != null) {
+		if (session.getAttribute("username") != null) {
 			
-			model.addAttribute("welcome", "Welcome "+session.getAttribute("user"));
-			return "index";
+			model.addAttribute("welcome", "Welcome "+session.getAttribute("username"));
+			return "redirect:/lobbies";
 		
 		}
 

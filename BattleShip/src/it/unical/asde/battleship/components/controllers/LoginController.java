@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.unical.asde.battleship.components.services.LoginService;
+import it.unical.asde.battleship.model.User;
 
 @Controller
 public class LoginController {
@@ -22,7 +23,8 @@ public class LoginController {
 	public String loginAttempt(@RequestParam String uname, @RequestParam String pwd, HttpSession session, Model model) {
 		
 		if(loginService.checkCredentials(uname, pwd)) {
-			session.setAttribute("user", uname);
+			session.setAttribute("username", uname);
+			session.setAttribute("user", new User(uname, pwd));
 			return "redirect:/";
 		}
 		model.addAttribute("error", "Wrong credentials!");

@@ -32,8 +32,10 @@ public class RegistrationController {
 			return "registration";
 		}
 		
-		registrationService.insertUser(new User(uname, pwd));
-		session.setAttribute("user", uname);
+		User u = new User(uname, pwd); 
+		registrationService.insertUser(u);
+		session.setAttribute("username", uname);
+		session.setAttribute("user",u);
 		return "index";
 		
 		
