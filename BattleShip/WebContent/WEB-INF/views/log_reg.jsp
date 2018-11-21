@@ -9,15 +9,28 @@
 		<title>Battleship MVC</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
 		 <link rel="stylesheet" href="resources/assets/css/main.css" />
+		  <link rel="stylesheet" href="resources/assets/css/carousel3d.css" />
 
 		<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css'>
+  
+	
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    
 	</head>
+	
 	<body>
+<body>
 <div class="custom_nav">
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
@@ -31,7 +44,7 @@
             <div class="nav-collapse">
                 <ul class="nav nav-pills">
                     <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="index.html" data-toggle="modal" data-target=".log-sign">Login</a></li>
+                    <li><a href="#" data-toggle="modal" data-target=".log-sign">Login</a></li>
                      <li><a href="index.html">About us</a></li>
                    
                 </ul><!-- /.nav -->
@@ -188,6 +201,88 @@
 				
 			</header>
 
+
+
+
+		
+		
+		
+		<!--  COUNTER -->
+		<div class="row">
+		<div class="wrapper">
+    <div class="counter col_fourth">
+      <i class="fa fa-code fa-2x"></i>
+      <h2 class="timer count-title count-number" data-to="300" data-speed="1500"></h2>
+       <p class="count-text ">SomeText GoesHere</p>
+    </div>
+
+    <div class="counter col_fourth">
+      <i class="fa fa-coffee fa-2x"></i>
+      <h2 class="timer count-title count-number" data-to="1700" data-speed="1500"></h2>
+      <p class="count-text ">SomeText GoesHere</p>
+    </div>
+
+    <div class="counter col_fourth">
+      <i class="fa fa-lightbulb-o fa-2x"></i>
+      <h2 class="timer count-title count-number" data-to="11900" data-speed="1500"></h2>
+      <p class="count-text ">SomeText GoesHere</p>
+    </div>
+
+    <div class="counter col_fourth end">
+      <i class="fa fa-bug fa-2x"></i>
+      <h2 class="timer count-title count-number" data-to="157" data-speed="1500"></h2>
+      <p class="count-text ">SomeText GoesHere</p>
+    </div>
+</div>
+</div>
+
+		<!-- END COUNTER -->
+		
+		<!--  carousel -->
+	<div class="slider3d first">
+  <div class="slider3d__wrapper">
+    <div class="slider3d__inner">
+      <div class="slider3d__rotater">
+        <div class="slider3d__item">
+          <h2 class="slider3d__heading" data-text="SO HEADING">SO HEADING</h2>
+        </div>
+        <div class="slider3d__item">
+          <h2 class="slider3d__heading" data-text="MUCH ROTATION">MUCH ROTATION</h2>
+        </div>
+        <div class="slider3d__item">
+          <h2 class="slider3d__heading" data-text="VERY 3D">VERY 3D</h2>
+        </div>
+        <div class="slider3d__item">
+          <h2 class="slider3d__heading" data-text="SUCH JAVASCRIPT">SUCH JAVASCRIPT</h2>
+        </div>
+        <div class="slider3d__item">
+          <h2 class="slider3d__heading" data-text="WOW WOW!">WOW WOW!</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slider3d__controls">
+    <div class="slider3d__handle">
+      <div class="slider3d__handle__inner">
+        <div class="slider3d__handle__rotater">
+          <div class="slider3d__handle__item active">Page 1</div>
+          <div class="slider3d__handle__item">Page 2</div>
+          <div class="slider3d__handle__item">Page 3</div>
+          <div class="slider3d__handle__item">Page 4</div>
+          <div class="slider3d__handle__item">Page 5</div>
+        </div>
+      </div>
+    </div>
+    <div class="slider3d__control m--up"></div>
+    <div class="slider3d__control m--down"></div>
+  </div>
+</div>
+
+
+
+	<!--  end carousel -->		
+		
+	
 		
 
 				<!-- Footer -->
@@ -209,8 +304,15 @@
 			<script src="resources/assets/js/skel.min.js"></script>
 			<script src="resources/assets/js/util.js"></script>
 			<script src="resources/assets/js/main.js"></script>
+			<script src="resources/assets/js/counter.js"></script>
+			<script  src="resources/assets/js/carousel.js"></script>
 
-
+			<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+  
+  
 
 	</body>
 </html>

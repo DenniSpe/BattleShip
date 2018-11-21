@@ -28,6 +28,8 @@ $('#tab2').on('click' , function(){
 
 });
 
+
+
 (function($) {
 
 	skel.breakpoints({
