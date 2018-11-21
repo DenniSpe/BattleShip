@@ -56,6 +56,7 @@ public class DispatcherConfiguration implements WebMvcConfigurer {
 		prop.put("hibernate.show_sql", true);
 		prop.put("hibernate.format_sql", true);
 		prop.put("hibernate.hbm2ddl.auto", "create");
+		prop.put("hibernate.current_session_context_class", "thread");
 		return prop;
 	}
 

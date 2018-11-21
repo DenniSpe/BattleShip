@@ -21,9 +21,6 @@ public class UsersDAOImpl extends AbstractBaseDAO<User, Long> implements UsersDA
 		// TODO Auto-generated constructor stub
 	}
 
-	@Autowired
-	private SessionFactory sessionFactory;
-
 	@PostConstruct
 	public void init() {
 //		save(new User("Dennis","1234"));
@@ -75,7 +72,9 @@ public class UsersDAOImpl extends AbstractBaseDAO<User, Long> implements UsersDA
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
 		Query countQuery = session.createQuery("Select count (id) from User");
-		return (long) countQuery.uniqueResult();
+		long count = (long) countQuery.uniqueResult();
+		session.close();
+		return count;
 	}
 
 }
