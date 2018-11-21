@@ -31,28 +31,26 @@
 	
 	<body>
 <body>
-<div class="custom_nav">
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                </a>
-                
-            <div class="nav-collapse">
-                <ul class="nav nav-pills">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="#" data-toggle="modal" data-target=".log-sign">Login</a></li>
-                     <li><a href="index.html">About us</a></li>
-                   
-                </ul><!-- /.nav -->
-            </div><!--/.nav-collapse -->
-            </div><!-- /.container -->
-        </div><!-- /.navbar-inner -->
-    </div><!-- /.navbar -->
-</div><!--/.custom_nav-->
+<div class="navbar navbar-inverse navbar-fixed-top opaque-navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navMain">
+  <span class="glyphicon glyphicon-chevron-right" style="color:white;"></span>
+    
+  </button>
+      <a class="pull-left" href="#"><img class="img-responsive2" src="resources/assets/css/images/logo.png"  width= 170px></a>
+    </div>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="nav navbar-nav pull-right">
+        <li class="active"><a href="#">Home</a></li>
+     
+        <li><a href="#" data-toggle="modal" data-target=".log-sign">Log in</a></li> 
+           <li><a href="#">About Us</a></li>
+      
+      </ul>
+    </div>
+  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade bs-modal-sm log-sign" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -209,35 +207,39 @@
 		
 		<!--  COUNTER -->
 		<div class="row">
+		<div class="col-12 col-sm-12 ">
 		<div class="wrapper">
+		<div class="col-4 col-sm-4">
     <div class="counter col_fourth">
       <i class="fa fa-code fa-2x"></i>
       <h2 class="timer count-title count-number" data-to="300" data-speed="1500"></h2>
-       <p class="count-text ">SomeText GoesHere</p>
+       <p class="count-text ">Users registered</p>
     </div>
-
+    </div>
+<div class="col-4 col-sm-4 ">
     <div class="counter col_fourth">
       <i class="fa fa-coffee fa-2x"></i>
       <h2 class="timer count-title count-number" data-to="1700" data-speed="1500"></h2>
-      <p class="count-text ">SomeText GoesHere</p>
+      <p class="count-text ">Users connected</p>
     </div>
-
+</div>
+<div class="col-4 col-sm-4">
     <div class="counter col_fourth">
       <i class="fa fa-lightbulb-o fa-2x"></i>
       <h2 class="timer count-title count-number" data-to="11900" data-speed="1500"></h2>
-      <p class="count-text ">SomeText GoesHere</p>
+      <p class="count-text ">Lobby available</p>
+    </div>
     </div>
 
-    <div class="counter col_fourth end">
-      <i class="fa fa-bug fa-2x"></i>
-      <h2 class="timer count-title count-number" data-to="157" data-speed="1500"></h2>
-      <p class="count-text ">SomeText GoesHere</p>
-    </div>
+    
+</div>
 </div>
 </div>
 
 		<!-- END COUNTER -->
 		
+		<div class="row">
+		<div class="col-12">
 		<!--  carousel -->
 	<div class="slider3d first">
   <div class="slider3d__wrapper">
@@ -277,8 +279,8 @@
     <div class="slider3d__control m--down"></div>
   </div>
 </div>
-
-
+</div>
+</div>
 
 	<!--  end carousel -->		
 		

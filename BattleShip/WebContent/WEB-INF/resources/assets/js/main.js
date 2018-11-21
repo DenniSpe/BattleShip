@@ -1,8 +1,24 @@
-/*
-	Epilogue by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
+ /*
+  **********************************************************
+  * OPAQUE NAVBAR SCRIPT
+  **********************************************************
+  */
+
+  // Toggle tranparent navbar when the user scrolls the page
+
+  $(window).scroll(function() {
+    if($(this).scrollTop() > 50)  /*height in pixels when the navbar becomes non opaque*/ 
+    {
+        $('.opaque-navbar').addClass('opaque');
+    } else {
+        $('.opaque-navbar').removeClass('opaque');
+    }
+});
+
+  /*end nav bar
+   * 
+   */
+
 $(window, document, undefined).ready(function() {
 
   $('.input').blur(function() {
