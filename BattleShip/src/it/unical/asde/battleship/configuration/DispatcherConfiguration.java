@@ -19,53 +19,62 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("it.unical.asde.battleship.components")
-public class DispatcherConfiguration implements WebMvcConfigurer {
+public class DispatcherConfiguration implements WebMvcConfigurer
+{
 
-	@Bean
-	public InternalResourceViewResolver viewResolver() {
-		return new InternalResourceViewResolver("WEB-INF/views/", ".jsp");
-	}
+    @Override
+    public void addResourceHandlers(final ResourceHandlerRegistry registry)
+    {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
+    }
 
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
-	}
+    @Bean
+    public DataSource getDataSource()
+    {
+        final BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName("org.h2.Driver");
+        dataSource.setUrl("jdbc:h2:mem:MyDB");
+        dataSource.setUsername("sa");
+        dataSource.setPassword("sa");
+        return dataSource;
+    }
 
-	@Bean
-	public SessionFactory sessionFactory() {
+    @Bean
+    public SessionFactory sessionFactory()
+    {
 
-		LocalSessionFactoryBean lsfb = new LocalSessionFactoryBean();
-		lsfb.setDataSource(getDataSource());
-		lsfb.setHibernateProperties(getHibernateProperties());
-		lsfb.setPackagesToScan("it.unical.asde.battleship.model");
+        final LocalSessionFactoryBean lsfb = new LocalSessionFactoryBean();
+        lsfb.setDataSource(getDataSource());
+        lsfb.setHibernateProperties(getHibernateProperties());
+        lsfb.setPackagesToScan("it.unical.asde.battleship.model");
 
-		try {
-			lsfb.afterPropertiesSet();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return lsfb.getObject();
+        try
+        {
+            lsfb.afterPropertiesSet();
+        }
+        catch (final IOException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return lsfb.getObject();
 
-	}
+    }
 
-	private Properties getHibernateProperties() {
+    @Bean
+    public InternalResourceViewResolver viewResolver()
+    {
+        return new InternalResourceViewResolver("WEB-INF/views/", ".jsp");
+    }
 
-		Properties prop = new Properties();
-		prop.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-		prop.put("hibernate.show_sql", true);
-		prop.put("hibernate.format_sql", true);
-		prop.put("hibernate.hbm2ddl.auto", "create");
-		return prop;
-	}
+    private Properties getHibernateProperties()
+    {
 
-	@Bean
-	public DataSource getDataSource() {
-		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName("org.h2.Driver");
-		dataSource.setUrl("jdbc:h2:mem:MyDB");
-		dataSource.setUsername("sa");
-		dataSource.setPassword("sa");
-		return dataSource;
-	}
+        final Properties prop = new Properties();
+        prop.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        prop.put("hibernate.show_sql", true);
+        prop.put("hibernate.format_sql", true);
+        prop.put("hibernate.hbm2ddl.auto", "create");
+        return prop;
+    }
 }
