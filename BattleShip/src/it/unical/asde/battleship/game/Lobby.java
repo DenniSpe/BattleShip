@@ -1,9 +1,9 @@
 package it.unical.asde.battleship.game;
 
-import it.unical.asde.battleship.model.User;
 
 public class Lobby {
 	
+	private int id;
 	private String name;
 	private String owner;
 	private String challenger;
@@ -13,13 +13,22 @@ public class Lobby {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Lobby(String name, String owner) {
+	public Lobby(int id, String name, String owner) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.owner = owner;
 
 	}
 
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -81,7 +90,7 @@ public class Lobby {
 	}
 	@Override
 	public String toString() {
-		return "Lobby [name=" + name + ", owner=" + owner + ", challenger=" + challenger + "]";
+		return "Lobby [id=" + id +", name=" + name + ", owner=" + owner + ", challenger=" + challenger + "]";
 	}
 	
 	

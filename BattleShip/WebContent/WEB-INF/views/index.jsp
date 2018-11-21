@@ -22,6 +22,7 @@ Welcome <%= session.getAttribute("username") %>
   		<a class="list-group-item" 
   			href="<c:url value="/join_lobby"> 
   					<c:param name="lobby_owner" value="${lobby.owner}" />
+  					<c:param name="lobby_id" value="${lobby.id}" />
   					<c:param name="lobby_challenger" value="${ sessionScope.username }" />
   				  </c:url>"> 
 		${lobby.name}
