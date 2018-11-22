@@ -69,12 +69,13 @@ public class DispatcherConfiguration implements WebMvcConfigurer
 
     private Properties getHibernateProperties()
     {
+		Properties prop = new Properties();
+		prop.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		prop.put("hibernate.show_sql", true);
+		prop.put("hibernate.format_sql", true);
+		prop.put("hibernate.hbm2ddl.auto", "create");
+		prop.put("hibernate.current_session_context_class", "thread");
+		return prop;
+	}
 
-        final Properties prop = new Properties();
-        prop.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-        prop.put("hibernate.show_sql", true);
-        prop.put("hibernate.format_sql", true);
-        prop.put("hibernate.hbm2ddl.auto", "create");
-        return prop;
-    }
 }
