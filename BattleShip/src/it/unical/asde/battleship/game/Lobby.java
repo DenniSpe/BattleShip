@@ -52,16 +52,16 @@ public class Lobby {
 		return (owner != null && challenger != null);
 	}
 	
+
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((challenger == null) ? 0 : challenger.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
+		result = prime * result + id;
 		return result;
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -71,20 +71,7 @@ public class Lobby {
 		if (getClass() != obj.getClass())
 			return false;
 		Lobby other = (Lobby) obj;
-		if (challenger == null) {
-			if (other.challenger != null)
-				return false;
-		} else if (!challenger.equals(other.challenger))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (owner == null) {
-			if (other.owner != null)
-				return false;
-		} else if (!owner.equals(other.owner))
+		if (id != other.id)
 			return false;
 		return true;
 	}

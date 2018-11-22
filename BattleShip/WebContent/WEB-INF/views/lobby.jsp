@@ -45,20 +45,74 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></scri
 			success : function(result) {
 				console.log(result);
 				$("#challenger").html(result);
-				getEventsFromServer();
+				setTimeout(function() {
+					getEventsFromServer();
+				}, 3000);
 			},
 			error : function() {
 				//call events again after some time
 				setTimeout(function() {
 					getEventsFromServer();
-				}, 15000);
+				}, 3000);
 			}
 		});
 	}
-	$(document).ready(getEventsFromServer());
+
+	
+	
+	
+	function checkOwner() {
+		var lobbyID = document.getElementById("lobby_id").innerHTML;
+	console.log("CHECK OWNER");
+		$.ajax({
+			url : "checkOwner",
+			type: "POST",
+			data: {"lobby_id": lobbyID},
+			success : function(result) {
+				console.log("CHECK OWNER = "+result);
+				console.log("IL RESULT E' = "+result.localeCompare("notOwner"));
+					if(result.localeCompare("notOwner") == 0) {
+						window.location="/BattleShip/lobbies";
+					}
+				setTimeout(function() {
+					checkOwner();
+				}, 3000);
+			},
+			error : function(result) {
+				console.log("ERRORE CHECK OWNER"+result);
+				
+				//call events again after some time
+				setTimeout(function() {
+					checkOwner();
+				}, 3000);
+			}
+		});
+	} 
+	
+	$(document).ready(
+			function(){
+					getEventsFromServer();
+					checkOwner();
+				}			
+			);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </script>
 
 
+<!--	
+	
+
+-->
 
 
 
