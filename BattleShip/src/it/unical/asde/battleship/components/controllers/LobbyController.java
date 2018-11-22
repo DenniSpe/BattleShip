@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.async.DeferredResult;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,7 +27,6 @@ public class LobbyController {
 	
 	@Autowired
 	private LobbyService lobbyService;
-	
 	
 	
 	@PostMapping("/refreshLobbyList")
@@ -77,7 +77,7 @@ public class LobbyController {
 	}
 	
 	@PostMapping("/new_lobby")
-	public String createLobby(Model model, @RequestParam String lobby_name, @RequestParam String lobby_owner, HttpSession session) {
+	public String createLobby(Model model, @RequestParam String lobby_name, @RequestParam String lobby_owner, HttpSession session, RedirectAttributes redirectAttributes) {
 		
 		System.out.println("===================================== INIZIO NEW LOBBY =====================================");
 		
@@ -90,9 +90,21 @@ public class LobbyController {
 		model.addAttribute("lobbies", lobbyService.getLobbies());
 		model.addAttribute("lobby", myLobby);
 		model.addAttribute("currentLobbyID", myLobby.getId());
+		redirectAttributes.addFlashAttribute("lobbyId", myLobby.getId());
 		
 		System.out.println("===================================== FINE NEW LOBBY =====================================");
 		
+		return "redirect:/insideLobby?id="+myLobby.getId();
+	}
+	
+	@GetMapping("/insideLobby")
+	public String insideLobby(@RequestParam String id, Model model) {
+//		String some = (String) model.asMap().get("lobbyId");
+		int idLobby = Integer.parseInt(id);
+		Lobby mylobby = lobbyService.getLobby(idLobby);
+		model.addAttribute("lobbies", lobbyService.getLobbies());
+		model.addAttribute("lobby", mylobby);
+		model.addAttribute("currentLobbyID", mylobby.getId());
 		return "lobby";
 	}
 	
@@ -103,16 +115,16 @@ public class LobbyController {
 	{
 		System.out.println("===================================== INIZIO WAITING =====================================");
 		int ID = Integer.parseInt(lobbyID);
-		Lobby l = lobbyService.getLobby(ID);
+		final Lobby l = lobbyService.getLobby(ID);
 		model.addAttribute("lobby", l);
 	
 		DeferredResult<String> output = new DeferredResult<>();
 		ForkJoinPool.commonPool().submit(() -> {
-			output.setResult(l.getChallenger() == null ? "null" : l.getChallenger());
+			System.out.println("tertwertert "+l.getId());
+			output.setResult(l.getChallenger()==null ? "" : l.getChallenger());
 		});
-
 		
-			System.out.println("CHALLENGER = "+l.getChallenger());
+			
 		System.out.println("===================================== FINE WAITING =====================================");
 		
 		return output;
@@ -149,11 +161,54 @@ public class LobbyController {
 	
 	
 	@GetMapping("/quit_lobby")
-	public String quit(@RequestParam String lobby_id) {
+	public String quit(@RequestParam String lobby_id, HttpSession session) {
 		
-		int id = Integer.parseInt(lobby_id);
+		int id = Integer.parseInt(lobby_id);		
+		
+		if(session.getAttribute("username").equals(lobbyService.getLobby(id).getOwner()) && lobbyService.getLobby(id).getChallenger()!=null)
+		{
+//			existsOwner = false;
+			lobbyService.deleteLobby(id);
+			
+			//lobbyService.getLobby(id).setChallenger(lobbyService.getLobby(id).getChallenger());
+		}
+		else if(session.getAttribute("username").equals(lobbyService.getLobby(id).getOwner()) && lobbyService.getLobby(id).getChallenger()==null) {
+			lobbyService.deleteLobby(id);
+		}
+		else {
 		lobbyService.getLobby(id).setChallenger(null);
+		}
 		return "index";
+	}
+	
+	@PostMapping("/checkOwner")
+	@ResponseBody
+	public DeferredResult<String> checkOwner(@RequestParam String lobby_id){//@RequestParam String lobbyID){
+		
+		int id = -1;
+		try {
+			id = Integer.parseInt(lobby_id);
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		Lobby fakeLobby = new Lobby();
+		fakeLobby.setId(id);
+		
+		DeferredResult<String> output = new DeferredResult<>();
+		ForkJoinPool.commonPool().submit(() -> {
+			
+			boolean isLobby = lobbyService.getLobbies().contains(fakeLobby);
+			//String o = (!lobbyService.getLobby(ID).getOwner().equals(null) ? "owner" : "notOwner");
+			
+			//System.out.println("O IN JAVA "+o);
+			//output.setResult(o);
+			if(isLobby)
+				output.setResult("owner");
+			else
+				output.setResult("notOwner");
+		});
+		
+		return output;
 	}
 	
 //	@GetMapping("/getEvents")

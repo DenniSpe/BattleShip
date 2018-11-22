@@ -6,13 +6,18 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import it.unical.asde.battleship.game.Lobby;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EventsService {
+	
+	@Autowired
+	private LobbyService lobbyService;
 	
 	@PostConstruct 
 	public void init() {
@@ -20,9 +25,11 @@ public class EventsService {
 			Random rand = new Random();
 			try {
 				while(true) {
-					for(BlockingQueue<String> queue : events.values()) {
-						//queue.put(new Date().toString());
-						queue.put("Catee");
+					for(BlockingQueue<Lobby> queue : events.values()) {
+						
+						for (Lobby l : lobbyService.getLobbies()) {
+							queue.put(l);
+						}
 					}
 					Thread.sleep(1000);//(rand.nextInt(10000));
 				}
@@ -32,9 +39,9 @@ public class EventsService {
 		}).start();
 	}
 
-	private Map<String, BlockingQueue<String>> events = new HashMap<>();
+	private Map<String, BlockingQueue<Lobby>> events = new HashMap<>();
 
-	public String nextEvent(String id) throws InterruptedException {
+	public Lobby nextEvent(String id) throws InterruptedException {
 		if(!events.containsKey(id)) {
 			events.put(id, new LinkedBlockingQueue<>());
 		}

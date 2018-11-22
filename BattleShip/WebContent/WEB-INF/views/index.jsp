@@ -31,7 +31,12 @@ Welcome <%= session.getAttribute("username") %>
 	  success: function(result){
 		  
 		  $("#lobbies_div").html(result);
-	     getEventsFromServer()
+	     
+	     setTimeout(function() {
+				getEventsFromServer();
+			}, 5000);
+	     
+	     
 	            },
 	     error : function(e) {
 	           alert(e.responseText);
