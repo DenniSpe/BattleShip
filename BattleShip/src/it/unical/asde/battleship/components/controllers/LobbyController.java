@@ -92,9 +92,15 @@ public class LobbyController {
 		
 		System.out.println("===================================== FINE NEW LOBBY =====================================");
 		
+		return "redirect:/prova?id="+myLobby.getId();
+
+}
+	
+	@GetMapping("/prova")
+	public String prova(@RequestParam String id, Model model) {
+		
 		return "lobby";
 	}
-	
 	
 	@PostMapping("/waiting")
 	@ResponseBody
