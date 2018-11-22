@@ -90,7 +90,7 @@ public class Lobby {
 	}
 	@Override
 	public String toString() {
-		return "Lobby [id=" + id +", name=" + name + ", owner=" + owner + ", challenger=" + challenger + "]";
+		return "id : " + id +" , name : " + name + ", owner :" + owner + ", challenger :" + challenger + "]";
 	}
 	
 	

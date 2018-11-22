@@ -43,6 +43,7 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></scri
 			type: "POST",
 			data: {"lobbyID": lobbyID},
 			success : function(result) {
+				console.log(result);
 				$("#challenger").html(result);
 				getEventsFromServer();
 			},
