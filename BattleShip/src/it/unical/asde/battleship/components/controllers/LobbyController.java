@@ -5,6 +5,7 @@ import java.util.concurrent.ForkJoinPool;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jmx.support.ObjectNameManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.async.DeferredResult;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.unical.asde.battleship.components.services.LobbyService;
 import it.unical.asde.battleship.game.Lobby;
@@ -25,10 +29,49 @@ public class LobbyController {
 	
 	
 	
+	@PostMapping("/refreshLobbyList")
+	@ResponseBody
+	public DeferredResult<String> refresh(Model model) {
+		
+		System.out.println("===================================== INIZIO REFRESH =====================================");
+		model.addAttribute("lobbies", lobbyService.getLobbies());
+		//System.out.println("SIZE DELLE LOBBIES = "+lobbyService.getLobbies())
+		DeferredResult<String> output = new DeferredResult<>();
+		ObjectMapper obj = new ObjectMapper();
+		try {
+			final String jsonArray = obj.writeValueAsString(lobbyService.getLobbies());
+			System.out.println(jsonArray);
+			ForkJoinPool.commonPool().submit(() -> {
+				output.setResult(jsonArray);
+			});
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("===================================== FINE REFRESH =====================================");
+		
+		
+		
+		
+		return output;
+		
+	}
+	
+	
+	
+	
 	@GetMapping("/lobbies")
 	public String showLobbies(Model model) {
 		
+		System.out.println("===================================== INIZIO LOBBIES =====================================");
+		
+		System.out.println("====================== SIZE DELLE LOBBIES = "+lobbyService.getLobbies().size());
+		
 		model.addAttribute("lobbies", lobbyService.getLobbies());
+		
+		
+		System.out.println("===================================== FINE LOBBIES =====================================");
 		
 		return "index";
 	}
@@ -65,10 +108,11 @@ public class LobbyController {
 	
 		DeferredResult<String> output = new DeferredResult<>();
 		ForkJoinPool.commonPool().submit(() -> {
-			//output.setResult(eventsService.nextEvent(session.getId()));
 			output.setResult(l.getChallenger());
 		});
 
+		
+			System.out.println();
 		System.out.println("===================================== FINE WAITING =====================================");
 		
 		return output;
