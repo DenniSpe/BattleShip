@@ -108,10 +108,9 @@ public class LobbyController {
 	
 		DeferredResult<String> output = new DeferredResult<>();
 		ForkJoinPool.commonPool().submit(() -> {
-			output.setResult(l.getChallenger() == null ? "null" : l.getChallenger());
+			output.setResult(l.getChallenger() == null ? "" : l.getChallenger());
 
 		});
-
 		
 			System.out.println("CHALLENGER = "+l.getChallenger());
 		System.out.println("===================================== FINE WAITING =====================================");

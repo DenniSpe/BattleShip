@@ -68,20 +68,20 @@
         <div id="myTabContent" class="tab-content">
        
         <div class="tab-pane fade active in" id="signin">
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="POST" action="login">
             <fieldset>
             <!-- Sign In Form -->
             <!-- Text input-->
               
                <div class="group">
-<input required="" class="input" type="text"><span class="highlight"></span><span class="bar"></span>
-    <label class="label" for="date">Email address</label></div>
+<input required class="input" type="text" name="uname"><span class="highlight"></span><span class="bar"></span>
+    <label class="label">Username</label></div>
               
               
             <!-- Password input-->
             <div class="group">
-<input required="" class="input" type="password"><span class="highlight"></span><span class="bar"></span>
-    <label class="label" for="date">Password</label>
+<input required class="input" type="password" name="pwd"><span class="highlight"></span><span class="bar"></span>
+    <label class="label">Password</label>
     </div>
 <em>minimum 6 characters</em>
 
@@ -94,9 +94,10 @@
             <div class="control-group">
               <label class="control-label" for="signin"></label>
               <div class="controls">
-              <form method="POST" action="login">
+              
+              
                 <button id="signin" name="signin" class="btn btn-primary btn-block" type="submit">Log In</button>
-             	</form>
+
               </div>
             </div>
     
@@ -111,33 +112,24 @@
           
           
         <div class="tab-pane fade" id="signup">
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="POST" action="registration">
             <fieldset>
             <!-- Sign Up Form -->
             <!-- Text input-->
             <div class="group">
-<input required="" class="input" type="text"><span class="highlight"></span><span class="bar"></span>
-    <label class="label" for="date">First Name</label></div>
+<input required class="input" type="text" name="uname"><span class="highlight"></span><span class="bar"></span>
+    <label class="label" >Username</label></div>
+
             
             <!-- Text input-->
             <div class="group">
-<input required="" class="input" type="text"><span class="highlight"></span><span class="bar"></span>
-    <label class="label" for="date">Last Name</label></div>
-            
-            <!-- Password input-->
-            <div class="group">
-<input required="" class="input" type="text"><span class="highlight"></span><span class="bar"></span>
-    <label class="label" for="date">Email</label></div>
-            
-            <!-- Text input-->
-            <div class="group">
-<input required="" class="input" type="password"><span class="highlight"></span><span class="bar"></span>
-    <label class="label" for="date">Password</label></div>
+<input required class="input" type="password" name="pwd"><span class="highlight"></span><span class="bar"></span>
+    <label class="label">Password</label></div>
               <em>1-8 Characters</em>
             
-              <div class="group2">
-<input required="" class="input" type="text"><span class="highlight"></span><span class="bar"></span>
-    <label class="label" for="date">Country</label></div>
+              <div class="group">
+<input required class="input" type="password" name="rpt_pwd"><span class="highlight"></span><span class="bar"></span>
+    <label class="label" >Repeat Password</label></div>
             
             
             
@@ -145,7 +137,10 @@
             <div class="control-group">
               <label class="control-label" for="confirmsignup"></label>
               <div class="controls">
+              
+              
                 <button id="confirmsignup" name="confirmsignup" class="btn btn-primary btn-block">Sign Up</button>
+
               </div>
             </div>
                  <div class="alert alert-success" role="alert">
