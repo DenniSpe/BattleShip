@@ -94,9 +94,17 @@
             <div class="control-group">
               <label class="control-label" for="signin"></label>
               <div class="controls">
-                <button id="signin" name="signin" class="btn btn-primary btn-block">Log In</button>
+              <form method="POST" action="login">
+                <button id="signin" name="signin" class="btn btn-primary btn-block" type="submit">Log In</button>
+             	</form>
               </div>
             </div>
+    
+<c:if test="${not empty error}">
+<div class="alert alert-danger" role="alert">
+ 
+</div>
+</c:if>
             </fieldset>
             </form>
         </div>
@@ -140,6 +148,12 @@
                 <button id="confirmsignup" name="confirmsignup" class="btn btn-primary btn-block">Sign Up</button>
               </div>
             </div>
+                 <div class="alert alert-success" role="alert">
+  Correct login
+</div>
+<div class="alert alert-danger" role="alert">
+  Error username
+</div>
             </fieldset>
             </form>
       </div>
@@ -246,7 +260,8 @@
     <div class="slider3d__inner">
       <div class="slider3d__rotater">
         <div class="slider3d__item">
-          <h2 class="slider3d__heading" data-text="SO HEADING">SO HEADING</h2>
+          <a href="www.google.com"><h2 class="slider3d__heading" data-text="SO HEADING">SO HEADING</h2></a>
+          
         </div>
         <div class="slider3d__item">
           <h2 class="slider3d__heading" data-text="MUCH ROTATION">MUCH ROTATION</h2>

@@ -13,29 +13,33 @@ import it.unical.asde.battleship.components.services.LoginService;
 import it.unical.asde.battleship.model.User;
 
 @Controller
-public class LoginController {
+public class LoginController
+{
 
-	@Autowired
-	LoginService loginService;
-	
-	
-	@PostMapping("/login")
-	public String loginAttempt(@RequestParam String uname, @RequestParam String pwd, HttpSession session, Model model) {
-		
-		if(loginService.checkCredentials(uname, pwd)) {
-			session.setAttribute("username", uname);
-			session.setAttribute("user", new User(uname, pwd));
-			return "redirect:/";
-		}
-		model.addAttribute("error", "Wrong credentials!");
-		return "login";
-	}	
-	
-	
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "log_reg";
-	}
-	
+    @Autowired
+    LoginService loginService;
+
+    @PostMapping("/login")
+    public String loginAttempt(@RequestParam final String uname, @RequestParam final String pwd, final HttpSession session,
+            final Model model)
+    {
+
+        if (loginService.checkCredentials(uname, pwd))
+        {
+            session.setAttribute("username", uname);
+            session.setAttribute("user", new User(uname, pwd));
+
+            return "redirect:/";
+        }
+        model.addAttribute("error", "Wrong credentials!");
+        return "log_reg";
+    }
+
+    @GetMapping("/logout")
+    public String logout(final HttpSession session)
+    {
+        session.invalidate();
+        return "log_reg";
+    }
+
 }
