@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.async.DeferredResult;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -77,7 +76,7 @@ public class LobbyController {
 	}
 	
 	@PostMapping("/new_lobby")
-	public String createLobby(Model model, @RequestParam String lobby_name, @RequestParam String lobby_owner, HttpSession session, RedirectAttributes redirectAttributes) {
+	public String createLobby(Model model, @RequestParam String lobby_name, @RequestParam String lobby_owner, HttpSession session) {
 		
 		System.out.println("===================================== INIZIO NEW LOBBY =====================================");
 		
@@ -90,12 +89,13 @@ public class LobbyController {
 		model.addAttribute("lobbies", lobbyService.getLobbies());
 		model.addAttribute("lobby", myLobby);
 		model.addAttribute("currentLobbyID", myLobby.getId());
-		redirectAttributes.addFlashAttribute("lobbyId", myLobby.getId());
 		
 		System.out.println("===================================== FINE NEW LOBBY =====================================");
 		
 		return "redirect:/insideLobby?id="+myLobby.getId();
-	}
+
+}
+	
 	
 	@GetMapping("/insideLobby")
 	public String insideLobby(@RequestParam String id, Model model) {
@@ -107,7 +107,6 @@ public class LobbyController {
 		model.addAttribute("currentLobbyID", mylobby.getId());
 		return "lobby";
 	}
-	
 	
 	@PostMapping("/waiting")
 	@ResponseBody
