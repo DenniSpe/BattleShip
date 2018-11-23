@@ -6,198 +6,16 @@
 
 <html>
 	<head>
-		<title>Battleship MVC</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		
-		 <link rel="stylesheet" href="resources/assets/css/main.css" />
-		  <link rel="stylesheet" href="resources/assets/css/carousel3d.css" />
-
-		<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-  <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css'>
-  
-	
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    
-	</head>
-	
-	<body>
+	<title>Battleship MVC</title>
+	<jsp:include page="nav_bar.jsp"></jsp:include>
+	<script src="resources/assets/js/main.js"></script>
+	<script src="resources/assets/js/navbar.js"></script>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top opaque-navbar">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navMain">
-  <span class="glyphicon glyphicon-chevron-right" style="color:white;"></span>
-    
-  </button>
-      <a class="pull-left" href="#"><img class="img-responsive2" src="resources/assets/css/images/logo.png"  width= 170px></a>
-    </div>
-    <div class="collapse navbar-collapse" id="navMain">
-      <ul class="nav navbar-nav pull-right">
-        <li class="active"><a href="#">Home</a></li>
-     
-        <li><a href="#" data-toggle="modal" data-target=".log-sign">Log in</a></li> 
-           <li><a href="#">About Us</a></li>
-      
-      </ul>
-    </div>
-  </div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade bs-modal-sm log-sign" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-        
-        <div class="bs-example bs-example-tabs">
-            <ul id="myTab" class="nav nav-tabs">
-              <li id="tab1" class=" active tab-style login-shadow "><a href="#signin" data-toggle="tab">Log In</a></li>
-              <li id="tab2" class=" tab-style "><a href="#signup" data-toggle="tab">Sign Up</a></li>
-              
-            </ul>
-        </div>
-      <div class="modal-body">
-        <div id="myTabContent" class="tab-content">
-       
-        <div class="tab-pane fade active in" id="signin">
-            <form class="form-horizontal" method="POST" action="login">
-            <fieldset>
-            <!-- Sign In Form -->
-            <!-- Text input-->
-              
-               <div class="group">
-<input required class="input" type="text" name="uname"><span class="highlight"></span><span class="bar"></span>
-    <label class="label">Username</label></div>
-              
-              
-            <!-- Password input-->
-            <div class="group">
-<input required class="input" type="password" name="pwd"><span class="highlight"></span><span class="bar"></span>
-    <label class="label">Password</label>
-    </div>
-<em>minimum 6 characters</em>
 
-           <div class="forgot-link">
-            <a href="#forgot" data-toggle="modal" data-target="#forgot-password"> I forgot my password</a>
-            </div>
-            
 
-            <!-- Button -->
-            <div class="control-group">
-              <label class="control-label" for="signin"></label>
-              <div class="controls">
-              
-              
-                <button id="signin" name="signin" class="btn btn-primary btn-block" type="submit">Log In</button>
-
-              </div>
-            </div>
-    
-<c:if test="${not empty error}">
-<div class="alert alert-danger" role="alert">
- 
-</div>
-</c:if>
-            </fieldset>
-            </form>
-        </div>
-          
-          
-        <div class="tab-pane fade" id="signup">
-            <form class="form-horizontal" method="POST" action="registration">
-            <fieldset>
-            <!-- Sign Up Form -->
-            <!-- Text input-->
-            <div class="group">
-<input required class="input" type="text" name="uname"><span class="highlight"></span><span class="bar"></span>
-    <label class="label" >Username</label></div>
-
-            
-            <!-- Text input-->
-            <div class="group">
-<input required class="input" type="password" name="pwd"><span class="highlight"></span><span class="bar"></span>
-    <label class="label">Password</label></div>
-              <em>1-8 Characters</em>
-            
-              <div class="group">
-<input required class="input" type="password" name="rpt_pwd"><span class="highlight"></span><span class="bar"></span>
-    <label class="label" >Repeat Password</label></div>
-            
-            
-            
-            <!-- Button -->
-            <div class="control-group">
-              <label class="control-label" for="confirmsignup"></label>
-              <div class="controls">
-              
-              
-                <button id="confirmsignup" name="confirmsignup" class="btn btn-primary btn-block">Sign Up</button>
-
-              </div>
-            </div>
-                 <div class="alert alert-success" role="alert">
-  Correct login
-</div>
-<div class="alert alert-danger" role="alert">
-  Error username
-</div>
-            </fieldset>
-            </form>
-      </div>
-    </div>
-      </div>
-      <!--<div class="modal-footer">
-      <center>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </center>
-      </div>-->
-    </div>
-  </div>
-</div>
-  
-   
-
-<!--modal2-->
-
-<div class="modal fade bs-modal-sm" id="forgot-password" tabindex="0" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-        <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Password will be sent to your email</h4>
-      </div>
-      <div class="modal-body">
-        <form class="form-horizontal">
-        <fieldset>
-        <div class="group">
-<input required="" class="input" type="text"><span class="highlight"></span><span class="bar"></span>
-    <label class="label" for="date">Email address</label></div>
-        
-        
-        <div class="control-group">
-              <label class="control-label" for="forpassword"></label>
-              <div class="controls">
-                <button id="forpasswodr" name="forpassword" class="btn btn-primary btn-block">Send</button>
-              </div>
-            </div>
-          </fieldset>
-            </form>
-          
-      </div>
-    </div>
-    
-</div>
-</div>
-<!-- end modal -->
-		<!-- Header -->
+	<!-- Header -->
+		
 			<header id="header" class="alt">
 
 				<div class="inner">
@@ -207,8 +25,6 @@
 
 				
 			</header>
-
-
 
 
 		
@@ -310,20 +126,6 @@
 
 			</div>
 
-		<!-- Scripts -->
-		
-			<script src="resources/assets/js/jquery.min.js"></script>
-			<script src="resources/assets/js/skel.min.js"></script>
-			<script src="resources/assets/js/util.js"></script>
-			<script src="resources/assets/js/main.js"></script>
-			<script src="resources/assets/js/counter.js"></script>
-			<script  src="resources/assets/js/carousel.js"></script>
-
-			<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-  
   
 
 	</body>
