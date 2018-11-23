@@ -1555,10 +1555,12 @@
 
 
 /***************************************************** MODAL ***************************************/
+
+
 .tab-style{
 font-size:20px;
 width:50%;
-background-color:#31698a;
+background-color:#f2f2f2;
   text-align:center;
   
 
@@ -1571,8 +1573,8 @@ background-color:#31698a;
 
 
 .group2 { 
-    position: relative; 
-    margin-top: 16px; 
+	position: relative; 
+	margin-top: 16px; 
 }
 
 .btn-block{margin-top:20px;
@@ -1599,22 +1601,22 @@ box-shadow: -5px 0px 6px 0px rgba(82,82,82,0.52);
 .modal-header{background-color:#e5ecf4;}
 
 .group { 
-    position: relative; 
-    margin-top: 30px; 
+	position: relative; 
+	margin-top: 30px; 
 }
 
 
 .input {
-    font-size: 18px;
-    padding: 10px 10px 10px 5px;
-    -webkit-appearance: none;
-    display: block;
-    background: none;
-    color: #636363;
-    width: 100%;
-    border: none;
-    border-radius: 0;
-    border-bottom: 1px solid #757575;
+	font-size: 18px;
+	padding: 10px 10px 10px 5px;
+	-webkit-appearance: none;
+	display: block;
+	background: none;
+	color: #636363;
+	width: 100%;
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid #757575;
 }
 
 .input:focus { outline: none; }
@@ -1623,43 +1625,43 @@ box-shadow: -5px 0px 6px 0px rgba(82,82,82,0.52);
 /* Label */
 
 .label {
-    color: #757575; 
-    font-size: 18px;
-    font-weight: normal;
-    position: absolute;
-    pointer-events: none;
-    left: -10px;
-    top: 10 px;
-    transition: all 0.2s ease;
+	color: #757575; 
+	font-size: 18px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: -10px;
+	top: 10px;
+	transition: all 0.2s ease;
 }
 
 
 /* active */
 
 .input:focus ~ .label, .input.used ~ .label {
-    top: -20px;
+	top: -20px;
   transform: scale(.75); left:-15px;
-    /* font-size: 14px; */
-    color: #4a89dc;
+	/* font-size: 14px; */
+	color: #4a89dc;
 }
 
 
 /* Underline */
 
 .bar {
-    position: relative;
-    display: block;
-    width: 100%;
+	position: relative;
+	display: block;
+	width: 100%;
 }
 
 .bar:before, .bar:after {
-    content: '';
-    height: 2px; 
-    width: 0;
-    bottom: 1px; 
-    position: absolute;
-    background: #4a89dc; 
-    transition: all 0.2s ease;
+	content: '';
+	height: 2px; 
+	width: 0;
+	bottom: 1px; 
+	position: absolute;
+	background: #4a89dc; 
+	transition: all 0.2s ease;
 }
 
 .bar:before { left: 50%; }
@@ -1675,20 +1677,20 @@ box-shadow: -5px 0px 6px 0px rgba(82,82,82,0.52);
 /* Highlight */
 
 .highlight {
-    position: absolute;
-    height: 60%; 
-    width: 100px; 
-    top: 25%; 
-    left: 0;
-    pointer-events: none;
-    opacity: 0.5;
+	position: absolute;
+	height: 60%; 
+	width: 100px; 
+	top: 25%; 
+	left: 0;
+	pointer-events: none;
+	opacity: 0.5;
 }
 
 
 /* active */
 
 .input:focus ~ .highlight {
-    animation: inputHighlighter 0.3s ease;
+	animation: inputHighlighter 0.3s ease;
 }
 
 
@@ -1702,8 +1704,8 @@ box-shadow: -5px 0px 6px 0px rgba(82,82,82,0.52);
 
 
 @media screen and (min-width: 768px) {
-    
-    #myModal .modal-dialog  {width:500px;}
+	
+	#myModal .modal-dialog  {width:500px;}
   
   #forgot-password .modal-dialog{width:500px;}
   
@@ -1713,11 +1715,12 @@ box-shadow: -5px 0px 6px 0px rgba(82,82,82,0.52);
 
 
 .modal-body{
-	background-color:#82AACA;
+	background-color:#e6f2ff;
 background-size:cover;
 z-inedx:4;}
 
 em{display:none;}
+/***************************************** END MODAL ***/
 
 /*-=-=-=-=-=-=-=-=-=-=-=- */
 /* Column Grids */
