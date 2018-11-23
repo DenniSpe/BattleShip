@@ -37,6 +37,7 @@ public class LobbyController {
 		//System.out.println("SIZE DELLE LOBBIES = "+lobbyService.getLobbies())
 		DeferredResult<String> output = new DeferredResult<>();
 		ObjectMapper obj = new ObjectMapper();
+		
 		try {
 			final String jsonArray = obj.writeValueAsString(lobbyService.getLobbies());
 			System.out.println(jsonArray);

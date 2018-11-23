@@ -29,7 +29,8 @@ $(window, document, undefined).ready(function() {
       $this.removeClass('used');
   });
   
-  });
+  
+
 
 
 $('#tab1').on('click' , function(){
