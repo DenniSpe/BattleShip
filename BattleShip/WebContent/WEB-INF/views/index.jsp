@@ -7,14 +7,21 @@
 <head>
 	<jsp:include page="nav_bar.jsp"></jsp:include>
 	<script src="resources/assets/js/main.js"></script>
+	<style type="text/css">
+		body {
+ 		 min-height: 75rem;
+ 		 padding-top: 4.5rem;
+		}
+	</style>
 <body>
+
 
 <div class="container">
   <h2>Join or create a lobby !</h2>
   
   <div class="list-group">
   
-  <div id="lobbies_div"> ${ lobbies }</div>
+  <div id="lobbies_div"></div>
 <!--  	     $("#lobbies_div").load(location.href+" #lobbies_div>*",""); 
 		  $("#lobbies_div").html(result); -->
   <script>
@@ -22,11 +29,27 @@
   function getEventsFromServer() { 
   $.ajax({
 	  url: "refreshLobbyList",
-	      type: "POST",
-	  
+      type: "POST",
+      dataType: "json",	  
 	  success: function(result){
 		  
-		  $("#lobbies_div").html(result);
+		 // $("#lobbies_div").html(result);
+		  
+		  var ul = $("<ul></ul>").addClass("list-group");
+		  var url = $("#serverUrl").attr("value");
+		  //var chall = $("#callenger").attr("value");
+		  
+		  $.each(result, function(index, value){			  
+			  var link = $("<a></a>").addClass("list-group-item").text(value.name)
+			  .attr("href", url+"?lobby_id="+value.id);
+			  if(value.full == true){
+				  link.addClass("list-group-item-danger");
+			  }
+			  ul.append(link)
+		  });
+		  
+		  $("#lobbyList").html(ul);
+		 
 	     
 	     setTimeout(function() {
 				getEventsFromServer();
@@ -51,7 +74,8 @@
   
   
   
-  
+ <hidden hidden id="serverUrl" value="<c:url value="/join_lobby"></c:url>"></hidden>
+ <!-- <hidden hidden id="callenger" value="${ sessionScope.username }"></hidden>  -->
  <div id="lobbyList"> 
   	<c:forEach items="${ lobbies }" var="lobby">
   		<a class="list-group-item" 
@@ -72,12 +96,26 @@
 
 
 
-<div class="btn-group">
- <a href="<c:url value="/logout"/>"><button type="button" class="btn btn-primary"> Logout </button></a>
- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Create Lobby </button>
+<div class="container">
+
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+<div class="btn-group mr2" role="group">
  
  
-  <!-- Modal -->
+ <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Create Lobby 
+ 	</button>
+ 
+ </div>
+ <div class="btn-group mr2" role="group">
+ <a href="<c:url value="/logout"/>">
+ 	<button type="button" class="btn btn-primary"> Logout </button></a>
+ </div>
+ 
+  
+  
+</div>
+
+ <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
@@ -108,7 +146,7 @@
       
     </div>
   </div>
-  
+
 </div>
  
  
