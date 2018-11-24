@@ -21,6 +21,8 @@
 
 	body {
 		line-height: 1;
+		min-height: 75px;
+  		padding-top: 4.5px;
 	}
 
 	ol, ul {

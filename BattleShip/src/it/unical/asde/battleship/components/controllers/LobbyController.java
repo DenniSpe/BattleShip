@@ -62,18 +62,23 @@ public class LobbyController {
 	
 	
 	@GetMapping("/lobbies")
-	public String showLobbies(Model model) {
+	public String showLobbies(Model model, HttpSession session) {
 		
-		System.out.println("===================================== INIZIO LOBBIES =====================================");
-		
-		System.out.println("====================== SIZE DELLE LOBBIES = "+lobbyService.getLobbies().size());
-		
-		model.addAttribute("lobbies", lobbyService.getLobbies());
-		
-		
-		System.out.println("===================================== FINE LOBBIES =====================================");
-		
-		return "index";
+			if(session.getAttribute("user")!=null) {
+			
+			System.out.println("===================================== INIZIO LOBBIES =====================================");
+			
+			System.out.println("====================== SIZE DELLE LOBBIES = "+lobbyService.getLobbies().size());
+			
+			model.addAttribute("lobbies", lobbyService.getLobbies());
+			
+			
+			System.out.println("===================================== FINE LOBBIES =====================================");
+			
+			return "index";
+		}
+			
+		return "redirect:/";
 	}
 	
 	@PostMapping("/new_lobby")
@@ -132,31 +137,41 @@ public class LobbyController {
 	}
 	
 	@GetMapping("/join_lobby")
-	public String joinLobby(Model model, HttpSession session, @RequestParam String lobby_owner, @RequestParam String lobby_challenger, @RequestParam String lobby_id) {
+	public String joinLobby(Model model, HttpSession session, @RequestParam String lobby_id) {
 
-		System.out.println("===================================== INIZIO JOIN LOBBY =====================================");
-		int id = Integer.parseInt(lobby_id);
+		if(session.getAttribute("user")!=null) {
+			User user = (User)session.getAttribute("user");
+			System.out.println("===================================== INIZIO JOIN LOBBY =====================================");
+			int id = Integer.parseInt(lobby_id);
 		
-		Lobby myLobby = lobbyService.getLobby(id);
+			Lobby myLobby = lobbyService.getLobby(id);
+			System.out.println("LOBBY ID= "+myLobby.getId());
+			System.out.println("NAME= "+myLobby.getName());
+			System.out.println("OWNER= "+myLobby.getOwner());
+			System.out.println(" CHALLENGER= "+myLobby.getChallenger());
+			if(myLobby.getChallenger()==null) {
+				System.out.println("LOBBY ID= "+myLobby.getId());
+				System.out.println("NAME= "+myLobby.getName());
+				System.out.println("OWNER= "+myLobby.getOwner());
+				System.out.println(" CHALLENGER= "+myLobby.getChallenger());
+				
+				myLobby.setChallenger(user.getUsername());
+				
+				lobbyService.addLobby(myLobby);
+				
+				model.addAttribute("lobby", myLobby);
+				model.addAttribute("currentLobbyID", myLobby.getId());
+				
+				System.out.println("======================JOIN LOBBY CHALLENGER AGGIUNTO ========"+myLobby.getChallenger());
+				System.out.println("======================JOIN LOBBY ID ========"+myLobby.getId());
+				
+				System.out.println("===================================== FINE JOIN LOBBY =====================================");
+				
+				return "lobby";
+			}	
 		
-		System.out.println("LOBBY ID= "+myLobby.getId());
-		System.out.println("NAME= "+myLobby.getName());
-		System.out.println("OWNER= "+myLobby.getOwner());
-		System.out.println(" CHALLENGER= "+myLobby.getChallenger());
-		
-		myLobby.setChallenger(lobby_challenger);
-		
-		lobbyService.addLobby(myLobby);
-		
-		model.addAttribute("lobby", myLobby);
-		model.addAttribute("currentLobbyID", myLobby.getId());
-		
-		System.out.println("======================JOIN LOBBY CHALLENGER AGGIUNTO ========"+myLobby.getChallenger());
-		System.out.println("======================JOIN LOBBY ID ========"+myLobby.getId());
-		
-		System.out.println("===================================== FINE JOIN LOBBY =====================================");
-		
-		return "lobby";
+		}
+		return "redirect:/";
 	}
 	
 	
