@@ -1567,7 +1567,7 @@ background-color:#f2f2f2;
 }
 .nav-tabs > li > a {
     margin-right: 0px;
-    color:grey;
+    color:#429ef4;
 }
 
 
@@ -1626,12 +1626,12 @@ box-shadow: -5px 0px 6px 0px rgba(82,82,82,0.52);
 
 .label {
 	color: #757575; 
-	font-size: 18px;
+	font-size: 24px;
 	font-weight: normal;
 	position: absolute;
 	pointer-events: none;
 	left: -10px;
-	top: 10px;
+	top: -20px;
 	transition: all 0.2s ease;
 }
 
@@ -1641,7 +1641,7 @@ box-shadow: -5px 0px 6px 0px rgba(82,82,82,0.52);
 .input:focus ~ .label, .input.used ~ .label {
 	top: -20px;
   transform: scale(.75); left:-15px;
-	/* font-size: 14px; */
+	 font-size: 19px; 
 	color: #4a89dc;
 }
 
@@ -1695,7 +1695,7 @@ box-shadow: -5px 0px 6px 0px rgba(82,82,82,0.52);
 
 
 @media  screen and (max-width: 767px) and (min-width: 576px){
-  #myModal{margin-left:20%;
+  #mymodalOnNav{margin-left:20%;
             margin-right:20%;}
 
   #forgot-password{margin-left:20%;
@@ -1705,7 +1705,7 @@ box-shadow: -5px 0px 6px 0px rgba(82,82,82,0.52);
 
 @media screen and (min-width: 768px) {
 	
-	#myModal .modal-dialog  {width:500px;}
+	#mymodalOnNav .modal-dialog  {width:500px;}
   
   #forgot-password .modal-dialog{width:500px;}
   
@@ -1715,7 +1715,9 @@ box-shadow: -5px 0px 6px 0px rgba(82,82,82,0.52);
 
 
 .modal-body{
-	background-color:#e6f2ff;
+	background-color:#232b2b;
+
+
 background-size:cover;
 z-inedx:4;}
 
