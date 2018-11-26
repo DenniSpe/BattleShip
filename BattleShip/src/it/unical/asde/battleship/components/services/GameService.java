@@ -20,10 +20,18 @@ public class GameService {
 	private HashMap<String, Grid> gridOwner; 
 	private HashMap<String, Grid> gridChallenger;
 	
+	
+	// K = Username, V = boolean
+	private HashMap<String, Boolean> isReadyOwner;
+	private HashMap<String, Boolean> isReadyChallenger;
+	
 	@PostConstruct
 	public void init() {
 		gridOwner = new HashMap<>();
 		gridChallenger = new HashMap<>();
+		
+		isReadyOwner = new HashMap<>();
+		isReadyChallenger = new HashMap<>();
 	}
 	
 	public void startGame(int lobbyID) {
@@ -31,6 +39,9 @@ public class GameService {
 		
 		gridOwner.put(currentLobby.getOwner(), new Grid());
 		gridChallenger.put(currentLobby.getChallenger(), new Grid());
+		
+		isReadyOwner.put(currentLobby.getOwner(), false);
+		isReadyChallenger.put(currentLobby.getChallenger(), false);
 	}
 	
 	public void putShipOwner(int lobbyID, int row, int col, int numShip, int dir) {
@@ -40,11 +51,8 @@ public class GameService {
 	
 	public void putShipChallenger(int lobbyID, int row, int col, int numShip, int dir) {
 		Lobby currentLobby = lobbyService.getLobby(lobbyID);
+		
 		gridChallenger.get(currentLobby.getChallenger()).setShip(row, col, numShip, dir);
-		
-		System.out.println("===== sono dentro putshipchallenger");
-		
-		gridChallenger.get(currentLobby.getChallenger()).print();
 	}
 	
 	public boolean hasShipOwner(int lobbyID, int row, int col) {
@@ -82,6 +90,25 @@ public class GameService {
 		
 		return gridChallenger.get(currentLobby.getChallenger());
 	}
+	
+	public void ownerIsReady(int lobbyID) {
+		Lobby currentLobby = lobbyService.getLobby(lobbyID);
+		
+		isReadyOwner.put(currentLobby.getOwner(), true);
+	}
+	
+	public void challengerIsReady(int lobbyID) {
+		Lobby currentLobby = lobbyService.getLobby(lobbyID);
+		
+		isReadyChallenger.put(currentLobby.getChallenger(), true);
+	}
+	
+	public boolean usersAreReady(int lobbyID) {
+		Lobby currentLobby = lobbyService.getLobby(lobbyID);
+		
+		return isReadyOwner.get(currentLobby.getOwner()) && isReadyChallenger.get(currentLobby.getChallenger());
+	}
+	
 	// TODO Before to delete the Lobby in the LobbyService (CHECK THE CONTROLLER CLASS, NOT THE SERVICE ONE),
 	// Call this method to avoid NullPointerException
 	public void deleteGame(int lobbyID) {

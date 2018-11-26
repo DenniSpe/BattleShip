@@ -24,7 +24,7 @@ $(document).ready(function() {
 	$("#button5").click(function(){
 		rotateBoat("boat-5");
 	});
-})
+});
 
 function getEventsFromServer(cellacliccata) {
 	$.ajax({
@@ -134,4 +134,34 @@ function drop(ev) {
     
 }
 
+function waitingStart(){
+	 var url = new URL(window.location.href);
+	 var lobbyID = url.searchParams.get("id");
+	 
+	 alert("WAITING START CON ID "+lobbyID);
+	 
+	 $.ajax({
+		 url : "waitingStart",
+		 data : { "ID" : lobbyID },
+		 success : function(result){
+			 if(!result.localeCompare("game")){ //If it's game
+				 window.location="/BattleShip/game.jsp";
+			 }
+			 else if(!result.localeCompare("boatPositioning")){
+				 // do nothing
+			 }
+			
+			 setTimeout(function() {
+					waitingStart();
+				}, 5000);
+		 },
+		 
+		 error : function(){
+			 //call events again after some time
+				setTimeout(function() {
+					drop(ev);
+				}, 5000);
+		 }
+	 });
+}
 

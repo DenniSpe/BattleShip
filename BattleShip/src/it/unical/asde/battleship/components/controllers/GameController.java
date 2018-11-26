@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +25,7 @@ public class GameController {
 	
 	@Autowired
 	LobbyService lobbyService;
+	
 	
 	private static boolean hasErrorOnPositioning(final int row, final int col , final int dir, final Grid grid, final int boatSize) {
 
@@ -190,12 +190,46 @@ public class GameController {
     @GetMapping("/boatPositioning")
     public String goToGame()
     {
-       // setupRandom(playService.getOwner());
-        //setupRandom(playService.getChallenger());
-       // System.out.println("Grid challenger");
-      //  playService.getChallenger().playerGrid.printShips();
-    	
         return "boatPositioning";
     }
 
+    
+    @GetMapping("/waitingStart")
+    @ResponseBody
+    public DeferredResult<String> waitingStart(@RequestParam String ID, HttpSession session) {
+    	int lobbyID = Integer.parseInt(ID);
+    	DeferredResult<String> output = new DeferredResult<>();
+    	Lobby currentLobby = lobbyService.getLobby(lobbyID);
+    	
+    	boolean isOwner = false;
+    	
+    	String username = (String) session.getAttribute("username");
+    	if( username.equals(currentLobby.getOwner())) {
+    		isOwner = true;
+    	}
+    	
+    	if(isOwner) {
+    		gameService.ownerIsReady(lobbyID);
+    	}
+    	else {
+    		gameService.challengerIsReady(lobbyID);
+    	}
+    	
+    	if(gameService.usersAreReady(lobbyID)) {
+    		 ForkJoinPool.commonPool().submit(() ->
+            {
+            	output.setResult("game");
+            });;
+    	}
+    	
+    	else {
+	    	ForkJoinPool.commonPool().submit(() ->
+	        {
+	        	output.setResult("boatPositioning");
+	        });
+    	}
+    	
+    	return output;
+    }
+    
 }

@@ -281,11 +281,10 @@
 </div>
 
 
-<h2 id="prova"></h2>
-
-
 <!--  End choose ships -->
 
+
+<button onclick="waitingStart()">I'm Ready !</button>
 
 
 
