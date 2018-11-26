@@ -1,5 +1,5 @@
 package it.unical.asde.battleship.model;
-
+/*
 public class Player {
 	// These are the lengths of all of the ships.
 	private static final int[] SHIP_LENGTHS = { 2, 3, 3, 4, 5 };
@@ -15,6 +15,7 @@ public class Player {
 			throw new IllegalArgumentException("ERROR! Num of ships must be 5");
 		}
 
+		
 		ships = new Ship[NUM_OF_SHIPS];
 		for (int i = 0; i < NUM_OF_SHIPS; i++) {
 			Ship tempShip = new Ship(SHIP_LENGTHS[i]);
@@ -50,3 +51,4 @@ public class Player {
 	
 	
 }
+*/

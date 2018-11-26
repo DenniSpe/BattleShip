@@ -32,7 +32,7 @@
 			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-6 text-center">
 				<div id="container">
 					<table class="board table table-responsive animated fadeInUp">
-						<tbody>
+					<!-- 	<tbody>
 							<tr>
 								<td class="cell cell-title-left cell-title-top" id="cell-0-0"></td>
 								<td class="cell cell-title-top" id="cell-1-0">A</td>
@@ -176,19 +176,12 @@
 								<td class="cell" id="cell-9-10"></td>
 								<td class="cell" id="cell-10-10"></td>
 							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-
-
-
-		<div class="col-6">
-			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-6 text-center">
-				<div id="container">
-					<table class="board table table-responsive animated fadeInUp">
-						<tbody>
+						</tbody> -->
+						
+						<!-- 
+						
+							<tbody>
+						
 							<tr>
 								<td class="cell cell-title-left cell-title-top" id="cell-0-0"></td>
 								<td class="cell cell-title-top" id="cell-1-0">A</td>
@@ -333,6 +326,192 @@
 								<td class="cell" id="cell-10-10"></td>
 							</tr>
 						</tbody>
+						
+						
+						
+						 -->
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="col-6">
+			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-6 text-center">
+				<div id="container">
+					<table class="board table table-responsive animated fadeInUp">
+						<tbody>
+						
+							<tr>
+								<td class="cell cell-title-left cell-title-top" id="cell-0-0"></td>
+								<td class="cell cell-title-top" id="cell-1-0">A</td>
+								<td class="cell cell-title-top" id="cell-2-0">B</td>
+								<td class="cell cell-title-top" id="cell-3-0">C</td>
+								<td class="cell cell-title-top" id="cell-4-0">D</td>
+								<td class="cell cell-title-top" id="cell-5-0">E</td>
+								<td class="cell cell-title-top" id="cell-6-0">F</td>
+								<td class="cell cell-title-top" id="cell-7-0">G</td>
+								<td class="cell cell-title-top" id="cell-8-0">H</td>
+								<td class="cell cell-title-top" id="cell-9-0">I</td>
+								<td class="cell cell-title-top" id="cell-10-0">J</td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cell-0-1">1</td>
+								<td class="cell" id="cell-1-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-2-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-3-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-4-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-5-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-6-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-7-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-8-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-9-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-10-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cell-0-2">2</td>
+								<td class="cell" id="cell-1-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-2-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-3-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-4-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-5-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-6-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-7-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-8-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-9-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-10-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cell-0-3">3</td>
+								<td class="cell" id="cell-1-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-2-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-3-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-4-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-5-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-6-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-7-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-8-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-9-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-10-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cell-0-4">4</td>
+								<td class="cell" id="cell-1-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-2-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-3-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-4-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-5-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-6-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-7-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-8-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-9-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-10-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cell-0-5">5</td>
+								<td class="cell" id="cell-1-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-2-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-3-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-4-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-5-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-6-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-7-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-8-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-9-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-10-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cell-0-6">6</td>
+								<td class="cell" id="cell-1-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-2-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-3-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-4-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-5-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-6-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-7-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-8-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-9-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-10-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cell-0-7">7</td>
+								<td class="cell" id="cell-1-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-2-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-3-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-4-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-5-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-6-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-7-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-8-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-9-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-10-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cell-0-8">8</td>
+								<td class="cell" id="cell-1-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-2-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-3-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-4-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-5-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-6-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-7-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-8-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-9-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-10-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cell-0-9">9</td>
+								<td class="cell" id="cell-1-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-2-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-3-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-4-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-5-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-6-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-7-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-8-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-9-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-10-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cell-0-10">10</td>
+								<td class="cell" id="cell-1-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-2-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-3-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-4-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-5-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-6-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-7-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-8-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-9-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell" id="cell-10-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+							</tr>
+						</tbody>
 					</table>
 				</div>
 			</div>
@@ -409,7 +588,7 @@
 
 			</div>
 		</div>
-
+<!-- 
 		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-6 text-center">
 			<table class="table">
 				<thead>
@@ -453,6 +632,34 @@
 				</tbody>
 			</table>
 		</div>
+ -->
+
+
+
+<!--  Choose ships -->
+
+<div>
+<button onclick="rotateBoat()" >Click me</button>
+
+
+
+  
+    <img id="boat-1" src="resources/assetsGame/images/boat.png" draggable="true" ondragstart="drag(event)" style="transform:rotate(0deg); height: 50px; width: 50%;">
+	<img id="boat-2" src="resources/assetsGame/images/boat.png" draggable="true" ondragstart="drag(event)" style="transform:rotate(0deg); height: 50px; width: 50%;">
+	<img id="boat-3" src="resources/assetsGame/images/boat.png" draggable="true" ondragstart="drag(event)" style="transform:rotate(0deg); height: 50px; width: 50%;">
+ 	<img id="boat-4" src="resources/assetsGame/images/boat.png" draggable="true" ondragstart="drag(event)" style="transform:rotate(0deg); height: 50px; width: 50%;">
+  	<img id="boat-5" src="resources/assetsGame/images/boat.png" draggable="true" ondragstart="drag(event)" style="transform:rotate(0deg); height: 50px; width: 50%;">
+
+</div>
+
+
+
+</div>
+
+<h2 id="prova"></h2>
+
+
+<!--  End choose ships -->
 
 	</div>
 

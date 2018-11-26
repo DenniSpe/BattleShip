@@ -114,7 +114,10 @@ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></scri
 
 -->
 
-
+<form action="startGame">
+<button >click me</button>
+<input type="hidden" value=${ currentLobbyID } name="id"/>
+</form>
 
 
 
