@@ -149,7 +149,7 @@ public class LobbyController {
 			System.out.println("NAME= "+myLobby.getName());
 			System.out.println("OWNER= "+myLobby.getOwner());
 			System.out.println(" CHALLENGER= "+myLobby.getChallenger());
-			if(myLobby.getChallenger()==null) {
+			if(myLobby.getChallenger()==null || !user.getUsername().equalsIgnoreCase(myLobby.getOwner())) {
 				System.out.println("LOBBY ID= "+myLobby.getId());
 				System.out.println("NAME= "+myLobby.getName());
 				System.out.println("OWNER= "+myLobby.getOwner());
@@ -179,8 +179,8 @@ public class LobbyController {
 	public String quit(@RequestParam String lobby_id, HttpSession session) {
 		
 		int id = Integer.parseInt(lobby_id);		
-		
-		if(session.getAttribute("username").equals(lobbyService.getLobby(id).getOwner()) && lobbyService.getLobby(id).getChallenger()!=null)
+		String username = (String)session.getAttribute("username");
+		if(username!=null && username.equals(lobbyService.getLobby(id).getOwner()) && lobbyService.getLobby(id).getChallenger()!=null)
 		{
 //			existsOwner = false;
 			lobbyService.deleteLobby(id);

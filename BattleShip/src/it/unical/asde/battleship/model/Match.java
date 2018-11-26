@@ -27,6 +27,9 @@ public class Match {
 	@Column(nullable = false)
 	private boolean wonCreator;
 
+	@Column(nullable = false)
+	private String matchName;
+
 	@ManyToOne
 	private User challenger;
 
@@ -79,6 +82,15 @@ public class Match {
 
 	public void setCreator(User creator) {
 		this.creator = creator;
+	}	
+	
+
+	public String getMatchName() {
+		return matchName;
+	}
+
+	public void setMatchName(String matchName) {
+		this.matchName = matchName;
 	}
 
 	@Override
