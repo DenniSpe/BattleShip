@@ -91,43 +91,49 @@ public class GameController {
 	// colpita.. serve ancora??
 	@PostMapping("/shoot")
 	@ResponseBody
-	public DeferredResult<String> shoot(final String cella, final HttpSession session, String id) {
-		final DeferredResult<String> output = new DeferredResult<>();
+	public String shoot(final String cella, final HttpSession session, String id) {
+		//final DeferredResult<String> output = new DeferredResult<>();
 
-		ForkJoinPool.commonPool().submit(() -> {
-
-			int row = Integer.parseInt(cella.split("-")[1]);
-			int col = Integer.parseInt(cella.split("-")[2]);
-			User user = (User) session.getAttribute("user");
-			if (user != null || id != null) {
-				Lobby currentLobby = lobbyService.getLobby(Integer.parseInt(id));
-				if (currentLobby.getOwner().equals(user.getUsername())) {
-					if (!gameService.getChallengerGrid(currentLobby.getId()).alreadyGuessed(row, col)) {
-						if (gameService.getChallengerGrid(currentLobby.getId()).hasShip(row, col)) {
-							gameService.getChallengerGrid(currentLobby.getId()).markHit(row, col);
-							output.setResult("hit-" + row + "-" + col);
-						} else {
-							gameService.getChallengerGrid(currentLobby.getId()).markMiss(row, col);
-							output.setResult("miss-" + row + "-" + col);
-
-						}
-					}
-				} else if (currentLobby.getChallenger().equals(user.getUsername())) {
-					if (!gameService.getOwnerGrid(currentLobby.getId()).alreadyGuessed(row, col)) {
-						if (gameService.getOwnerGrid(currentLobby.getId()).hasShip(row, col)) {
-							gameService.getOwnerGrid(currentLobby.getId()).markHit(row, col);
-							output.setResult("hit-" + row + "-" + col);
-						} else {
-							gameService.getOwnerGrid(currentLobby.getId()).markMiss(row, col);
-							output.setResult("miss-" + row + "-" + col);
-
-						}
+		int row = Integer.parseInt(cella.split("-")[1]);
+		int col = Integer.parseInt(cella.split("-")[2]);
+		String shot = "";
+		User user = (User) session.getAttribute("user");
+		if (user != null || id != null) {
+			Lobby currentLobby = lobbyService.getLobby(Integer.parseInt(id));
+			if (currentLobby.getOwner().equals(user.getUsername())) {
+				if (!gameService.getChallengerGrid(currentLobby.getId()).alreadyGuessed(row, col)) {
+					if (gameService.getChallengerGrid(currentLobby.getId()).hasShip(row, col)) {
+						gameService.getChallengerGrid(currentLobby.getId()).markHit(row, col);
+						//output.setResult("hit-" + row + "-" + col);
+						shot = "hit-" + row + "-" + col;
+					} else {
+						gameService.getChallengerGrid(currentLobby.getId()).markMiss(row, col);
+						//output.setResult("miss-" + row + "-" + col);
+						shot = "miss-" + row + "-" + col;
+						
 					}
 				}
-
+			} else if (currentLobby.getChallenger().equals(user.getUsername())) {
+				if (!gameService.getOwnerGrid(currentLobby.getId()).alreadyGuessed(row, col)) {
+					if (gameService.getOwnerGrid(currentLobby.getId()).hasShip(row, col)) {
+						gameService.getOwnerGrid(currentLobby.getId()).markHit(row, col);
+						//output.setResult("hit-" + row + "-" + col);
+						shot="hit-" + row + "-" + col;
+					} else {
+						gameService.getOwnerGrid(currentLobby.getId()).markMiss(row, col);
+						//output.setResult("miss-" + row + "-" + col);
+						shot="miss-" + row + "-" + col;
+						
+					}
+				}
 			}
-		});
-		return output;
+			
+		}
+		
+//		ForkJoinPool.commonPool().submit(() -> {
+//				output.setResult(shot);
+//		});
+		return shot;
 	}
 
 	@GetMapping("/boatPositioning")

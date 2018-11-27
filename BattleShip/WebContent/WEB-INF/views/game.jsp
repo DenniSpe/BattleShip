@@ -52,145 +52,145 @@
 						<tbody>
 							<tr>
 								<td class="cell cell-title-left cell-title-top" id="cellCG-0-0"></td>
-								<td class="cell cell-title-top" id="cellCG-1-0">A</td>
-								<td class="cell cell-title-top" id="cellCG-2-0">B</td>
-								<td class="cell cell-title-top" id="cellCG-3-0">C</td>
-								<td class="cell cell-title-top" id="cellCG-4-0">D</td>
-								<td class="cell cell-title-top" id="cellCG-5-0">E</td>
-								<td class="cell cell-title-top" id="cellCG-6-0">F</td>
-								<td class="cell cell-title-top" id="cellCG-7-0">G</td>
-								<td class="cell cell-title-top" id="cellCG-8-0">H</td>
-								<td class="cell cell-title-top" id="cellCG-9-0">I</td>
-								<td class="cell cell-title-top" id="cellCG-10-0">J</td>
+								<td class="cell cell-title-top" id="cellCG-0-1">A</td>
+								<td class="cell cell-title-top" id="cellCG-0-2">B</td>
+								<td class="cell cell-title-top" id="cellCG-0-3">C</td>
+								<td class="cell cell-title-top" id="cellCG-0-4">D</td>
+								<td class="cell cell-title-top" id="cellCG-0-5">E</td>
+								<td class="cell cell-title-top" id="cellCG-0-6">F</td>
+								<td class="cell cell-title-top" id="cellCG-0-7">G</td>
+								<td class="cell cell-title-top" id="cellCG-0-8">H</td>
+								<td class="cell cell-title-top" id="cellCG-0-9">I</td>
+								<td class="cell cell-title-top" id="cellCG-10-10">J</td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cellCG-0-1">1</td>
+								<td class="cell cell-title-left" id="cellCG-1-0">1</td>
 								<td class="cell" id="cellCG-1-1"></td>
-								<td class="cell" id="cellCG-2-1"></td>
-								<td class="cell" id="cellCG-3-1"></td>
-								<td class="cell" id="cellCG-4-1"></td>
-								<td class="cell" id="cellCG-5-1"></td>
-								<td class="cell" id="cellCG-6-1"></td>
-								<td class="cell" id="cellCG-7-1"></td>
-								<td class="cell" id="cellCG-8-1"></td>
-								<td class="cell" id="cellCG-9-1"></td>
-								<td class="cell" id="cellCG-10-1"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cellCG-0-2">2</td>
 								<td class="cell" id="cellCG-1-2"></td>
-								<td class="cell" id="cellCG-2-2"></td>
-								<td class="cell" id="cellCG-3-2"></td>
-								<td class="cell" id="cellCG-4-2"></td>
-								<td class="cell" id="cellCG-5-2"></td>
-								<td class="cell" id="cellCG-6-2"></td>
-								<td class="cell" id="cellCG-7-2"></td>
-								<td class="cell" id="cellCG-8-2"></td>
-								<td class="cell" id="cellCG-9-2"></td>
-								<td class="cell" id="cellCG-10-2"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cellCG-0-3">3</td>
 								<td class="cell" id="cellCG-1-3"></td>
-								<td class="cell" id="cellCG-2-3"></td>
-								<td class="cell" id="cellCG-3-3"></td>
-								<td class="cell" id="cellCG-4-3"></td>
-								<td class="cell" id="cellCG-5-3"></td>
-								<td class="cell" id="cellCG-6-3"></td>
-								<td class="cell" id="cellCG-7-3"></td>
-								<td class="cell" id="cellCG-8-3"></td>
-								<td class="cell" id="cellCG-9-3"></td>
-								<td class="cell" id="cellCG-10-3"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cellCG-0-4">4</td>
 								<td class="cell" id="cellCG-1-4"></td>
-								<td class="cell" id="cellCG-2-4"></td>
-								<td class="cell" id="cellCG-3-4"></td>
-								<td class="cell" id="cellCG-4-4"></td>
-								<td class="cell" id="cellCG-5-4"></td>
-								<td class="cell" id="cellCG-6-4"></td>
-								<td class="cell" id="cellCG-7-4"></td>
-								<td class="cell" id="cellCG-8-4"></td>
-								<td class="cell" id="cellCG-9-4"></td>
-								<td class="cell" id="cellCG-10-4"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cellCG-0-5">5</td>
 								<td class="cell" id="cellCG-1-5"></td>
-								<td class="cell" id="cellCG-2-5"></td>
-								<td class="cell" id="cellCG-3-5"></td>
-								<td class="cell" id="cellCG-4-5"></td>
-								<td class="cell" id="cellCG-5-5"></td>
-								<td class="cell" id="cellCG-6-5"></td>
-								<td class="cell" id="cellCG-7-5"></td>
-								<td class="cell" id="cellCG-8-5"></td>
-								<td class="cell" id="cellCG-9-5"></td>
-								<td class="cell" id="cellCG-10-5"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cellCG-0-6">6</td>
 								<td class="cell" id="cellCG-1-6"></td>
-								<td class="cell" id="cellCG-2-6"></td>
-								<td class="cell" id="cellCG-3-6"></td>
-								<td class="cell" id="cellCG-4-6"></td>
-								<td class="cell" id="cellCG-5-6"></td>
-								<td class="cell" id="cellCG-6-6"></td>
-								<td class="cell" id="cellCG-7-6"></td>
-								<td class="cell" id="cellCG-8-6"></td>
-								<td class="cell" id="cellCG-9-6"></td>
-								<td class="cell" id="cellCG-10-6"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cellCG-0-7">7</td>
 								<td class="cell" id="cellCG-1-7"></td>
-								<td class="cell" id="cellCG-2-7"></td>
-								<td class="cell" id="cellCG-3-7"></td>
-								<td class="cell" id="cellCG-4-7"></td>
-								<td class="cell" id="cellCG-5-7"></td>
-								<td class="cell" id="cellCG-6-7"></td>
-								<td class="cell" id="cellCG-7-7"></td>
-								<td class="cell" id="cellCG-8-7"></td>
-								<td class="cell" id="cellCG-9-7"></td>
-								<td class="cell" id="cellCG-10-7"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cellCG-0-8">8</td>
 								<td class="cell" id="cellCG-1-8"></td>
-								<td class="cell" id="cellCG-2-8"></td>
-								<td class="cell" id="cellCG-3-8"></td>
-								<td class="cell" id="cellCG-4-8"></td>
-								<td class="cell" id="cellCG-5-8"></td>
-								<td class="cell" id="cellCG-6-8"></td>
-								<td class="cell" id="cellCG-7-8"></td>
-								<td class="cell" id="cellCG-8-8"></td>
-								<td class="cell" id="cellCG-9-8"></td>
-								<td class="cell" id="cellCG-10-8"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cellCG-0-9">9</td>
 								<td class="cell" id="cellCG-1-9"></td>
-								<td class="cell" id="cellCG-2-9"></td>
-								<td class="cell" id="cellCG-3-9"></td>
-								<td class="cell" id="cellCG-4-9"></td>
-								<td class="cell" id="cellCG-5-9"></td>
-								<td class="cell" id="cellCG-6-9"></td>
-								<td class="cell" id="cellCG-7-9"></td>
-								<td class="cell" id="cellCG-8-9"></td>
-								<td class="cell" id="cellCG-9-9"></td>
-								<td class="cell" id="cellCG-10-9"></td>
+								<td class="cell" id="cellCG-1-10"></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cellCG-0-10">10</td>
-								<td class="cell" id="cellCG-1-10"></td>
+								<td class="cell cell-title-left" id="cellCG-2-0">2</td>
+								<td class="cell" id="cellCG-2-1"></td>
+								<td class="cell" id="cellCG-2-2"></td>
+								<td class="cell" id="cellCG-2-3"></td>
+								<td class="cell" id="cellCG-2-4"></td>
+								<td class="cell" id="cellCG-2-5"></td>
+								<td class="cell" id="cellCG-2-6"></td>
+								<td class="cell" id="cellCG-2-7"></td>
+								<td class="cell" id="cellCG-2-8"></td>
+								<td class="cell" id="cellCG-2-9"></td>
 								<td class="cell" id="cellCG-2-10"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cellCG-3-0">3</td>
+								<td class="cell" id="cellCG-3-1"></td>
+								<td class="cell" id="cellCG-3-2"></td>
+								<td class="cell" id="cellCG-3-3"></td>
+								<td class="cell" id="cellCG-3-4"></td>
+								<td class="cell" id="cellCG-3-5"></td>
+								<td class="cell" id="cellCG-3-6"></td>
+								<td class="cell" id="cellCG-3-7"></td>
+								<td class="cell" id="cellCG-3-8"></td>
+								<td class="cell" id="cellCG-3-9"></td>
 								<td class="cell" id="cellCG-3-10"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cellCG-4-0">4</td>
+								<td class="cell" id="cellCG-4-1"></td>
+								<td class="cell" id="cellCG-4-2"></td>
+								<td class="cell" id="cellCG-4-3"></td>
+								<td class="cell" id="cellCG-4-4"></td>
+								<td class="cell" id="cellCG-4-5"></td>
+								<td class="cell" id="cellCG-4-6"></td>
+								<td class="cell" id="cellCG-4-7"></td>
+								<td class="cell" id="cellCG-4-8"></td>
+								<td class="cell" id="cellCG-4-9"></td>
 								<td class="cell" id="cellCG-4-10"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cellCG-5-0">5</td>
+								<td class="cell" id="cellCG-5-1"></td>
+								<td class="cell" id="cellCG-5-2"></td>
+								<td class="cell" id="cellCG-5-3"></td>
+								<td class="cell" id="cellCG-5-4"></td>
+								<td class="cell" id="cellCG-5-5"></td>
+								<td class="cell" id="cellCG-5-6"></td>
+								<td class="cell" id="cellCG-5-7"></td>
+								<td class="cell" id="cellCG-5-8"></td>
+								<td class="cell" id="cellCG-5-9"></td>
 								<td class="cell" id="cellCG-5-10"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cellCG-6-0">6</td>
+								<td class="cell" id="cellCG-6-1"></td>
+								<td class="cell" id="cellCG-6-2"></td>
+								<td class="cell" id="cellCG-6-3"></td>
+								<td class="cell" id="cellCG-6-4"></td>
+								<td class="cell" id="cellCG-6-5"></td>
+								<td class="cell" id="cellCG-6-6"></td>
+								<td class="cell" id="cellCG-6-7"></td>
+								<td class="cell" id="cellCG-6-8"></td>
+								<td class="cell" id="cellCG-6-9"></td>
 								<td class="cell" id="cellCG-6-10"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cellCG-7-0">7</td>
+								<td class="cell" id="cellCG-7-1"></td>
+								<td class="cell" id="cellCG-7-2"></td>
+								<td class="cell" id="cellCG-7-3"></td>
+								<td class="cell" id="cellCG-7-4"></td>
+								<td class="cell" id="cellCG-7-5"></td>
+								<td class="cell" id="cellCG-7-6"></td>
+								<td class="cell" id="cellCG-7-7"></td>
+								<td class="cell" id="cellCG-7-8"></td>
+								<td class="cell" id="cellCG-7-9"></td>
 								<td class="cell" id="cellCG-7-10"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cellCG-8-0">8</td>
+								<td class="cell" id="cellCG-8-1"></td>
+								<td class="cell" id="cellCG-8-2"></td>
+								<td class="cell" id="cellCG-8-3"></td>
+								<td class="cell" id="cellCG-8-4"></td>
+								<td class="cell" id="cellCG-8-5"></td>
+								<td class="cell" id="cellCG-8-6"></td>
+								<td class="cell" id="cellCG-8-7"></td>
+								<td class="cell" id="cellCG-8-8"></td>
+								<td class="cell" id="cellCG-8-9"></td>
 								<td class="cell" id="cellCG-8-10"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cellCG-9-0">9</td>
+								<td class="cell" id="cellCG-9-1"></td>
+								<td class="cell" id="cellCG-9-2"></td>
+								<td class="cell" id="cellCG-9-3"></td>
+								<td class="cell" id="cellCG-9-4"></td>
+								<td class="cell" id="cellCG-9-5"></td>
+								<td class="cell" id="cellCG-9-6"></td>
+								<td class="cell" id="cellCG-9-7"></td>
+								<td class="cell" id="cellCG-9-8"></td>
+								<td class="cell" id="cellCG-9-9"></td>
 								<td class="cell" id="cellCG-9-10"></td>
+							</tr>
+							<tr>
+								<td class="cell cell-title-left" id="cellCG-10-0">10</td>
+								<td class="cell" id="cellCG-10-1"></td>
+								<td class="cell" id="cellCG-10-2"></td>
+								<td class="cell" id="cellCG-10-3"></td>
+								<td class="cell" id="cellCG-10-4"></td>
+								<td class="cell" id="cellCG-10-5"></td>
+								<td class="cell" id="cellCG-10-6"></td>
+								<td class="cell" id="cellCG-10-7"></td>
+								<td class="cell" id="cellCG-10-8"></td>
+								<td class="cell" id="cellCG-10-9"></td>
 								<td class="cell" id="cellCG-10-10"></td>
 							</tr>
 						</tbody>
@@ -604,7 +604,7 @@
 	</c:forEach>
 
 <hidden hidden id="lobbyId"
-		value="${lobby.id}"></hidden>
+		value="${lobbyId}"></hidden>
 
 </body>
 
