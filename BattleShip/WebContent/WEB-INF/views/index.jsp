@@ -10,21 +10,10 @@
 	<style type="text/css">
 		body {
  		 min-height: 75rem;
- 		 padding-top: 4.5rem;
+ 		 padding-top: 14.5rem;
 		}
 	</style>
-<body>
-
-
-<div class="container">
-  <h2>Join or create a lobby !</h2>
-  
-  <div class="list-group">
-  
-  <div id="lobbies_div"></div>
-<!--  	     $("#lobbies_div").load(location.href+" #lobbies_div>*",""); 
-		  $("#lobbies_div").html(result); -->
-  <script>
+	<script>
   
   function getEventsFromServer() { 
   $.ajax({
@@ -69,64 +58,12 @@
   }
   $(document).ready(getEventsFromServer());
 </script>
-  
-  
-  
-  
-  
- <hidden hidden id="serverUrl" value="<c:url value="/join_lobby"></c:url>"></hidden>
- <!-- <hidden hidden id="callenger" value="${ sessionScope.username }"></hidden>  -->
- <div id="lobbyList"> 
-  	<c:forEach items="${ lobbies }" var="lobby">
-  		<a class="list-group-item" 
-  			href="<c:url value="/join_lobby"> 
-  					<c:param name="lobby_owner" value="${lobby.owner}" />
-  					<c:param name="lobby_id" value="${lobby.id}" />
-  					<c:param name="lobby_challenger" value="${ sessionScope.username }" />
-  				  </c:url>"> 
-		${lobby.name}
-  		</a>
-  	</c:forEach>
-</div>
+<body>
 
-
-  </div>
-</div>
-
-
-
-
-<div class="container">
-
-<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-<div class="btn-group mr2" role="group">
- 
- 
- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Create Lobby 
- 	</button>
- 
- </div>
- <div class="btn-group mr2" role="group">
- <a href="<c:url value="/logout"/>">
- 	<button type="button" class="btn btn-primary"> Logout </button></a>
- </div>
- 
-  
-  
-</div>
-
- <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Create the Lobby</h4>
-        </div>
-        <div class="modal-body">
-          <form action="new_lobby" method="POST">
+ <title>Join or create a lobby !</title>
+<div class="row">
+				<div class="col-md-4">
+				 <form action="new_lobby" method="POST">
 		          	<div class="form-group">
 				      <label for="username">Name:</label>
 				      <input type="text" class="form-control" id="lobby_name" placeholder="Enter a name" name="lobby_name" required>
@@ -134,32 +71,41 @@
 	    			</div>
 					    		
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="submit" class="btn btn-primary">Create Lobby</button>
 					</div>
           </form>
-        </div>
-        
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+				</div>
+				
+			<div class="col-md-8">
+			 
+			  
+			  <div class="list-group">
+			  
+			  <div id="lobbies_div"></div>
+			
+			   
+			 <hidden hidden id="serverUrl" value="<c:url value="/join_lobby"></c:url>"></hidden>
+			
+			 <div id="lobbyList"> 
+			  	<c:forEach items="${ lobbies }" var="lobby">
+			  		<a class="list-group-item" 
+			  			href="<c:url value="/join_lobby"> 
+			  					<c:param name="lobby_owner" value="${lobby.owner}" />
+			  					<c:param name="lobby_id" value="${lobby.id}" />
+			  					<c:param name="lobby_challenger" value="${ sessionScope.username }" />
+			  				  </c:url>"> 
+					${lobby.name}
+			  		</a>
+			  	</c:forEach>
+			</div>
+			
+			
+			  </div>
+			</div> <!--  end col-md-6 -->
+			
+				
+</div> <!--  end row -->
 
-</div>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-</div>
 </body>
 </html>
 

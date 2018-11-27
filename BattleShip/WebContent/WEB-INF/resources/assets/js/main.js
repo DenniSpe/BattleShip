@@ -101,4 +101,4 @@ $('#tab2').on('click' , function(){
 
 	});
 });
-})(jQuery);
+})

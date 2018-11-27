@@ -145,7 +145,7 @@ function waitingStart(){
 		 data : { "ID" : lobbyID },
 		 success : function(result){
 			 if(!result.localeCompare("game")){ //If it's game
-				 window.location="/BattleShip/game.jsp";
+				 window.location="/BattleShip/game";
 			 }
 			 else if(!result.localeCompare("boatPositioning")){
 				 // do nothing
