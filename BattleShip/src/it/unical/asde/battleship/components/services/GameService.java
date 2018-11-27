@@ -112,10 +112,13 @@ public class GameService {
 	// TODO Before to delete the Lobby in the LobbyService (CHECK THE CONTROLLER CLASS, NOT THE SERVICE ONE),
 	// Call this method to avoid NullPointerException
 	public void deleteGame(int lobbyID) {
-		Lobby l = lobbyService.getLobby(lobbyID);
+		Lobby currentLobby = lobbyService.getLobby(lobbyID);
 		
-		gridOwner.remove(l.getOwner());
-		gridChallenger.remove(l.getChallenger());
+		gridOwner.remove(currentLobby.getOwner());
+		gridChallenger.remove(currentLobby.getChallenger());
+		
+		isReadyOwner.remove(currentLobby.getOwner());
+		isReadyChallenger.remove(currentLobby.getChallenger());
 	}
 	
 
