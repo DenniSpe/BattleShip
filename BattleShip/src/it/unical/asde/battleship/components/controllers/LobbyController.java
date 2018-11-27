@@ -224,14 +224,7 @@ public class LobbyController
         return "redirect:/";
     }
 
-    @GetMapping("/startPositioning")
-    public String startPositioning(final Model model, final HttpSession session, @RequestParam final String ID)
-    {
-        lobbyService.getLobby(Integer.parseInt(ID)).setLobbyStarted(true);
-
-        return "boatPositioning";
-
-    }
+    
 
     @PostMapping("/waiting")
     @ResponseBody

@@ -29,6 +29,8 @@ public class Grid {
 		grid[row][col] = -1;
 	}
 
+	
+	
 	// Get the status of this location in the grid
 	public int getContent(int row, int col) {
 		return grid[row][col];
@@ -43,6 +45,12 @@ public class Grid {
 
 	}
 
+	public int tipeShip(int row, int col) {
+		if(hasShip(row, col)) {
+			return grid[row][col];
+		}
+		 return 0;
+	}
 	// Return whether or not there is a ship here
 	public boolean hasShip(int row, int col) {
 		switch (grid[row][col]) {

@@ -1,27 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 
 <head>
-	<title>Battleship</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Battleship</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-	<script type="text/javascript" src="resources/assetsGame/javascripts/ext/underscore.js"></script>
-	<script type="text/javascript" src="resources/assetsGame/vendor/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="resources/assetsGame/javascripts/ext/jshashtable-2.1.js"></script>
-	<script type="text/javascript" src="resources/assetsGame/javascripts/ext/jquery.numeric.js"></script>
-	<script type="text/javascript" src="resources/assetsGame/javascripts/ext/jquery.numberformatter.js"></script>
-	<script type="text/javascript" src="resources/assetsGame/javascripts/ext/backbone.js"></script>
-	<script type="text/javascript" src="resources/assetsGame/javascripts/ext/icanhaz.js"></script>
-	<script type="text/javascript" src="resources/assetsGame/javascripts/gameScript.js"></script>
-	<script type="text/javascript" src="resources/assetsGame/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="resources/assetsGame/javascripts/ext/underscore.js"></script>
+<script type="text/javascript"
+	src="resources/assetsGame/vendor/jquery-1.11.3.min.js"></script>
+<script type="text/javascript"
+	src="resources/assetsGame/javascripts/ext/jshashtable-2.1.js"></script>
+<script type="text/javascript"
+	src="resources/assetsGame/javascripts/ext/jquery.numeric.js"></script>
+<script type="text/javascript"
+	src="resources/assetsGame/javascripts/ext/jquery.numberformatter.js"></script>
+<script type="text/javascript"
+	src="resources/assetsGame/javascripts/ext/backbone.js"></script>
+<script type="text/javascript"
+	src="resources/assetsGame/javascripts/ext/icanhaz.js"></script>
+<script type="text/javascript"
+	src="resources/assetsGame/javascripts/gameScript.js"></script>
+<script type="text/javascript"
+	src="resources/assetsGame/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 
-	<link href='https://fonts.googleapis.com/css?family=Russo+One' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="resources/assetsGame/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="resources/assetsGame/vendor/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="resources/assetsGame/vendor/animate.css">
-	<link rel="stylesheet" href="resources/assetsGame/stylesheets/main.css" type="text/css" media="screen" charset="utf-8">
+<link href='https://fonts.googleapis.com/css?family=Russo+One'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="resources/assetsGame/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="resources/assetsGame/vendor/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="resources/assetsGame/vendor/animate.css">
+<link rel="stylesheet" href="resources/assetsGame/stylesheets/main.css"
+	type="text/css" media="screen" charset="utf-8">
 
 </head>
 
@@ -31,330 +47,153 @@
 		<div class="col-6">
 			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-6 text-center">
 				<div id="container">
-					<table class="board table table-responsive animated fadeInUp">
-					<!-- 	<tbody>
+					<table class="board table table-responsive animated fadeInUp"
+						id="challengerGrid">
+						<tbody>
 							<tr>
-								<td class="cell cell-title-left cell-title-top" id="cell-0-0"></td>
-								<td class="cell cell-title-top" id="cell-1-0">A</td>
-								<td class="cell cell-title-top" id="cell-2-0">B</td>
-								<td class="cell cell-title-top" id="cell-3-0">C</td>
-								<td class="cell cell-title-top" id="cell-4-0">D</td>
-								<td class="cell cell-title-top" id="cell-5-0">E</td>
-								<td class="cell cell-title-top" id="cell-6-0">F</td>
-								<td class="cell cell-title-top" id="cell-7-0">G</td>
-								<td class="cell cell-title-top" id="cell-8-0">H</td>
-								<td class="cell cell-title-top" id="cell-9-0">I</td>
-								<td class="cell cell-title-top" id="cell-10-0">J</td>
+								<td class="cell cell-title-left cell-title-top" id="cellCG-0-0"></td>
+								<td class="cell cell-title-top" id="cellCG-1-0">A</td>
+								<td class="cell cell-title-top" id="cellCG-2-0">B</td>
+								<td class="cell cell-title-top" id="cellCG-3-0">C</td>
+								<td class="cell cell-title-top" id="cellCG-4-0">D</td>
+								<td class="cell cell-title-top" id="cellCG-5-0">E</td>
+								<td class="cell cell-title-top" id="cellCG-6-0">F</td>
+								<td class="cell cell-title-top" id="cellCG-7-0">G</td>
+								<td class="cell cell-title-top" id="cellCG-8-0">H</td>
+								<td class="cell cell-title-top" id="cellCG-9-0">I</td>
+								<td class="cell cell-title-top" id="cellCG-10-0">J</td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-1">1</td>
-								<td class="cell miss-cell" id="cell-1-1"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell miss-cell" id="cell-2-1"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-3-1"></td>
-								<td class="cell" id="cell-4-1"></td>
-								<td class="cell miss-cell" id="cell-5-1"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-6-1"></td>
-								<td class="cell" id="cell-7-1"></td>
-								<td class="cell" id="cell-8-1"></td>
-								<td class="cell" id="cell-9-1"></td>
-								<td class="cell" id="cell-10-1"></td>
+								<td class="cell cell-title-left" id="cellCG-0-1">1</td>
+								<td class="cell" id="cellCG-1-1"></td>
+								<td class="cell" id="cellCG-2-1"></td>
+								<td class="cell" id="cellCG-3-1"></td>
+								<td class="cell" id="cellCG-4-1"></td>
+								<td class="cell" id="cellCG-5-1"></td>
+								<td class="cell" id="cellCG-6-1"></td>
+								<td class="cell" id="cellCG-7-1"></td>
+								<td class="cell" id="cellCG-8-1"></td>
+								<td class="cell" id="cellCG-9-1"></td>
+								<td class="cell" id="cellCG-10-1"></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-2">2</td>
-								<td class="cell showBoat destroyer" id="cell-1-2"></td>
-								<td class="cell" id="cell-2-2"></td>
-								<td class="cell miss-cell" id="cell-3-2"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell miss-cell" id="cell-4-2"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell showBoat aircraft-carrier" id="cell-5-2"><img class="hit marker animated bounceIn" src="resources/images/1331900690_fire.png"></td>
-								<td class="cell showBoat aircraft-carrier" id="cell-6-2"><img class="hit marker animated bounceIn" src="images/1331900690_fire.png"></td>
-								<td class="cell showBoat aircraft-carrier" id="cell-7-2"><img class="hit marker animated bounceIn" src="images/1331900690_fire.png"></td>
-								<td class="cell showBoat aircraft-carrier" id="cell-8-2"></td>
-								<td class="cell showBoat aircraft-carrier" id="cell-9-2"></td>
-								<td class="cell" id="cell-10-2"></td>
+								<td class="cell cell-title-left" id="cellCG-0-2">2</td>
+								<td class="cell" id="cellCG-1-2"></td>
+								<td class="cell" id="cellCG-2-2"></td>
+								<td class="cell" id="cellCG-3-2"></td>
+								<td class="cell" id="cellCG-4-2"></td>
+								<td class="cell" id="cellCG-5-2"></td>
+								<td class="cell" id="cellCG-6-2"></td>
+								<td class="cell" id="cellCG-7-2"></td>
+								<td class="cell" id="cellCG-8-2"></td>
+								<td class="cell" id="cellCG-9-2"></td>
+								<td class="cell" id="cellCG-10-2"></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-3">3</td>
-								<td class="cell showBoat destroyer" id="cell-1-3"><img class="hit marker animated bounceIn" src="images/1331900690_fire.png"></td>
-								<td class="cell miss-cell" id="cell-2-3"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-3-3"></td>
-								<td class="cell" id="cell-4-3"></td>
-								<td class="cell" id="cell-5-3"></td>
-								<td class="cell" id="cell-6-3"></td>
-								<td class="cell" id="cell-7-3"></td>
-								<td class="cell" id="cell-8-3"></td>
-								<td class="cell" id="cell-9-3"></td>
-								<td class="cell" id="cell-10-3"></td>
+								<td class="cell cell-title-left" id="cellCG-0-3">3</td>
+								<td class="cell" id="cellCG-1-3"></td>
+								<td class="cell" id="cellCG-2-3"></td>
+								<td class="cell" id="cellCG-3-3"></td>
+								<td class="cell" id="cellCG-4-3"></td>
+								<td class="cell" id="cellCG-5-3"></td>
+								<td class="cell" id="cellCG-6-3"></td>
+								<td class="cell" id="cellCG-7-3"></td>
+								<td class="cell" id="cellCG-8-3"></td>
+								<td class="cell" id="cellCG-9-3"></td>
+								<td class="cell" id="cellCG-10-3"></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-4">4</td>
-								<td class="cell miss-cell" id="cell-1-4"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-2-4"></td>
-								<td class="cell miss-cell" id="cell-3-4"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell miss-cell" id="cell-4-4"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell miss-cell" id="cell-5-4"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell showBoat battleship" id="cell-6-4"><img class="hit marker animated bounceIn" src="images/1331900690_fire.png"></td>
-								<td class="cell showBoat battleship" id="cell-7-4"></td>
-								<td class="cell showBoat battleship" id="cell-8-4"><img class="hit marker animated bounceIn" src="images/1331900690_fire.png"></td>
-								<td class="cell showBoat battleship" id="cell-9-4"><img class="hit marker animated bounceIn" src="images/1331900690_fire.png"></td>
-								<td class="cell" id="cell-10-4"></td>
+								<td class="cell cell-title-left" id="cellCG-0-4">4</td>
+								<td class="cell" id="cellCG-1-4"></td>
+								<td class="cell" id="cellCG-2-4"></td>
+								<td class="cell" id="cellCG-3-4"></td>
+								<td class="cell" id="cellCG-4-4"></td>
+								<td class="cell" id="cellCG-5-4"></td>
+								<td class="cell" id="cellCG-6-4"></td>
+								<td class="cell" id="cellCG-7-4"></td>
+								<td class="cell" id="cellCG-8-4"></td>
+								<td class="cell" id="cellCG-9-4"></td>
+								<td class="cell" id="cellCG-10-4"></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-5">5</td>
-								<td class="cell miss-cell" id="cell-1-5"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell showBoat submarine" id="cell-2-5"><img class="hit marker animated bounceIn" src="images/1331900690_fire.png"></td>
-								<td class="cell showBoat submarine" id="cell-3-5"></td>
-								<td class="cell showBoat submarine" id="cell-4-5"></td>
-								<td class="cell" id="cell-5-5"></td>
-								<td class="cell" id="cell-6-5"></td>
-								<td class="cell" id="cell-7-5"></td>
-								<td class="cell miss-cell" id="cell-8-5"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell miss-cell" id="cell-9-5"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-10-5"></td>
+								<td class="cell cell-title-left" id="cellCG-0-5">5</td>
+								<td class="cell" id="cellCG-1-5"></td>
+								<td class="cell" id="cellCG-2-5"></td>
+								<td class="cell" id="cellCG-3-5"></td>
+								<td class="cell" id="cellCG-4-5"></td>
+								<td class="cell" id="cellCG-5-5"></td>
+								<td class="cell" id="cellCG-6-5"></td>
+								<td class="cell" id="cellCG-7-5"></td>
+								<td class="cell" id="cellCG-8-5"></td>
+								<td class="cell" id="cellCG-9-5"></td>
+								<td class="cell" id="cellCG-10-5"></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-6">6</td>
-								<td class="cell miss-cell" id="cell-1-6"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell miss-cell" id="cell-2-6"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell miss-cell" id="cell-3-6"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-4-6"></td>
-								<td class="cell miss-cell" id="cell-5-6"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-6-6"></td>
-								<td class="cell miss-cell" id="cell-7-6"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell miss-cell" id="cell-8-6"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-9-6"></td>
-								<td class="cell" id="cell-10-6"></td>
+								<td class="cell cell-title-left" id="cellCG-0-6">6</td>
+								<td class="cell" id="cellCG-1-6"></td>
+								<td class="cell" id="cellCG-2-6"></td>
+								<td class="cell" id="cellCG-3-6"></td>
+								<td class="cell" id="cellCG-4-6"></td>
+								<td class="cell" id="cellCG-5-6"></td>
+								<td class="cell" id="cellCG-6-6"></td>
+								<td class="cell" id="cellCG-7-6"></td>
+								<td class="cell" id="cellCG-8-6"></td>
+								<td class="cell" id="cellCG-9-6"></td>
+								<td class="cell" id="cellCG-10-6"></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-7">7</td>
-								<td class="cell" id="cell-1-7"></td>
-								<td class="cell miss-cell" id="cell-2-7"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-3-7"></td>
-								<td class="cell miss-cell" id="cell-4-7"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell miss-cell" id="cell-5-7"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell miss-cell" id="cell-6-7"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-7-7"></td>
-								<td class="cell" id="cell-8-7"></td>
-								<td class="cell" id="cell-9-7"></td>
-								<td class="cell" id="cell-10-7"></td>
+								<td class="cell cell-title-left" id="cellCG-0-7">7</td>
+								<td class="cell" id="cellCG-1-7"></td>
+								<td class="cell" id="cellCG-2-7"></td>
+								<td class="cell" id="cellCG-3-7"></td>
+								<td class="cell" id="cellCG-4-7"></td>
+								<td class="cell" id="cellCG-5-7"></td>
+								<td class="cell" id="cellCG-6-7"></td>
+								<td class="cell" id="cellCG-7-7"></td>
+								<td class="cell" id="cellCG-8-7"></td>
+								<td class="cell" id="cellCG-9-7"></td>
+								<td class="cell" id="cellCG-10-7"></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-8">8</td>
-								<td class="cell miss-cell" id="cell-1-8"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell miss-cell" id="cell-2-8"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-3-8"></td>
-								<td class="cell" id="cell-4-8"></td>
-								<td class="cell miss-cell" id="cell-5-8"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-6-8"></td>
-								<td class="cell miss-cell" id="cell-7-8"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-8-8"></td>
-								<td class="cell" id="cell-9-8"></td>
-								<td class="cell" id="cell-10-8"></td>
+								<td class="cell cell-title-left" id="cellCG-0-8">8</td>
+								<td class="cell" id="cellCG-1-8"></td>
+								<td class="cell" id="cellCG-2-8"></td>
+								<td class="cell" id="cellCG-3-8"></td>
+								<td class="cell" id="cellCG-4-8"></td>
+								<td class="cell" id="cellCG-5-8"></td>
+								<td class="cell" id="cellCG-6-8"></td>
+								<td class="cell" id="cellCG-7-8"></td>
+								<td class="cell" id="cellCG-8-8"></td>
+								<td class="cell" id="cellCG-9-8"></td>
+								<td class="cell" id="cellCG-10-8"></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-9">9</td>
-								<td class="cell miss-cell" id="cell-1-9"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-2-9"></td>
-								<td class="cell miss-cell" id="cell-3-9"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell showBoat cruiser" id="cell-4-9"></td>
-								<td class="cell showBoat cruiser" id="cell-5-9"></td>
-								<td class="cell showBoat cruiser" id="cell-6-9"></td>
-								<td class="cell" id="cell-7-9"></td>
-								<td class="cell miss-cell" id="cell-8-9"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-9-9"></td>
-								<td class="cell" id="cell-10-9"></td>
+								<td class="cell cell-title-left" id="cellCG-0-9">9</td>
+								<td class="cell" id="cellCG-1-9"></td>
+								<td class="cell" id="cellCG-2-9"></td>
+								<td class="cell" id="cellCG-3-9"></td>
+								<td class="cell" id="cellCG-4-9"></td>
+								<td class="cell" id="cellCG-5-9"></td>
+								<td class="cell" id="cellCG-6-9"></td>
+								<td class="cell" id="cellCG-7-9"></td>
+								<td class="cell" id="cellCG-8-9"></td>
+								<td class="cell" id="cellCG-9-9"></td>
+								<td class="cell" id="cellCG-10-9"></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-10">10</td>
-								<td class="cell miss-cell" id="cell-1-10"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-2-10"></td>
-								<td class="cell" id="cell-3-10"></td>
-								<td class="cell miss-cell" id="cell-4-10"><i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i></td>
-								<td class="cell" id="cell-5-10"></td>
-								<td class="cell" id="cell-6-10"></td>
-								<td class="cell" id="cell-7-10"></td>
-								<td class="cell" id="cell-8-10"></td>
-								<td class="cell" id="cell-9-10"></td>
-								<td class="cell" id="cell-10-10"></td>
-							</tr>
-						</tbody> -->
-						
-						<!-- 
-						
-							<tbody>
-						
-							<tr>
-								<td class="cell cell-title-left cell-title-top" id="cell-0-0"></td>
-								<td class="cell cell-title-top" id="cell-1-0">A</td>
-								<td class="cell cell-title-top" id="cell-2-0">B</td>
-								<td class="cell cell-title-top" id="cell-3-0">C</td>
-								<td class="cell cell-title-top" id="cell-4-0">D</td>
-								<td class="cell cell-title-top" id="cell-5-0">E</td>
-								<td class="cell cell-title-top" id="cell-6-0">F</td>
-								<td class="cell cell-title-top" id="cell-7-0">G</td>
-								<td class="cell cell-title-top" id="cell-8-0">H</td>
-								<td class="cell cell-title-top" id="cell-9-0">I</td>
-								<td class="cell cell-title-top" id="cell-10-0">J</td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cell-0-1">1</td>
-								<td class="cell" id="cell-1-1"></td>
-								<td class="cell" id="cell-2-1"></td>
-								<td class="cell" id="cell-3-1"></td>
-								<td class="cell" id="cell-4-1"></td>
-								<td class="cell" id="cell-5-1"></td>
-								<td class="cell" id="cell-6-1"></td>
-								<td class="cell" id="cell-7-1"></td>
-								<td class="cell" id="cell-8-1"></td>
-								<td class="cell" id="cell-9-1"></td>
-								<td class="cell" id="cell-10-1"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cell-0-2">2</td>
-								<td class="cell" id="cell-1-2"></td>
-								<td class="cell" id="cell-2-2"></td>
-								<td class="cell" id="cell-3-2"></td>
-								<td class="cell" id="cell-4-2"></td>
-								<td class="cell" id="cell-5-2"></td>
-								<td class="cell" id="cell-6-2"></td>
-								<td class="cell" id="cell-7-2"></td>
-								<td class="cell" id="cell-8-2"></td>
-								<td class="cell" id="cell-9-2"></td>
-								<td class="cell" id="cell-10-2"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cell-0-3">3</td>
-								<td class="cell" id="cell-1-3"></td>
-								<td class="cell" id="cell-2-3"></td>
-								<td class="cell" id="cell-3-3"></td>
-								<td class="cell" id="cell-4-3"></td>
-								<td class="cell" id="cell-5-3"></td>
-								<td class="cell" id="cell-6-3"></td>
-								<td class="cell" id="cell-7-3"></td>
-								<td class="cell" id="cell-8-3"></td>
-								<td class="cell" id="cell-9-3"></td>
-								<td class="cell" id="cell-10-3"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cell-0-4">4</td>
-								<td class="cell" id="cell-1-4"></td>
-								<td class="cell" id="cell-2-4"></td>
-								<td class="cell" id="cell-3-4"></td>
-								<td class="cell" id="cell-4-4"></td>
-								<td class="cell" id="cell-5-4"></td>
-								<td class="cell" id="cell-6-4"></td>
-								<td class="cell" id="cell-7-4"></td>
-								<td class="cell" id="cell-8-4"></td>
-								<td class="cell" id="cell-9-4"></td>
-								<td class="cell" id="cell-10-4"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cell-0-5">5</td>
-								<td class="cell" id="cell-1-5"></td>
-								<td class="cell" id="cell-2-5"></td>
-								<td class="cell" id="cell-3-5"></td>
-								<td class="cell" id="cell-4-5"></td>
-								<td class="cell" id="cell-5-5"></td>
-								<td class="cell" id="cell-6-5"></td>
-								<td class="cell" id="cell-7-5"></td>
-								<td class="cell" id="cell-8-5"></td>
-								<td class="cell" id="cell-9-5"></td>
-								<td class="cell" id="cell-10-5"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cell-0-6">6</td>
-								<td class="cell" id="cell-1-6"></td>
-								<td class="cell" id="cell-2-6"></td>
-								<td class="cell" id="cell-3-6"></td>
-								<td class="cell" id="cell-4-6"></td>
-								<td class="cell" id="cell-5-6"></td>
-								<td class="cell" id="cell-6-6"></td>
-								<td class="cell" id="cell-7-6"></td>
-								<td class="cell" id="cell-8-6"></td>
-								<td class="cell" id="cell-9-6"></td>
-								<td class="cell" id="cell-10-6"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cell-0-7">7</td>
-								<td class="cell" id="cell-1-7"></td>
-								<td class="cell" id="cell-2-7"></td>
-								<td class="cell" id="cell-3-7"></td>
-								<td class="cell" id="cell-4-7"></td>
-								<td class="cell" id="cell-5-7"></td>
-								<td class="cell" id="cell-6-7"></td>
-								<td class="cell" id="cell-7-7"></td>
-								<td class="cell" id="cell-8-7"></td>
-								<td class="cell" id="cell-9-7"></td>
-								<td class="cell" id="cell-10-7"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cell-0-8">8</td>
-								<td class="cell" id="cell-1-8"></td>
-								<td class="cell" id="cell-2-8"></td>
-								<td class="cell" id="cell-3-8"></td>
-								<td class="cell" id="cell-4-8"></td>
-								<td class="cell" id="cell-5-8"></td>
-								<td class="cell" id="cell-6-8"></td>
-								<td class="cell" id="cell-7-8"></td>
-								<td class="cell" id="cell-8-8"></td>
-								<td class="cell" id="cell-9-8"></td>
-								<td class="cell" id="cell-10-8"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cell-0-9">9</td>
-								<td class="cell" id="cell-1-9"></td>
-								<td class="cell" id="cell-2-9"></td>
-								<td class="cell" id="cell-3-9"></td>
-								<td class="cell" id="cell-4-9"></td>
-								<td class="cell" id="cell-5-9"></td>
-								<td class="cell" id="cell-6-9"></td>
-								<td class="cell" id="cell-7-9"></td>
-								<td class="cell" id="cell-8-9"></td>
-								<td class="cell" id="cell-9-9"></td>
-								<td class="cell" id="cell-10-9"></td>
-							</tr>
-							<tr>
-								<td class="cell cell-title-left" id="cell-0-10">10</td>
-								<td class="cell" id="cell-1-10"></td>
-								<td class="cell" id="cell-2-10"></td>
-								<td class="cell" id="cell-3-10"></td>
-								<td class="cell" id="cell-4-10"></td>
-								<td class="cell" id="cell-5-10"></td>
-								<td class="cell" id="cell-6-10"></td>
-								<td class="cell" id="cell-7-10"></td>
-								<td class="cell" id="cell-8-10"></td>
-								<td class="cell" id="cell-9-10"></td>
-								<td class="cell" id="cell-10-10"></td>
+								<td class="cell cell-title-left" id="cellCG-0-10">10</td>
+								<td class="cell" id="cellCG-1-10"></td>
+								<td class="cell" id="cellCG-2-10"></td>
+								<td class="cell" id="cellCG-3-10"></td>
+								<td class="cell" id="cellCG-4-10"></td>
+								<td class="cell" id="cellCG-5-10"></td>
+								<td class="cell" id="cellCG-6-10"></td>
+								<td class="cell" id="cellCG-7-10"></td>
+								<td class="cell" id="cellCG-8-10"></td>
+								<td class="cell" id="cellCG-9-10"></td>
+								<td class="cell" id="cellCG-10-10"></td>
 							</tr>
 						</tbody>
-						
-						
-						
-						 -->
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
 					</table>
 				</div>
 			</div>
@@ -365,151 +204,245 @@
 		<div class="col-6">
 			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-6 text-center">
 				<div id="container">
-					<table class="board table table-responsive animated fadeInUp">
+					<table class="board table table-responsive animated fadeInUp"
+						id="ownerGrid">
 						<tbody>
-						
 							<tr>
-								<td class="cell cell-title-left cell-title-top" id="cell-0-0"></td>
-								<td class="cell cell-title-top" id="cell-1-0">A</td>
-								<td class="cell cell-title-top" id="cell-2-0">B</td>
-								<td class="cell cell-title-top" id="cell-3-0">C</td>
-								<td class="cell cell-title-top" id="cell-4-0">D</td>
-								<td class="cell cell-title-top" id="cell-5-0">E</td>
-								<td class="cell cell-title-top" id="cell-6-0">F</td>
-								<td class="cell cell-title-top" id="cell-7-0">G</td>
-								<td class="cell cell-title-top" id="cell-8-0">H</td>
-								<td class="cell cell-title-top" id="cell-9-0">I</td>
-								<td class="cell cell-title-top" id="cell-10-0">J</td>
+								<td class="cell cell-title-left cell-title-top" id="cellOG-0-0"></td>
+								<td class="cell cell-title-top" id="cellOG-0-1">A</td>
+								<td class="cell cell-title-top" id="cellOG-0-2">B</td>
+								<td class="cell cell-title-top" id="cellOG-0-3">C</td>
+								<td class="cell cell-title-top" id="cellOG-0-4">D</td>
+								<td class="cell cell-title-top" id="cellOG-0-5">E</td>
+								<td class="cell cell-title-top" id="cellOG-0-6">F</td>
+								<td class="cell cell-title-top" id="cellOG-0-7">G</td>
+								<td class="cell cell-title-top" id="cellOG-0-8">H</td>
+								<td class="cell cell-title-top" id="cellOG-0-9">I</td>
+								<td class="cell cell-title-top" id="cellOG-0-10">J</td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-1">1</td>
-								<td class="cell" id="cell-1-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-2-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-3-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-4-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-5-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-6-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-7-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-8-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-9-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-10-1" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell cell-title-left" id="cellOG-1-0">1</td>
+								<td class="cell" id="cellOG-1-1"></td>
+								<td class="cell" id="cellOG-1-2"></td>
+								<td class="cell" id="cellOG-1-3"  
+									 ></td>
+								<td class="cell" id="cellOG-1-4"  
+									 ></td>
+								<td class="cell" id="cellOG-1-5"  
+									 ></td>
+								<td class="cell" id="cellOG-1-6"  
+									 ></td>
+								<td class="cell" id="cellOG-1-7"  
+									 ></td>
+								<td class="cell" id="cellOG-1-8"  
+									 ></td>
+								<td class="cell" id="cellOG-1-9"  
+									 ></td>
+								<td class="cell" id="cellOG-1-10"  
+									 ></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-2">2</td>
-								<td class="cell" id="cell-1-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-2-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-3-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-4-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-5-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-6-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-7-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-8-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-9-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-10-2" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell cell-title-left" id="cellOG-2-0">2</td>
+								<td class="cell" id="cellOG-2-1"  
+									 ></td>
+								<td class="cell" id="cellOG-2-2"  
+									 ></td>
+								<td class="cell" id="cellOG-2-3"  
+									 ></td>
+								<td class="cell" id="cellOG-2-4"  
+									 ></td>
+								<td class="cell" id="cellOG-2-5"  
+									 ></td>
+								<td class="cell" id="cellOG-2-6"  
+									 ></td>
+								<td class="cell" id="cellOG-2-7"  
+									 ></td>
+								<td class="cell" id="cellOG-2-8"  
+									 ></td>
+								<td class="cell" id="cellOG-2-9"  
+									 ></td>
+								<td class="cell" id="cellOG-2-10"  
+									 ></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-3">3</td>
-								<td class="cell" id="cell-1-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-2-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-3-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-4-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-5-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-6-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-7-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-8-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-9-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-10-3" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell cell-title-left" id="cellOG-3-0">3</td>
+								<td class="cell" id="cellOG-3-1"  
+									 ></td>
+								<td class="cell" id="cellOG-3-2"  
+									 ></td>
+								<td class="cell" id="cellOG-3-3"  
+									 ></td>
+								<td class="cell" id="cellOG-3-4"  
+									 ></td>
+								<td class="cell" id="cellOG-3-5"  
+									 ></td>
+								<td class="cell" id="cellOG-3-6"  
+									 ></td>
+								<td class="cell" id="cellOG-3-7"  
+									 ></td>
+								<td class="cell" id="cellOG-3-8"  
+									 ></td>
+								<td class="cell" id="cellOG-3-9"  
+									 ></td>
+								<td class="cell" id="cellOG-3-10"  
+									 ></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-4">4</td>
-								<td class="cell" id="cell-1-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-2-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-3-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-4-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-5-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-6-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-7-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-8-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-9-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-10-4" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell cell-title-left" id="cellOG-4-0">4</td>
+								<td class="cell" id="cellOG-4-1"  
+									 ></td>
+								<td class="cell" id="cellOG-4-2"  
+									 ></td>
+								<td class="cell" id="cellOG-4-3"  
+									 ></td>
+								<td class="cell" id="cellOG-4-4"  
+									 ></td>
+								<td class="cell" id="cellOG-4-5"  
+									 ></td>
+								<td class="cell" id="cellOG-4-6"  
+									 ></td>
+								<td class="cell" id="cellOG-4-7"  
+									 ></td>
+								<td class="cell" id="cellOG-4-8"  
+									 ></td>
+								<td class="cell" id="cellOG-4-9"  
+									 ></td>
+								<td class="cell" id="cellOG-4-10"  
+									 ></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-5">5</td>
-								<td class="cell" id="cell-1-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-2-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-3-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-4-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-5-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-6-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-7-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-8-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-9-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-10-5" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell cell-title-left" id="cellOG-5-0">5</td>
+								<td class="cell" id="cellOG-5-1"  
+									 ></td>
+								<td class="cell" id="cellOG-5-2"  
+									 ></td>
+								<td class="cell" id="cellOG-5-3"  
+									 ></td>
+								<td class="cell" id="cellOG-5-4"  
+									 ></td>
+								<td class="cell" id="cellOG-5-5"  
+									 ></td>
+								<td class="cell" id="cellOG-5-6"  
+									 ></td>
+								<td class="cell" id="cellOG-5-7"  
+									 ></td>
+								<td class="cell" id="cellOG-5-8"  
+									 ></td>
+								<td class="cell" id="cellOG-5-9"  
+									 ></td>
+								<td class="cell" id="cellOG-5-10"  
+									 ></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-6">6</td>
-								<td class="cell" id="cell-1-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-2-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-3-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-4-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-5-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-6-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-7-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-8-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-9-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-10-6" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell cell-title-left" id="cellOG-6-0">6</td>
+								<td class="cell" id="cellOG-6-1"  
+									 ></td>
+								<td class="cell" id="cellOG-6-2"  
+									 ></td>
+								<td class="cell" id="cellOG-6-3"  
+									 ></td>
+								<td class="cell" id="cellOG-6-4"  
+									 ></td>
+								<td class="cell" id="cellOG-6-5"  
+									 ></td>
+								<td class="cell" id="cellOG-6-6"  
+									 ></td>
+								<td class="cell" id="cellOG-6-7"  
+									 ></td>
+								<td class="cell" id="cellOG-6-8"  
+									 ></td>
+								<td class="cell" id="cellOG-6-9"  
+									 ></td>
+								<td class="cell" id="cellOG-6-10"  
+									 ></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-7">7</td>
-								<td class="cell" id="cell-1-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-2-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-3-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-4-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-5-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-6-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-7-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-8-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-9-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-10-7" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell cell-title-left" id="cellOG-7-0">7</td>
+								<td class="cell" id="cellOG-7-1"  
+									 ></td>
+								<td class="cell" id="cellOG-7-2"  
+									 ></td>
+								<td class="cell" id="cellOG-7-3"  
+									 ></td>
+								<td class="cell" id="cellOG-7-4"  
+									 ></td>
+								<td class="cell" id="cellOG-7-5"  
+									 ></td>
+								<td class="cell" id="cellOG-7-6"  
+									 ></td>
+								<td class="cell" id="cellOG-7-7"  
+									 ></td>
+								<td class="cell" id="cellOG-7-8"  
+									 ></td>
+								<td class="cell" id="cellOG-7-9"  
+									 ></td>
+								<td class="cell" id="cellOG-7-10"  
+									 ></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-8">8</td>
-								<td class="cell" id="cell-1-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-2-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-3-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-4-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-5-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-6-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-7-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-8-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-9-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-10-8" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell cell-title-left" id="cellOG-8-0">8</td>
+								<td class="cell" id="cellOG-8-1"  
+									 ></td>
+								<td class="cell" id="cellOG-8-2"  
+									 ></td>
+								<td class="cell" id="cellOG-8-3"  
+									 ></td>
+								<td class="cell" id="cellOG-8-4"  
+									 ></td>
+								<td class="cell" id="cellOG-8-5"  
+									 ></td>
+								<td class="cell" id="cellOG-8-6"  
+									 ></td>
+								<td class="cell" id="cellOG-8-7"  
+									 ></td>
+								<td class="cell" id="cellOG-8-8"  
+									 ></td>
+								<td class="cell" id="cellOG-8-9"  
+									 ></td>
+								<td class="cell" id="cellOG-8-10"  
+									 ></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-9">9</td>
-								<td class="cell" id="cell-1-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-2-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-3-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-4-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-5-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-6-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-7-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-8-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-9-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-10-9" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell cell-title-left" id="cellOG-9-0">9</td>
+								<td class="cell" id="cellOG-9-1"  
+									 ></td>
+								<td class="cell" id="cellOG-9-2"  
+									 ></td>
+								<td class="cell" id="cellOG-9-3"  
+									 ></td>
+								<td class="cell" id="cellOG-9-4"  
+									 ></td>
+								<td class="cell" id="cellOG-9-5"  
+									 ></td>
+								<td class="cell" id="cellOG-9-6"  
+									 ></td>
+								<td class="cell" id="cellOG-9-7"  
+									 ></td>
+								<td class="cell" id="cellOG-9-8"  
+									 ></td>
+								<td class="cell" id="cellOG-9-9"  
+									 ></td>
+								<td class="cell" id="cellOG-9-10"  
+									 ></td>
 							</tr>
 							<tr>
-								<td class="cell cell-title-left" id="cell-0-10">10</td>
-								<td class="cell" id="cell-1-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-2-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-3-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-4-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-5-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-6-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-7-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-8-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-9-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
-								<td class="cell" id="cell-10-10" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+								<td class="cell cell-title-left" id="cellOG-10-0">10</td>
+								<td class="cell" id="cellOG-10-1"  
+									 ></td>
+								<td class="cell" id="cellOG-10-2"  
+									 ></td>
+								<td class="cell" id="cellOG-10-3"  
+									 ></td>
+								<td class="cell" id="cellOG-10-4"  
+									 ></td>
+								<td class="cell" id="cellOG-10-5"  
+									 ></td>
+								<td class="cell" id="cellOG-10-6"  
+									 ></td>
+								<td class="cell" id="cellOG-10-7"></td>
+								<td class="cell" id="cellOG-10-8"></td>
+								<td class="cell" id="cellOG-10-9"></td>
+								<td class="cell" id="cellOG-10-10"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -518,10 +451,9 @@
 		</div>
 
 
-
 	</div>
 
-<h2 id="message"></h2>
+	<h2 id="message"></h2>
 	<div class="row vertical-align">
 
 		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-lg-offset-1">
@@ -588,7 +520,7 @@
 
 			</div>
 		</div>
-<!-- 
+
 		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-6 text-center">
 			<table class="table">
 				<thead>
@@ -632,36 +564,47 @@
 				</tbody>
 			</table>
 		</div>
- -->
-
-
-
-<!--  Choose ships -->
-
-<div>
-<button onclick="rotateBoat()" >Click me</button>
-
-
-
-  
-    <img id="boat-1" src="resources/assetsGame/images/boat.png" draggable="true" ondragstart="drag(event)" style="transform:rotate(0deg); height: 50px; width: 50%;">
-	<img id="boat-2" src="resources/assetsGame/images/boat.png" draggable="true" ondragstart="drag(event)" style="transform:rotate(0deg); height: 50px; width: 50%;">
-	<img id="boat-3" src="resources/assetsGame/images/boat.png" draggable="true" ondragstart="drag(event)" style="transform:rotate(0deg); height: 50px; width: 50%;">
- 	<img id="boat-4" src="resources/assetsGame/images/boat.png" draggable="true" ondragstart="drag(event)" style="transform:rotate(0deg); height: 50px; width: 50%;">
-  	<img id="boat-5" src="resources/assetsGame/images/boat.png" draggable="true" ondragstart="drag(event)" style="transform:rotate(0deg); height: 50px; width: 50%;">
-
-</div>
-
-
-
-</div>
-
-<h2 id="prova"></h2>
-
-
-<!--  End choose ships -->
 
 	</div>
+
+	<c:forEach var="i" begin="0" end="9">
+		<c:forEach var="j" begin="0" end="9">
+			<c:if test="${grid.hasShip(i,j)}">
+				<c:choose>
+
+					<c:when test="${grid.tipeShip(i,j) == 2}">
+						<script>
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat submarine");
+			</script>
+					</c:when>
+					<c:when test="${grid.tipeShip(i,j) == 3}">
+						<script>
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","class showBoat cruiser");
+			</script>
+					</c:when>
+					<c:when test="${grid.tipeShip(i,j) == 4}">
+						<script>
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat battleship");
+			</script>
+					</c:when>
+					<c:when test="${grid.tipeShip(i,j) == 5}">
+						<script>
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat aircraft-carrier");
+			</script>
+					</c:when>
+					<c:otherwise>
+						
+					</c:otherwise>
+				</c:choose>
+
+			</c:if>
+
+		
+		</c:forEach>
+	</c:forEach>
+
+<hidden hidden id="lobbyId"
+		value="${lobby.id}"></hidden>
 
 </body>
 
