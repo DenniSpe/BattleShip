@@ -11,56 +11,62 @@ import org.springframework.stereotype.Service;
 import it.unical.asde.battleship.game.Lobby;
 
 @Service
-public class LobbyService {
-	
-	private int lobbyID = 0;
-	private Map<Integer, Lobby> lobbies;
+public class LobbyService
+{
 
-	
-	@PostConstruct
-	public void init() {
-		
-		lobbies = new HashMap<>();
-		lobbies.put(this.getCurrentLobbyID(),new Lobby(this.assignLobbyID(),"Room1","Dennis"));
-		lobbies.put(this.getCurrentLobbyID(),new Lobby(this.assignLobbyID(),"Room2","Francesco"));
-		lobbies.put(this.getCurrentLobbyID(),new Lobby(this.assignLobbyID(),"Stanza","Dario"));
-		lobbies.put(this.getCurrentLobbyID(),new Lobby(this.assignLobbyID(),"Stanza5","Manuel"));
-	}
-	
-	
-	public LobbyService() {
-		super();
-	}
+    private int lobbyID = 0;
 
-	
-	public int assignLobbyID() {
-		return lobbyID++;
-	}
-	
-	public int getCurrentLobbyID() {
-		return lobbyID;
-	}
+    private Map<Integer, Lobby> lobbies;
 
-	public Collection<Lobby> getLobbies() {
-		return lobbies.values(); 
-	}
+    public LobbyService()
+    {
+        super();
+    }
 
-	public Lobby getLobby(int id)
-	{
-		return this.lobbies.get(id);
-	}
+    public void addChallenger(final Lobby lobby, final String challenger)
+    {
+        lobbies.get(lobby.getId()).setChallenger(challenger);
+    }
 
-	public void addLobby(Lobby lobby) {
-		this.lobbies.put(lobby.getId(), lobby);
-	}
-	
-	public void deleteLobby(int id) {
-		this.lobbies.remove(id);
-	}
-	
-	public void addChallenger(Lobby lobby, String challenger) {
-		this.lobbies.get(lobby.getId()).setChallenger(challenger);
-	}
-	
+    public void addLobby(final Lobby lobby)
+    {
+        lobbies.put(lobby.getId(), lobby);
+    }
+
+    public int assignLobbyID()
+    {
+        return lobbyID++;
+    }
+
+    public void deleteLobby(final int id)
+    {
+        lobbies.remove(id);
+    }
+
+    public int getCurrentLobbyID()
+    {
+        return lobbyID;
+    }
+
+    public Collection<Lobby> getLobbies()
+    {
+        return lobbies.values();
+    }
+
+    public Lobby getLobby(final int id)
+    {
+        return lobbies.get(id);
+    }
+
+    @PostConstruct
+    public void init()
+    {
+
+        lobbies = new HashMap<>();
+        //        lobbies.put(getCurrentLobbyID(), new Lobby(assignLobbyID(), "Room1", "Dennis", false));
+        //        lobbies.put(getCurrentLobbyID(), new Lobby(assignLobbyID(), "Room2", "Francesco", false));
+        //        lobbies.put(getCurrentLobbyID(), new Lobby(assignLobbyID(), "Stanza", "Dario", false));
+        //        lobbies.put(getCurrentLobbyID(), new Lobby(assignLobbyID(), "Stanza5", "Manuel", false));
+    }
 
 }
