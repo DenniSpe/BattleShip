@@ -1,7 +1,8 @@
+var nBoatsPositioned = 0;
+
 $(document).ready(function() {
 	 for (var i = 1; i <= 10; i++) {
 		for (var j = 1; j <= 10; j++) {
-			console.log("for");
 			$("#cellCG-" + i + "-" + j).click(function() {
 				shoot(this.id);
 			});
@@ -23,6 +24,9 @@ $(document).ready(function() {
 	$("#button5").click(function() {
 		rotateBoat("boat-5");
 	});
+	
+	$("button#IR").attr("disabled", "disabled");
+	
 });
 
 function shoot(cellacliccata) {
@@ -73,6 +77,8 @@ function drop(ev) {
 
 	console.log("Stai droppando sulla cella " + ev.target.id);
 
+	
+
 	var dir = document.getElementById(data).getAttribute("style");
 	var size = document.getElementById(data).getAttribute("id").split("-")[1]; // Attenzione,
 																				// da
@@ -105,6 +111,10 @@ function drop(ev) {
 						alert("You can't put your boat here !");
 					} else {
 						alert(result);
+						
+						nBoatsPositioned += 1;
+						alert("I am putting my "+nBoatsPositioned);
+						checkUserIsReady(nBoatsPositioned);
 						// row, col, dir, size
 
 						var param = result.split(",");
@@ -153,6 +163,13 @@ function drop(ev) {
 				}
 			});
 
+}
+
+function checkUserIsReady(nBoatsPositioned){
+	if(nBoatsPositioned >= 5){ // The user put all his boats in the grid
+		 $("button#IR").removeAttr("disabled");
+	}
+	
 }
 
 function waitingStart() {
@@ -222,7 +239,6 @@ function appendTag(result) {
 	var str = result.split('-');
 	var i = str[1];
 	var j = str[2];
-	alert("fdsaf");
 	if (str[0] == "miss") {
 		$("#cellCG-" + i + "-" + j)
 				.append(

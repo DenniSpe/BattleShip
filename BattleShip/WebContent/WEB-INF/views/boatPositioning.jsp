@@ -284,7 +284,8 @@
 <!--  End choose ships -->
 
 
-<button onclick="waitingStart()">I'm Ready !</button>
+
+<button id="IR" type="button" onclick="waitingStart()">I'm Ready !</button>
 
 <hidden hidden id="lobbyId"
 		value="${lobby.id}"></hidden>
