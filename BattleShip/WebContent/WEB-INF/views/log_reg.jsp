@@ -7,7 +7,14 @@
 <html>
 	<head>
 	<title>Battleship MVC</title>
+	<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<jsp:include page="nav_bar.jsp"></jsp:include>
+	 <link rel="stylesheet" href="resources/assets/css/main.css" />
+		  <link rel="stylesheet" href="resources/assets/css/carousel3d.css" />
+		
+		
+		
 	<script src="resources/assets/js/main.js"></script>
 	<script src="resources/assets/js/navbar.js"></script>
 	 <link rel="stylesheet" href="resources/assets/css/modal.css" />
