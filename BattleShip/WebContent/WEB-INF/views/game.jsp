@@ -73,7 +73,7 @@
 								<td class="cell cell-title-top" id="cellCG-0-7">G</td>
 								<td class="cell cell-title-top" id="cellCG-0-8">H</td>
 								<td class="cell cell-title-top" id="cellCG-0-9">I</td>
-								<td class="cell cell-title-top" id="cellCG-10-10">J</td>
+								<td class="cell cell-title-top" id="cellCG-0-10">J</td>
 							</tr>
 							<tr>
 								<td class="cell cell-title-left" id="cellCG-1-0">1</td>
