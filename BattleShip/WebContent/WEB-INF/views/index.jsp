@@ -61,24 +61,13 @@
 <body>
 
  <title>Join or create a lobby !</title>
+ 
 <div class="row">
-				<div class="col-md-4">
-				 <form action="new_lobby" method="POST">
-		          	<div class="form-group">
-				      <label for="username">Name:</label>
-				      <input type="text" class="form-control" id="lobby_name" placeholder="Enter a name" name="lobby_name" required>
-				      <input type="hidden" name="lobby_owner" value="${ sessionScope.username }">
-	    			</div>
-					    		
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary">Create Lobby</button>
-					</div>
-          </form>
-				</div>
+		
 				
-			<div class="col-md-8">
+			<div class="col-md-6" style=" padding-left:8%; ">
 			 
-			  
+			  <h1 style="font-size: 250%; padding-bottom:3%;">Lobby available</h1>
 			  <div class="list-group">
 			  
 			  <div id="lobbies_div"></div>
@@ -86,7 +75,7 @@
 			   
 			 <hidden hidden id="serverUrl" value="<c:url value="/join_lobby"></c:url>"></hidden>
 			
-			 <div id="lobbyList"> 
+			 <div id="lobbyList" style="width:50%; text-align:center;"> 
 			  	<c:forEach items="${ lobbies }" var="lobby">
 			  		<a class="list-group-item" 
 			  			href="<c:url value="/join_lobby"> 
@@ -102,6 +91,21 @@
 			
 			  </div>
 			</div> <!--  end col-md-6 -->
+			
+			<div class="col-md-6" style="padding-left:8%;">
+		 <h1 style="font-size: 250%; padding-bottom:3%;">Create a new Lobby</h1>
+				 <form action="new_lobby" method="POST" style="width:70%;">
+		          	<div class="form-group">
+				      
+				      <input type="text" class="form-control" id="lobby_name" placeholder="Enter a name" name="lobby_name" required>
+				      <input type="hidden" name="lobby_owner" value="${ sessionScope.username }">
+	    			</div>
+					    		
+					<div class="col-sm-offset-2 col-sm-10">
+						<input type="submit" class="btn btn-primary" value="Create Lobby"></input>
+					</div>
+          </form>
+			</div>
 			
 				
 </div> <!--  end row -->

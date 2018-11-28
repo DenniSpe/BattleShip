@@ -8,7 +8,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+<jsp:include page="nav_bar.jsp"></jsp:include>
 <script type="text/javascript"
 	src="resources/assetsGame/javascripts/ext/underscore.js"></script>
 <script type="text/javascript"

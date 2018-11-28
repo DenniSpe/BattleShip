@@ -63,10 +63,10 @@ public class LobbyService
     {
 
         lobbies = new HashMap<>();
-        //        lobbies.put(getCurrentLobbyID(), new Lobby(assignLobbyID(), "Room1", "Dennis", false));
-        //        lobbies.put(getCurrentLobbyID(), new Lobby(assignLobbyID(), "Room2", "Francesco", false));
-        //        lobbies.put(getCurrentLobbyID(), new Lobby(assignLobbyID(), "Stanza", "Dario", false));
-        //        lobbies.put(getCurrentLobbyID(), new Lobby(assignLobbyID(), "Stanza5", "Manuel", false));
+        lobbies.put(getCurrentLobbyID(), new Lobby(assignLobbyID(), "Room1", "Dennis"));
+        lobbies.put(getCurrentLobbyID(), new Lobby(assignLobbyID(), "Room2", "Francesco"));
+        lobbies.put(getCurrentLobbyID(), new Lobby(assignLobbyID(), "Stanza", "Dario"));
+        lobbies.put(getCurrentLobbyID(), new Lobby(assignLobbyID(), "Stanza5", "Manuel"));
     }
 
 }

@@ -11,7 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<jsp:include page="nav_bar.jsp"></jsp:include>
 	 <link rel="stylesheet" href="resources/assets/css/main.css" />
-		  <link rel="stylesheet" href="resources/assets/css/carousel3d.css" />
+		  
 		
 		
 		
@@ -29,9 +29,7 @@
 				<div class="inner">
 					<h1>Battleship MVC</h1>
 					<p>A final project developed for the Agile Software Development for Enterprise</a></p>
-				</div>
-
-				
+				</div>			
 			</header>
 
 
@@ -69,54 +67,7 @@
 </div>
 </div>
 
-		<!-- END COUNTER -->
-		
-		<div class="row">
-		<div class="col-12">
-		<!--  carousel -->
-	<div class="slider3d first">
-  <div class="slider3d__wrapper">
-    <div class="slider3d__inner">
-      <div class="slider3d__rotater">
-        <div class="slider3d__item">
-          <a href="www.google.com"><h2 class="slider3d__heading" data-text="SO HEADING">SO HEADING</h2></a>
-          
-        </div>
-        <div class="slider3d__item">
-          <h2 class="slider3d__heading" data-text="MUCH ROTATION">MUCH ROTATION</h2>
-        </div>
-        <div class="slider3d__item">
-          <h2 class="slider3d__heading" data-text="VERY 3D">VERY 3D</h2>
-        </div>
-        <div class="slider3d__item">
-          <h2 class="slider3d__heading" data-text="SUCH JAVASCRIPT">SUCH JAVASCRIPT</h2>
-        </div>
-        <div class="slider3d__item">
-          <h2 class="slider3d__heading" data-text="WOW WOW!">WOW WOW!</h2>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="slider3d__controls">
-    <div class="slider3d__handle">
-      <div class="slider3d__handle__inner">
-        <div class="slider3d__handle__rotater">
-          <div class="slider3d__handle__item active">Page 1</div>
-          <div class="slider3d__handle__item">Page 2</div>
-          <div class="slider3d__handle__item">Page 3</div>
-          <div class="slider3d__handle__item">Page 4</div>
-          <div class="slider3d__handle__item">Page 5</div>
-        </div>
-      </div>
-    </div>
-    <div class="slider3d__control m--up"></div>
-    <div class="slider3d__control m--down"></div>
-  </div>
-</div>
-</div>
-</div>
-
-	<!--  end carousel -->		
+			
 		
 	
 		

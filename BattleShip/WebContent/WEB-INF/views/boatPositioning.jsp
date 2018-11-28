@@ -5,24 +5,18 @@
 
 <head>
 <title>Battleship</title>
+<jsp:include page="nav_bar.jsp"></jsp:include>
+<style type="text/css">
+body {
+	
+	padding-top: 10%;
+	padding-left: 2%;
+}
+</style>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/underscore.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/vendor/jquery-1.11.3.min.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/jshashtable-2.1.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/jquery.numeric.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/jquery.numberformatter.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/backbone.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/icanhaz.js"></script>
 <script type="text/javascript"
 	src="resources/assetsGame/javascripts/boatPositioning.js"></script>
 <script type="text/javascript"
@@ -43,10 +37,77 @@
 
 <body>
 	<div class="row">
+<div class="col-md-4">
+	
+	<div class="row containerShip">
+		
+		
+			<div class="col-md-12">
+			<h3 class="nameShip">Destoyer</h3>
+			</div>
+	
+		
+		<div class="row containerButton">
+					<div class="col-md-6">
+						<button id="button-destroyer">Destroyer</button>
+					</div>
+					
+					<div class="col-md-6">
+						<button >Destroyer</button>
+					</div>
+	</div>
+		<div class="col-md-12">
+			<img id="destroyer" src="resources/assetsGame/images/boat.png"
+			draggable="true" ondragstart="drag(event)"
+			class="shipImage"
+			> 
+		</div>
+		
+	</div>	
+	
+	<div class="row containerShip">
+			<h3 class="nameShip">Subamrine</h3>
+		<img
+			id="submarine" src="resources/assetsGame/images/boat.png"
+			draggable="true" ondragstart="drag(event)"
+			class="shipImage"> 
+			<button id="button-submarine">Submarine</button>
+	</div>
+	
+	<div class="row containerShip">
+			<h3 class="nameShip">Cruiser</h3>
+			<img
+			id="cruiser" src="resources/assetsGame/images/boat.png"
+			draggable="true" ondragstart="drag(event)"
+			class="shipImage">
+			<button id="button-cruiser">Cruiser</button>
+	</div>
+	
+	
+	<div class="row containerShip">
+	
+			<h3 class="nameShip">Battleship</h3>
+		<img
+			id="battleship" src="resources/assetsGame/images/boat.png"
+			draggable="true" ondragstart="drag(event)" 
+			class="shipImage"> 
+			<button id="button-battleship">Battleship</button>
+	</div>
+	
+	<div class="row containerShip">
+			<h3 class="nameShip">Aircraft</h3>
+		<img
+			id="aircraft" src="resources/assetsGame/images/boat.png"
+			draggable="true" ondragstart="drag(event)"
+			class="shipImage">
+			<button id="button-aircraft">Aircraft</button>
+	</div>
+		
 
+</div>
 
-		<div class="col-6">
-			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-6 text-center">
+		<div class="col-md-8">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
 				<div id="container">
 					<table class="board table table-responsive animated fadeInUp"
 						id="ownerGrid">
@@ -299,6 +360,8 @@
 				</div>
 			</div>
 		</div>
+		
+		
 
 
 	</div>
@@ -307,29 +370,7 @@
 
 
 
-	<div>
-		<button id="button-destroyer">Destroyer</button>
-		<button id="button-submarine">Submarine</button>
-		<button id="button-cruiser">Cruiser</button>
-		<button id="button-battleship">Battleship</button>
-		<button id="button-aircraft">Aircraft</button>
-		<img id="destroyer" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			style="transform: rotate(0deg); height: 50px; width: 50%;"> <img
-			id="submarine" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			style="transform: rotate(0deg); height: 50px; width: 50%;"> <img
-			id="cruiser" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			style="transform: rotate(0deg); height: 50px; width: 50%;"> <img
-			id="battleship" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			style="transform: rotate(0deg); height: 50px; width: 50%;"> <img
-			id="aircraft" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			style="transform: rotate(0deg); height: 50px; width: 50%;">
-
-	</div>
+	
 
 
 	<!--  End choose ships -->
@@ -370,13 +411,15 @@
 		</c:forEach>
 	</c:forEach>
 
+<div class="row" style="padding-left:50%; padding-bottom: 10%">
+			<div class="col-md-12">
+				<input type="button" id="IR" type="button" onclick="waitingStart()" value="Ready!">
+					</input>
+			
+				<hidden hidden id="lobbyId" value="${lobby.id}"></hidden>
+			</div>
 
-	<button id="IR" type="button" onclick="waitingStart()">I'm
-		Ready !</button>
-
-	<hidden hidden id="lobbyId" value="${lobby.id}"></hidden>
-
-
+</div>
 </body>
 
 </html>

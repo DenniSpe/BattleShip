@@ -24,12 +24,12 @@ $(document).ready(function() {
 function rotateBoat(id) {
 	console.log("MY ID IS = " + id);
 	var img = document.getElementById(id);
-	if (img.getAttribute("style") == "transform:rotate(90deg); height: 50px; width: 50%;") {
+	if (img.getAttribute("style") == "transform:rotate(90deg); height: 35%; width: 45%;") {
 		img.setAttribute("style",
-				"transform:rotate(0deg); height: 50px; width: 50%;")
+				"transform:rotate(0deg); height: 35%; width: 45%;")
 	} else {
 		img.setAttribute("style",
-				"transform:rotate(90deg); height: 50px; width: 50%;")
+				"transform:rotate(90deg); height: 35%; width: 45%;")
 	}
 }
 
