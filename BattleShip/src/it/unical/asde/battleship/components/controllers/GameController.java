@@ -109,7 +109,16 @@ public class GameController {
 						if (gameService.getChallengerGrid(currentLobby.getId()).hasShip(row, col)) {
 							gameService.getChallengerGrid(currentLobby.getId()).markHit(row, col);
 							// output.setResult("hit-" + row + "-" + col);
+							
+							System.out.println("CHALLENGER GRID AFTER SHOOT");
+							gameService.getChallengerGrid(currentLobby.getId()).print();
+							System.out.println("END CHALLENGER GRID AFTER SHOOT");
+							
 							shot = "hit-" + row + "-" + col;
+							if(!gameService.hasMoreShips(currentLobby.getId(), true)) {
+								// OWNER WIN
+								shot+="-OWNERWIN";
+							}
 						} else {
 							gameService.getChallengerGrid(currentLobby.getId()).markMiss(row, col);
 							// output.setResult("miss-" + row + "-" + col);
@@ -122,7 +131,16 @@ public class GameController {
 						if (gameService.getOwnerGrid(currentLobby.getId()).hasShip(row, col)) {
 							gameService.getOwnerGrid(currentLobby.getId()).markHit(row, col);
 							// output.setResult("hit-" + row + "-" + col);
+							
+							System.out.println("OWNER GRID AFTER SHOOT");
+							gameService.getOwnerGrid(currentLobby.getId()).print();
+							System.out.println("END OWNER GRID AFTER SHOOT");
+							
 							shot = "hit-" + row + "-" + col;
+							if(!gameService.hasMoreShips(currentLobby.getId(), false)) {
+								// CHALLENGER WIN
+								shot+="-CHALLENGERWIN";
+							}
 						} else {
 							gameService.getOwnerGrid(currentLobby.getId()).markMiss(row, col);
 							// output.setResult("miss-" + row + "-" + col);

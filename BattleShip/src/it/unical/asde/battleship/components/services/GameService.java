@@ -28,6 +28,28 @@ public class GameService
 
     private HashMap<String, Boolean> isReadyChallenger;
 
+    public boolean hasMoreShips(int lobbyID, boolean isOwner) {
+    	Lobby currentLobby = lobbyService.getLobby(lobbyID);
+    	
+    	Grid grid = new Grid();
+    	if(isOwner) {
+    		grid = gridChallenger.get(currentLobby.getChallenger());
+    	}
+    	else {
+    		grid = gridOwner.get(currentLobby.getOwner());
+    	}
+    	
+    	for (int i = 1; i < 11; i++) {
+    		for (int j = 1; j < 11; j++) {
+    			if(grid.getContent(i, j) != -1 && grid.getContent(i, j) != 1 && grid.getContent(i, j) != 0)
+    				return true;
+    		}
+		}
+    	return false;
+    }
+    
+   
+    
     public void challengerIsReady(final int lobbyID)
     {
         final Lobby currentLobby = lobbyService.getLobby(lobbyID);
@@ -137,6 +159,5 @@ public class GameService
 
         return isReadyOwner.get(currentLobby.getOwner()) && isReadyChallenger.get(currentLobby.getChallenger());
     }
-
 
 }
