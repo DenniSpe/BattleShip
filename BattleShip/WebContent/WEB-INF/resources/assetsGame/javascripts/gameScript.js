@@ -249,3 +249,33 @@ function appendTag(result) {
 				'<img src="resources/assetsGame/images/1331900690_fire.png">');
 	}
 }
+
+function checkTurn() {
+	var lobbyID = $("#lobbyId").attr("value");
+	$.ajax({
+		url : "checkTurn",
+		type:'POST',
+		dataType: "json",
+		data : {
+			"lobbyid" : lobbyID
+		},
+		success : function(result) {
+			if(result.turn == true){
+				$("#turnMessage").html("It's your turn");
+				$("#turnMessage").removeClass( "label-danger" );
+				$("#turnMessage").addClass("label-success")
+			}else{
+				$("#turnMessage").html("Wait for your turn...");
+				$("#turnMessage").removeClass( "label-success" );
+				$("#turnMessage").addClass("label-danger")
+			}
+			setTimeout(function() {
+				checkTurn();
+			}, 3000);
+		},
+
+		error : function() {
+			// call events again after some time
+		}
+	});
+}

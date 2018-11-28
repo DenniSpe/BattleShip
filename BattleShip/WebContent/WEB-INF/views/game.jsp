@@ -42,6 +42,18 @@
 </head>
 
 <body>
+
+	<div class="row text-center">		
+		<c:choose>
+			<c:when test="${user.username == lobby.owner}">
+				<h3><span id="turnMessage" class="label label-success">It's your turn</span></h3>
+			</c:when>
+			<c:otherwise>
+				<h3><span id="turnMessage" class="label label-danger">Wait for your turn...</span></h3>
+			</c:otherwise>
+		</c:choose>
+	</div>
+	
 	<div class="row">
 
 		<div class="col-6">
@@ -603,8 +615,29 @@
 		</c:forEach>
 	</c:forEach>
 
-<hidden hidden id="lobbyId"
-		value="${lobbyId}"></hidden>
+	<!-- The modal -->
+	<div class="modal fade" id="modal" tabindex="-1" role="dialog"
+		aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="modalLabel">BattleShip MVC</h4>
+				</div>
+				<div class="modal-body">Is not your turn yet</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hidden hidden id="lobbyId"
+		value="${lobby.id}"></hidden>
 
 </body>
 

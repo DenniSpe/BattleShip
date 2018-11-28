@@ -12,8 +12,18 @@ public class Lobby
     private String challenger;
 
     private boolean lobbyStarted;
+    
+    private String whoPlays;
 
-    public Lobby()
+    public String getWhoPlays() {
+		return whoPlays;
+	}
+
+	public void setWhoPlays(String whoPlays) {
+		this.whoPlays = whoPlays;
+	}
+
+	public Lobby()
     {
         super();
         // TODO Auto-generated constructor stub
