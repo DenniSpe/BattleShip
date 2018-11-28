@@ -95,7 +95,7 @@ public class GameController {
 	@PostMapping("/shoot")
 	@ResponseBody
 	public String shoot(final String cella, final HttpSession session, String id) {
-		//final DeferredResult<String> output = new DeferredResult<>();
+		// final DeferredResult<String> output = new DeferredResult<>();
 
 		int row = Integer.parseInt(cella.split("-")[1]);
 		int col = Integer.parseInt(cella.split("-")[2]);
@@ -103,40 +103,40 @@ public class GameController {
 		User user = (User) session.getAttribute("user");
 		if (user != null || id != null) {
 			Lobby currentLobby = lobbyService.getLobby(Integer.parseInt(id));
-			if(currentLobby.getWhoPlays().equals(user.getUsername())) {
+			if (currentLobby.getWhoPlays().equals(user.getUsername())) {
 				if (currentLobby.getOwner().equals(user.getUsername())) {
 					if (!gameService.getChallengerGrid(currentLobby.getId()).alreadyGuessed(row, col)) {
 						if (gameService.getChallengerGrid(currentLobby.getId()).hasShip(row, col)) {
 							gameService.getChallengerGrid(currentLobby.getId()).markHit(row, col);
-							//output.setResult("hit-" + row + "-" + col);
-							shot = "hit-" + row + "-" + col;							
+							// output.setResult("hit-" + row + "-" + col);
+							shot = "hit-" + row + "-" + col;
 						} else {
 							gameService.getChallengerGrid(currentLobby.getId()).markMiss(row, col);
-							//output.setResult("miss-" + row + "-" + col);
+							// output.setResult("miss-" + row + "-" + col);
 							shot = "miss-" + row + "-" + col;
 							currentLobby.setWhoPlays(currentLobby.getChallenger());
-						}						
+						}
 					}
 				} else if (currentLobby.getChallenger().equals(user.getUsername())) {
 					if (!gameService.getOwnerGrid(currentLobby.getId()).alreadyGuessed(row, col)) {
 						if (gameService.getOwnerGrid(currentLobby.getId()).hasShip(row, col)) {
 							gameService.getOwnerGrid(currentLobby.getId()).markHit(row, col);
-							//output.setResult("hit-" + row + "-" + col);
-							shot="hit-" + row + "-" + col;
+							// output.setResult("hit-" + row + "-" + col);
+							shot = "hit-" + row + "-" + col;
 						} else {
 							gameService.getOwnerGrid(currentLobby.getId()).markMiss(row, col);
-							//output.setResult("miss-" + row + "-" + col);
-							shot="miss-" + row + "-" + col;
+							// output.setResult("miss-" + row + "-" + col);
+							shot = "miss-" + row + "-" + col;
 							currentLobby.setWhoPlays(currentLobby.getOwner());
-						}						
+						}
 					}
 				}
-			}else {
-				shot="wait-turn";
+			} else {
+				shot = "wait-turn";
 			}
-	
+
 		}
-		
+
 //		ForkJoinPool.commonPool().submit(() -> {
 //				output.setResult(shot);
 //		});
@@ -275,7 +275,7 @@ public class GameController {
 			Lobby currentLobby = lobbyService.getLobby(Integer.parseInt(id));
 			if (currentLobby.getOwner().equals(user.getUsername())) {
 				model.addAttribute("grid", gameService.getOwnerGrid(currentLobby.getId()));
-				if(currentLobby.getWhoPlays() == null || currentLobby.getWhoPlays().isEmpty()) {
+				if (currentLobby.getWhoPlays() == null || currentLobby.getWhoPlays().isEmpty()) {
 					currentLobby.setWhoPlays(currentLobby.getOwner());
 				}
 			} else if (currentLobby.getChallenger().equals(user.getUsername())) {
@@ -286,20 +286,23 @@ public class GameController {
 		}
 		return "redirect:/";
 	}
-		
+
 	@PostMapping("/checkTurn")
 	@ResponseBody
 	public Map<String, Boolean> checkTurn(Optional<Integer> lobbyid, HttpSession session) {
-		
-		User user = (User)session.getAttribute("user");	
-		Lobby current = lobbyService.getLobby(lobbyid.get());
-		if(user!=null && lobbyid.isPresent()) {
-			if(current.getWhoPlays() != null && current.getWhoPlays().equals(user.getUsername())) {
-				return Collections.singletonMap("turn", true);
-			}else {
-				return Collections.singletonMap("turn", false);
+
+		User user = (User) session.getAttribute("user");
+		if (user != null && lobbyid.isPresent()) {
+
+			if (lobbyid.isPresent()) {
+				Lobby current = lobbyService.getLobby(lobbyid.get());
+				if (current.getWhoPlays() != null && current.getWhoPlays().equals(user.getUsername())) {
+					return Collections.singletonMap("turn", true);
+				} else {
+					return Collections.singletonMap("turn", false);
+				}
 			}
-		}		
+		}
 		return Collections.singletonMap("turn", false);
 	}
 
