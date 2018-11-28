@@ -22,11 +22,19 @@ function shoot(cellacliccata) {
 			'id' : lobbyID
 		},
 		success : function(result) {
-			if (result == "wait-turn") {
+			alert("IL RESULT DI SHOOT E' "+result);
+			if(result=="wait-turn"){
 				$('#modal').modal('show');
-			} else {
-				appendTag(result);
-				$("#message").html(result);
+			}else{
+				var whoWin = appendTag(result);
+				alert("WHO WIN E' "+whoWin);
+				if(whoWin == "OWNERWIN"){
+					alert("HA VINTO L'OWNER");
+				}
+				else if(whoWin == "CHALLENGERWIN"){
+					alert("HA VINTO IL CHALLENGER");
+				}
+
 			}
 		},
 		error : function() {
@@ -72,6 +80,8 @@ function appendTag(result) {
 	var str = result.split('-');
 	var i = str[1];
 	var j = str[2];
+	var winner = str[3];
+	
 	if (str[0] == "miss") {
 		$("#cellCG-" + i + "-" + j)
 				.append(
@@ -80,7 +90,15 @@ function appendTag(result) {
 	if (str[0] == "hit") {
 		$("#cellCG-" + i + "-" + j).append(
 				'<img src="resources/assetsGame/images/1331900690_fire.png">');
+	
+		if(str[3] == "OWNERWIN"){
+			return "OWNERWIN";
+		}
+		else if(str[3] == "CHALLENGERWIN"){
+			return "CHALLENGERWIN";
+		}
 	}
+	
 }
 
 function checkTurn() {
