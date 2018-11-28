@@ -26,6 +26,7 @@ $(document).ready(function() {
 	});
 	
 	$("button#IR").attr("disabled", "disabled");
+	checkTurn();
 	
 });
 
@@ -44,9 +45,9 @@ function shoot(cellacliccata) {
 		},
 		error : function() {
 			// call events again after some time
-			setTimeout(function() {
-				shoot();
-			}, 5000);
+//			setTimeout(function() {
+//				shoot();
+//			}, 5000);
 		}
 	});
 }
