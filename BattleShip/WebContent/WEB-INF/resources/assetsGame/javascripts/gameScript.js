@@ -22,14 +22,9 @@ function shoot(cellacliccata) {
 			'id' : lobbyID
 		},
 		success : function(result) {
-<<<<<<< HEAD
 			alert("IL RESULT DI SHOOT E' "+result);
 			if(result=="wait-turn"){
-=======
-			if (result == "wait-turn") {
->>>>>>> branch 'master' of https://github.com/DenniSpe/BattleShip.git
 				$('#modal').modal('show');
-<<<<<<< HEAD
 			}else{
 				var whoWin = appendTag(result);
 				alert("WHO WIN E' "+whoWin);
@@ -39,11 +34,7 @@ function shoot(cellacliccata) {
 				else if(whoWin == "CHALLENGERWIN"){
 					alert("HA VINTO IL CHALLENGER");
 				}
-=======
-			} else {
-				appendTag(result);
->>>>>>> branch 'master' of https://github.com/DenniSpe/BattleShip.git
-				$("#message").html(result);
+
 			}
 		},
 		error : function() {
