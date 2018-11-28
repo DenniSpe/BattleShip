@@ -16,6 +16,7 @@ import org.springframework.web.context.request.async.DeferredResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import it.unical.asde.battleship.components.services.GameService;
 import it.unical.asde.battleship.components.services.LobbyService;
 import it.unical.asde.battleship.game.Lobby;
 import it.unical.asde.battleship.model.User;
@@ -26,6 +27,8 @@ public class LobbyController
 
     @Autowired
     private LobbyService lobbyService;
+    @Autowired
+    private GameService gameService;
 
     @PostMapping("/checkOwner")
     @ResponseBody
@@ -119,7 +122,7 @@ public class LobbyController
             System.out.println("NAME= " + myLobby.getName());
             System.out.println("OWNER= " + myLobby.getOwner());
             System.out.println(" CHALLENGER= " + myLobby.getChallenger());
-            if (myLobby.getChallenger() == null || !user.getUsername().equalsIgnoreCase(myLobby.getOwner()))
+            if (myLobby.getChallenger() == null && !user.getUsername().equalsIgnoreCase(myLobby.getOwner()))
             {
                 System.out.println("LOBBY ID= " + myLobby.getId());
                 System.out.println("NAME= " + myLobby.getName());
@@ -155,6 +158,7 @@ public class LobbyController
                 && lobbyService.getLobby(id).getChallenger() != null)
         {
             //			existsOwner = false;
+        	gameService.deleteGame(id);
             lobbyService.deleteLobby(id);
 
             //lobbyService.getLobby(id).setChallenger(lobbyService.getLobby(id).getChallenger());
