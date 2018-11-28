@@ -334,8 +334,8 @@
 
 	<!--  End choose ships -->
 
-	<c:forEach var="i" begin="0" end="9">
-		<c:forEach var="j" begin="0" end="9">
+	<c:forEach var="i" begin="1" end="10">
+		<c:forEach var="j" begin="1" end="10">
 			<c:if test="${grid.hasShip(i,j)}">
 				<c:choose>
 
