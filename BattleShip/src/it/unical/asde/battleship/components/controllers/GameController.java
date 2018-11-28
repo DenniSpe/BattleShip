@@ -20,11 +20,34 @@ import it.unical.asde.battleship.components.services.GameService;
 import it.unical.asde.battleship.components.services.LobbyService;
 import it.unical.asde.battleship.game.Lobby;
 import it.unical.asde.battleship.model.Grid;
-import it.unical.asde.battleship.model.Ship;
 import it.unical.asde.battleship.model.User;
 
 @Controller
 public class GameController {
+
+	public int getLength(String boatName) {
+		int boatSize = 0;
+		switch (boatName) {
+		case "destroyer":
+			boatSize = (2);
+			break;
+		case "submarine":
+			boatSize = (3);
+			break;
+		case "cruiser":
+			boatSize = (3);
+			break;
+		case "battleship":
+			boatSize = (4);
+			break;
+		case "aircraft":
+			boatSize = (5);
+			break;
+		default:
+			break;
+		}
+		return boatSize;
+	}
 
 	private static boolean hasErrorOnPositioning(final int row, final int col, final int dir, final Grid grid,
 			final int boatSize) {
@@ -151,7 +174,7 @@ public class GameController {
 	@GetMapping("/putBoat")
 	@ResponseBody
 	public DeferredResult<String> putBoat(final String ID, final String cella, final HttpSession session,
-			final String dir, final String size) {
+			final String dir, final String boatName) {
 		boolean isOwner = false;
 
 		final int lobbyID = Integer.parseInt(ID);
@@ -161,9 +184,7 @@ public class GameController {
 		final int row = Integer.parseInt(cella.split("-")[1]);
 		final int col = Integer.parseInt(cella.split("-")[2]);
 
-		final int direction = dir.split("\\([^0-9]*")[1].split("deg")[0].equals("0") ? Ship.HORIZONTAL : Ship.VERTICAL;
-
-		final int boatSize = Integer.parseInt(size);
+		final int direction = dir.split("\\([^0-9]*")[1].split("deg")[0].equals("0") ? 0 : 1;
 
 		// TODO I extract boat-size from the id of the img tag in the jsp
 
@@ -176,35 +197,36 @@ public class GameController {
 		}
 
 		if (isOwner) {
-			if (hasErrorOnPositioning(row, col, direction, gameService.getOwnerGrid(lobbyID), boatSize)) {
+			if (hasErrorOnPositioning(row, col, direction, gameService.getOwnerGrid(lobbyID), getLength(boatName))) {
 				System.out.println("==========================ERROREEEEE, SFORI");
 				ForkJoinPool.commonPool().submit(() -> {
 					output.setResult("ERROR");
 				});
 			} else {
-				gameService.putShipOwner(lobbyID, row, col, boatSize, direction);
+				gameService.putShipOwner(lobbyID, row, col, getLength(boatName), direction);
 				System.out.println("============= OWNER GRID ==========");
 				gameService.getOwnerGrid(lobbyID).print();
 				System.out.println("============= FINE OWNER GRID ==========");
 				ForkJoinPool.commonPool().submit(() -> {
-					output.setResult(row + " , " + col + " , " + direction + " , " + boatSize);
+					output.setResult(row + " , " + col + " , " + direction + " , " + getLength(boatName));
 				});
 			}
 		} else {// if is not owner
-			if (hasErrorOnPositioning(row, col, direction, gameService.getChallengerGrid(lobbyID), boatSize)) {
+			if (hasErrorOnPositioning(row, col, direction, gameService.getChallengerGrid(lobbyID),
+					getLength(boatName))) {
 				System.out.println("==========================ERROREEEEE, SFORI");
 				ForkJoinPool.commonPool().submit(() -> {
 					output.setResult("ERROR");
 				});
 			} else {
-				gameService.putShipChallenger(lobbyID, row, col, boatSize, direction);
+				gameService.putShipChallenger(lobbyID, row, col, getLength(boatName), direction);
 				System.out.println("============= CHALLENGER GRID ==========");
-				System.out.println("ID = " + lobbyID + " row = " + row + " col = " + col + " boatSize = " + boatSize
-						+ " direction = " + direction);
+				System.out.println("ID = " + lobbyID + " row = " + row + " col = " + col + " boatSize = "
+						+ getLength(boatName) + " direction = " + direction);
 				gameService.getChallengerGrid(lobbyID).print();
 				System.out.println("============= FINE CHALLENGER GRID ==========");
 				ForkJoinPool.commonPool().submit(() -> {
-					output.setResult(row + " , " + col + " , " + direction + " , " + boatSize);
+					output.setResult(row + " , " + col + " , " + direction + " , " + getLength(boatName));
 				});
 			}
 		}

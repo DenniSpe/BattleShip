@@ -1,24 +1,24 @@
 var nBoatsPositioned = 0;
 
 $(document).ready(function() {
-	$("#button1").click(function() {
-		rotateBoat("boat-1");
+	$("#button-destroyer").click(function() {
+		rotateBoat("destroyer");
 	});
-	$("#button2").click(function() {
-		rotateBoat("boat-2");
+	$("#button-submarine").click(function() {
+		rotateBoat("submarine");
 	});
-	$("#button3").click(function() {
-		rotateBoat("boat-3");
+	$("#button-cruiser").click(function() {
+		rotateBoat("cruiser");
 	});
-	$("#button4").click(function() {
-		rotateBoat("boat-4");
+	$("#button-battleship").click(function() {
+		rotateBoat("battleship");
 	});
-	$("#button5").click(function() {
-		rotateBoat("boat-5");
+	$("#button-aircraft").click(function() {
+		rotateBoat("aircraft");
 	});
 
 	$("button#IR").attr("disabled", "disabled");
-	
+
 });
 
 function rotateBoat(id) {
@@ -48,7 +48,7 @@ function drop(ev) {
 	console.log("Stai droppando sulla cella " + ev.target.id);
 
 	var dir = document.getElementById(data).getAttribute("style");
-	var size = document.getElementById(data).getAttribute("id").split("-")[1]; // Attenzione,
+	var boatName = document.getElementById(data).getAttribute("id"); // Attenzione,
 	// da
 	// questo
 	// id
@@ -59,8 +59,6 @@ function drop(ev) {
 	// size
 	// della
 	// boat
-
-	var url = new URL(window.location.href);
 	var lobbyID = $("#lobbyId").attr("value");
 
 	$
@@ -70,7 +68,7 @@ function drop(ev) {
 					'ID' : lobbyID,
 					'cella' : ev.target.id,
 					"dir" : dir,
-					"size" : size
+					"boatName" : boatName
 				},
 				success : function(result) {
 					if (!result.localeCompare("ERROR")) {
@@ -134,7 +132,6 @@ function checkUserIsReady(nBoatsPositioned) {
 }
 
 function waitingStart() {
-	var url = new URL(window.location.href);
 	var lobbyID = $("#lobbyId").attr("value");
 	$.ajax({
 		url : "waitingStart",
@@ -161,3 +158,4 @@ function waitingStart() {
 		}
 	});
 }
+

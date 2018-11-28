@@ -303,30 +303,29 @@
 
 	</div>
 
-	<h2 id="message"></h2>
+	<h2>${grid.hasShip(1,1)}</h2>
 
 
 
 	<div>
-		<button id="button1">Boat 1</button>
-		<button id="button2">Boat 2</button>
-		<button id="button3">Boat 3</button>
-		<button id="button4">Boat 4</button>
-		<button id="button5">Boat 5</button>
-
-		<img id="boat-1" src="resources/assetsGame/images/boat.png"
+		<button id="button-destroyer">Destroyer</button>
+		<button id="button-submarine">Submarine</button>
+		<button id="button-cruiser">Cruiser</button>
+		<button id="button-battleship">Battleship</button>
+		<button id="button-aircraft">Aircraft</button>
+		<img id="destroyer" src="resources/assetsGame/images/boat.png"
 			draggable="true" ondragstart="drag(event)"
 			style="transform: rotate(0deg); height: 50px; width: 50%;"> <img
-			id="boat-2" src="resources/assetsGame/images/boat.png"
+			id="submarine" src="resources/assetsGame/images/boat.png"
 			draggable="true" ondragstart="drag(event)"
 			style="transform: rotate(0deg); height: 50px; width: 50%;"> <img
-			id="boat-3" src="resources/assetsGame/images/boat.png"
+			id="cruiser" src="resources/assetsGame/images/boat.png"
 			draggable="true" ondragstart="drag(event)"
 			style="transform: rotate(0deg); height: 50px; width: 50%;"> <img
-			id="boat-4" src="resources/assetsGame/images/boat.png"
+			id="battleship" src="resources/assetsGame/images/boat.png"
 			draggable="true" ondragstart="drag(event)"
 			style="transform: rotate(0deg); height: 50px; width: 50%;"> <img
-			id="boat-5" src="resources/assetsGame/images/boat.png"
+			id="aircraft" src="resources/assetsGame/images/boat.png"
 			draggable="true" ondragstart="drag(event)"
 			style="transform: rotate(0deg); height: 50px; width: 50%;">
 
@@ -335,6 +334,41 @@
 
 	<!--  End choose ships -->
 
+	<c:forEach var="i" begin="0" end="9">
+		<c:forEach var="j" begin="0" end="9">
+			<c:if test="${grid.hasShip(i,j)}">
+				<c:choose>
+
+					<c:when test="${grid.tipeShip(i,j) == 2}">
+						<script>
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat destroyer");
+			</script>
+					</c:when>
+					<c:when test="${grid.tipeShip(i,j) == 3}">
+						<script>
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","class showBoat cruiser");
+			</script>
+					</c:when>
+					<c:when test="${grid.tipeShip(i,j) == 4}">
+						<script>
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat battleship");
+			</script>
+					</c:when>
+					<c:when test="${grid.tipeShip(i,j) == 5}">
+						<script>
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat aircraft-carrier");
+			</script>
+					</c:when>
+					<c:otherwise>
+
+					</c:otherwise>
+				</c:choose>
+
+			</c:if>
+
+
+		</c:forEach>
+	</c:forEach>
 
 
 	<button id="IR" type="button" onclick="waitingStart()">I'm

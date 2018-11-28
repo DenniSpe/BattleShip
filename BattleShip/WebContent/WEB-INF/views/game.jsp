@@ -586,7 +586,7 @@
 
 					<c:when test="${grid.tipeShip(i,j) == 2}">
 						<script>
-					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat submarine");
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat destroyer");
 			</script>
 					</c:when>
 					<c:when test="${grid.tipeShip(i,j) == 3}">
