@@ -18,7 +18,7 @@ $(document).ready(function() {
 	});
 
 	$("button#IR").attr("disabled", "disabled");
-	checkTurn();
+	
 });
 
 function rotateBoat(id) {
