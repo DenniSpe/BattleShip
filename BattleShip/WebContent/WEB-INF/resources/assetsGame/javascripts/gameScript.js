@@ -6,38 +6,34 @@ $(document).ready(function() {
 			});
 		}
 	}
-	
+
 });
 
 function shoot(cellacliccata) {
-	var lobbyID= $("#lobbyId").attr("value");
+	var lobbyID = $("#lobbyId").attr("value");
 	$.ajax({
 		url : "shoot",
-		type: "POST",
+		type : "POST",
 		data : {
 			'cella' : cellacliccata,
-			'id': lobbyID
+			'id' : lobbyID
 		},
 		success : function(result) {
-			if(result=="wait-turn"){
+			if (result == "wait-turn") {
 				$('#modal').modal('show');
-			}else{
+			} else {
 				appendTag(result);
 				$("#message").html(result);
 			}
 		},
 		error : function() {
 			// call events again after some time
-//			setTimeout(function() {
-//				shoot();
-//			}, 5000);
+			// setTimeout(function() {
+			// shoot();
+			// }, 5000);
 		}
 	});
 }
-
-
-
-
 
 function refreshGrid() {
 
@@ -68,7 +64,6 @@ function refreshGrid() {
 
 }
 
-
 function appendTag(result) {
 
 	var str = result.split('-');
@@ -89,19 +84,19 @@ function checkTurn() {
 	var lobbyID = $("#lobbyId").attr("value");
 	$.ajax({
 		url : "checkTurn",
-		type:'POST',
-		dataType: "json",
+		type : 'POST',
+		dataType : "json",
 		data : {
 			"lobbyid" : lobbyID
 		},
 		success : function(result) {
-			if(result.turn == true){
+			if (result.turn == true) {
 				$("#turnMessage").html("It's your turn");
-				$("#turnMessage").removeClass( "label-danger" );
+				$("#turnMessage").removeClass("label-danger");
 				$("#turnMessage").addClass("label-success")
-			}else{
+			} else {
 				$("#turnMessage").html("Wait for your turn...");
-				$("#turnMessage").removeClass( "label-success" );
+				$("#turnMessage").removeClass("label-success");
 				$("#turnMessage").addClass("label-danger")
 			}
 			setTimeout(function() {
