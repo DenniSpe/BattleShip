@@ -40,8 +40,12 @@ function shoot(cellacliccata) {
 			'id': lobbyID
 		},
 		success : function(result) {
-			appendTag(result);
-			$("#message").html(result);
+			if(result=="wait-turn"){
+				$('#modal').modal('show');
+			}else{
+				appendTag(result);
+				$("#message").html(result);
+			}
 		},
 		error : function() {
 			// call events again after some time
