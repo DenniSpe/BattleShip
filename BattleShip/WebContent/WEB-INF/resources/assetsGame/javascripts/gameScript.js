@@ -1,11 +1,14 @@
 $(document).ready(function() {
 	 for (var i = 1; i <= 10; i++) {
 		for (var j = 1; j <= 10; j++) {
+			console.log("#cellCG-" + i + "-" + j);
 			$("#cellCG-" + i + "-" + j).click(function() {
 				shoot(this.id);
 			});
 		}
 	}
+
+	checkTurn();
 
 });
 
