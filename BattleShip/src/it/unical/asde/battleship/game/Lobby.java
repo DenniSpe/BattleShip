@@ -14,8 +14,18 @@ public class Lobby
     private boolean lobbyStarted;
     
     private String whoPlays;
+    
+    private String winner;
+    
+    public String getWinner() {
+		return winner;
+	}
 
-    public String getWhoPlays() {
+	public void setWinner(String winner) {
+		this.winner = winner;
+	}
+
+	public String getWhoPlays() {
 		return whoPlays;
 	}
 

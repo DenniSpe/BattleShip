@@ -627,7 +627,7 @@
 					</button>
 					<h4 class="modal-title" id="modalLabel">BattleShip MVC</h4>
 				</div>
-				<div class="modal-body">Is not your turn yet</div>
+				<div class="modal-body"><h2 id="labelWin">You are the winner!!!!</h2><h2 id="labelLoose">You loose!!!</h2></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>

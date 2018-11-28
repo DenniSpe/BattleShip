@@ -1,6 +1,7 @@
 package it.unical.asde.battleship.components.controllers;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ForkJoinPool;
@@ -117,18 +118,21 @@ public class GameController {
 	// colpita.. serve ancora??
 	@PostMapping("/shoot")
 	@ResponseBody
-	public String shoot(final String cella, final HttpSession session, String id) {
+	public Map<String, Object> shoot(final String cella, final HttpSession session, String id) {
 		// final DeferredResult<String> output = new DeferredResult<>();
 
 		int row = Integer.parseInt(cella.split("-")[1]);
 		int col = Integer.parseInt(cella.split("-")[2]);
 		String shot = "";
+		Map<String, Object> response = new HashMap<String, Object>();
 		User user = (User) session.getAttribute("user");
 		if (user != null || id != null) {
 			Lobby currentLobby = lobbyService.getLobby(Integer.parseInt(id));
-			if (currentLobby.getWhoPlays().equals(user.getUsername())) {
+			if (currentLobby.getWhoPlays().equals(user.getUsername()) && currentLobby.getWinner()==null/*There is no winner yet?*/) {
 				if (currentLobby.getOwner().equals(user.getUsername())) {
 					if (!gameService.getChallengerGrid(currentLobby.getId()).alreadyGuessed(row, col)) {
+						response.put("row", row);
+						response.put("col", col);
 						if (gameService.getChallengerGrid(currentLobby.getId()).hasShip(row, col)) {
 							gameService.getChallengerGrid(currentLobby.getId()).markHit(row, col);
 							// output.setResult("hit-" + row + "-" + col);
@@ -138,19 +142,25 @@ public class GameController {
 							System.out.println("END CHALLENGER GRID AFTER SHOOT");
 							
 							shot = "hit-" + row + "-" + col;
+							response.put("hit", true);
 							if(!gameService.hasMoreShips(currentLobby.getId(), true)) {
 								// OWNER WIN
+								currentLobby.setWinner(user.getUsername());
 								shot+="-OWNERWIN";
+								response.put("youWin", true);
 							}
 						} else {
 							gameService.getChallengerGrid(currentLobby.getId()).markMiss(row, col);
 							// output.setResult("miss-" + row + "-" + col);
 							shot = "miss-" + row + "-" + col;
+							response.put("hit", false);							
 							currentLobby.setWhoPlays(currentLobby.getChallenger());
 						}
 					}
 				} else if (currentLobby.getChallenger().equals(user.getUsername())) {
 					if (!gameService.getOwnerGrid(currentLobby.getId()).alreadyGuessed(row, col)) {
+						response.put("row", row);
+						response.put("col", col);
 						if (gameService.getOwnerGrid(currentLobby.getId()).hasShip(row, col)) {
 							gameService.getOwnerGrid(currentLobby.getId()).markHit(row, col);
 							// output.setResult("hit-" + row + "-" + col);
@@ -160,19 +170,24 @@ public class GameController {
 							System.out.println("END OWNER GRID AFTER SHOOT");
 							
 							shot = "hit-" + row + "-" + col;
+							response.put("hit", true);
 							if(!gameService.hasMoreShips(currentLobby.getId(), false)) {
 								// CHALLENGER WIN
 								shot+="-CHALLENGERWIN";
+								currentLobby.setWinner(user.getUsername());
+								response.put("youWin", true);
 							}
 						} else {
 							gameService.getOwnerGrid(currentLobby.getId()).markMiss(row, col);
 							// output.setResult("miss-" + row + "-" + col);
 							shot = "miss-" + row + "-" + col;
 							currentLobby.setWhoPlays(currentLobby.getOwner());
+							response.put("hit", false);
 						}
 					}
 				}
 			} else {
+				response.put("waitTurn", true);
 				shot = "wait-turn";
 			}
 
@@ -181,7 +196,7 @@ public class GameController {
 //		ForkJoinPool.commonPool().submit(() -> {
 //				output.setResult(shot);
 //		});
-		return shot;
+		return response;
 	}
 
 	@GetMapping("/boatPositioning")
@@ -331,17 +346,21 @@ public class GameController {
 	@ResponseBody
 	public Map<String, Boolean> checkTurn(Optional<Integer> lobbyid, HttpSession session) {
 
-		User user = (User) session.getAttribute("user");
+		User user = (User) session.getAttribute("user");		
 		if (user != null && lobbyid.isPresent()) {
-
-			if (lobbyid.isPresent()) {
 				Lobby current = lobbyService.getLobby(lobbyid.get());
+				if(current.getWinner()!=null && !current.getWinner().isEmpty()) {
+					if(current.getWinner().equals(user.getUsername())) {
+						return Collections.singletonMap("youWin", true);
+					}else {
+						return Collections.singletonMap("youWin", false);
+					}					
+				}
 				if (current.getWhoPlays() != null && current.getWhoPlays().equals(user.getUsername())) {
 					return Collections.singletonMap("turn", true);
 				} else {
 					return Collections.singletonMap("turn", false);
 				}
-			}
 		}
 		return Collections.singletonMap("turn", false);
 	}
