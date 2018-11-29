@@ -9,7 +9,7 @@
 <style type="text/css">
 body {
 	
-	padding-top: 10%;
+	padding-top: 5%;
 	padding-left: 2%;
 }
 </style>
@@ -37,10 +37,21 @@ body {
 </head>
 
 <body>
+<div class="row" style="padding-left:60%; padding-bottom: 3%; padding-top: 5%;">
+			<div class="col-md-12">
+				<input type="button" id="IR" class="btn btn-success"  onclick="waitingStart()" value="Ready!">
+					</input>
+			
+				<hidden hidden id="lobbyId" value="${lobby.id}"></hidden>
+			</div>
+
+</div>
+
 	<div class="row">
+	
 <div class="col-md-4">
 	
-	<div class="row containerShip">
+	<div class="row containerShip" id="destroyerContainer">
 		
 		
 								<div class="row-center">
@@ -77,7 +88,7 @@ body {
 	</div>	
 	
 	<!--  sub marine -->
-	<div class="row containerShip">
+	<div class="row containerShip" id="submarineContainer">
 		
 		
 								<div class="row-center">
@@ -120,7 +131,7 @@ body {
 	
 	
 	<!--  sub cruiser -->
-	<div class="row containerShip">
+	<div class="row containerShip" id="cruiserContainer">
 		
 		
 								<div class="row-center">
@@ -160,7 +171,7 @@ body {
 	
 	
 	<!--  battleship -->
-	<div class="row containerShip">
+	<div class="row containerShip" id="battleshipContainer">
 		
 		
 								<div class="row-center">
@@ -199,7 +210,7 @@ body {
 	<!--  battleship -->
 	
 	<!--  sub marine -->
-	<div class="row containerShip">
+	<div class="row containerShip" id="aircraftContainer">
 		
 		
 								<div class="row-center">
@@ -211,7 +222,10 @@ body {
 							<div class="col-md-8">
 													<img id="aircraft" src="resources/assetsGame/images/boat.png"
 													draggable="true" ondragstart="drag(event)"
-													class="shipImage"
+													style="transform: rotate(0deg); 
+	height: 45%; 
+	width: 75%;
+	padding-left: 10%;"
 													> 
 											</div>
 											<div class="col-md-4" style="padding-bottom:3%">
@@ -542,15 +556,7 @@ body {
 		</c:forEach>
 	</c:forEach>
 
-<div class="row" style="padding-left:50%; padding-bottom: 10%">
-			<div class="col-md-12">
-				<input type="button" id="IR" type="button" onclick="waitingStart()" value="Ready!">
-					</input>
-			
-				<hidden hidden id="lobbyId" value="${lobby.id}"></hidden>
-			</div>
 
-</div>
 </body>
 
 </html>

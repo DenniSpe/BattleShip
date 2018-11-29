@@ -1,11 +1,30 @@
-.shipImage
-{
-	
-	
-	
-
+#IR{
+	width:40%;
 	
 }
+
+#submarineContainer
+{
+	background-color: green;
+}
+
+#cruiserContainer
+{
+	background-color: red;
+}
+
+#destroyerContainer
+{
+	background-color: yellow;
+}
+#battleshipContainer
+{
+	background-color: blue;
+}
+#aircraftContainer{
+	background-color: orange;
+}
+
 
 .containerShip
 {
@@ -40,10 +59,17 @@ footer {
   border-right: 1px solid #bce8f1;
   border-bottom: 1px solid #bce8f1;
   text-align: center;
-  min-width: 40px;
+  
+  width: 40px;
+  max-width: 40px;
+  
+  
+  height: 40px;
+   max-heigh: 40px;
   position: relative;
   padding: 0;
   margin: 0;
+  
 }
 
 .cell-title-top {
