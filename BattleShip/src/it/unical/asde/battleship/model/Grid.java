@@ -51,6 +51,8 @@ public class Grid {
 		}
 		 return 0;
 	}
+	
+
 	// Return whether or not there is a ship here
 	public boolean hasShip(int row, int col) {
 		switch (grid[row][col]) {

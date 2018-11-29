@@ -163,6 +163,20 @@ function checkTurn() {
 				$("#turnMessage").removeClass("label-success");
 				$("#turnMessage").addClass("label-danger")
 			}
+			
+			for (var i = 0; i < result.refreshGrid.length; i++) {
+				if (result.refreshGrid[i].value === -1) {
+					$("#cellOG-" + result.refreshGrid[i].row + "-" +result.refreshGrid[i].col)
+							.html(
+									'<i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i>');
+				}
+				if (result.refreshGrid[i].value === 1) {
+					$("#cellOG-" + result.refreshGrid[i].row + "-" + result.refreshGrid[i].col).html(
+							'<img src="resources/assetsGame/images/1331900690_fire.png">');
+				}
+			}
+			
+			
 			setTimeout(function() {
 				checkTurn();
 			}, 3000);
