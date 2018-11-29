@@ -387,7 +387,7 @@ public class GameController {
 						if (gameService.getOwnerGrid(current.getId()).getContent(i, j) == 1) {
 							Tupla tupla = new Tupla(i, j, 1);
 							ownerList.add(tupla);
-						} else if (gameService.getOwnerGrid(current.getId()).g(i, j) == -1) {
+						} else if (gameService.getOwnerGrid(current.getId()).getContent(i, j) == -1) {
 							Tupla tupla = new Tupla(i, j, -1);
 							ownerList.add(tupla);
 						}
