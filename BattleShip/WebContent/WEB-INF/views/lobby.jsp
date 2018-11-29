@@ -299,22 +299,22 @@ body {
 
 <div class="row">
 <div class="col-md-6" >
-		<a style="padding-left:80%"
+		<a style="padding-left:70%"
 			href="<c:url value="/quit_lobby">
 				 				<c:param name="lobby_id" value="${lobby.id}" />
 				 		  </c:url>">
-			<button type="button" class="btn btn-primary">Go Back</button>
+			<input type="image"  src="resources/assets/css/images/goBack.png" style="width:30%; height:15%;"></input>
 		</a>
 	</div>
 <div class="col-md-6">
 
-		<div class="challengerArrived" >
+		<div class="challengerArrived" style="padding-left:10%;">
 		
 							
 		
 							<form method="GET" action="startPositioning">
-								<button type="submit" class="btn btn-primary">Ready To
-									Start</button>
+								<input type="image"  src="resources/assets/css/images/start.png" style="width:30%; height:15%;">
+									</input>
 								<input type="hidden" value="${lobby.id}" name="ID" />
 							</form>
 		
