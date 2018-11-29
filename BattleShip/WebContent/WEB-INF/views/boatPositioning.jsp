@@ -19,6 +19,7 @@ body {
 
 <script type="text/javascript"
 	src="resources/assetsGame/javascripts/boatPositioning.js"></script>
+	
 <script type="text/javascript"
 	src="resources/assetsGame/vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -51,7 +52,10 @@ body {
 							<div class="col-md-8">
 													<img id="destroyer" src="resources/assetsGame/images/boat.png"
 													draggable="true" ondragstart="drag(event)"
-													class="shipImage"
+													class="shipImage" style="transform: rotate(0deg); 
+	height: 45%; 
+	width: 75%;
+	padding-left: 10%;"
 													> 
 											</div>
 											<div class="col-md-4" style="padding-bottom:3%">
@@ -85,7 +89,10 @@ body {
 							<div class="col-md-8">
 													<img id="submarine" src="resources/assetsGame/images/boat.png"
 													draggable="true" ondragstart="drag(event)"
-													class="shipImage"
+													style="transform: rotate(0deg); 
+	height: 45%; 
+	width: 75%;
+	padding-left: 10%;"
 													> 
 											</div>
 											<div class="col-md-4" style="padding-bottom:3%">
@@ -125,7 +132,10 @@ body {
 							<div class="col-md-8">
 													<img id="cruiser" src="resources/assetsGame/images/boat.png"
 													draggable="true" ondragstart="drag(event)"
-													class="shipImage"
+													style="transform: rotate(0deg); 
+	height: 45%; 
+	width: 75%;
+	padding-left: 10%;"
 													> 
 											</div>
 											<div class="col-md-4" style="padding-bottom:3%">
@@ -162,7 +172,10 @@ body {
 							<div class="col-md-8">
 													<img id="battleship" src="resources/assetsGame/images/boat.png"
 													draggable="true" ondragstart="drag(event)"
-													class="shipImage"
+													style="transform: rotate(0deg); 
+	height: 45%; 
+	width: 75%;
+	padding-left: 10%;"
 													> 
 											</div>
 											<div class="col-md-4" style="padding-bottom:3%">
