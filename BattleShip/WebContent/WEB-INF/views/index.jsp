@@ -65,9 +65,9 @@
 <div class="row">
 		
 				
-			<div class="col-md-6" style=" padding-left:8%; ">
+			<div class="col-md-6" style=" padding-left:8%; " >
 			 
-			  <h1 style="font-size: 250%; padding-bottom:3%;">Lobby available</h1>
+			  <h1 style="font-size: 250%; padding-bottom:3%;color:#429ef4">Lobby available</h1>
 			  <div class="list-group">
 			  
 			  <div id="lobbies_div"></div>
@@ -93,7 +93,7 @@
 			</div> <!--  end col-md-6 -->
 			
 			<div class="col-md-6" style="padding-left:8%;">
-		 <h1 style="font-size: 250%; padding-bottom:3%;">Create a new Lobby</h1>
+		 <h1 style="font-size: 250%; padding-bottom:3%;color:#429ef4">Create a new Lobby</h1>
 				 <form action="new_lobby" method="POST" style="width:70%;">
 		          	<div class="form-group">
 				      

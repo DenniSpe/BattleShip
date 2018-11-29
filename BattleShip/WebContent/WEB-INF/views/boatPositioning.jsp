@@ -42,66 +42,184 @@ body {
 	<div class="row containerShip">
 		
 		
-			<div class="col-md-12">
-			<h3 class="nameShip">Destoyer</h3>
-			</div>
-	
-		
-		<div class="row containerButton">
-					<div class="col-md-6">
-						<button id="button-destroyer">Destroyer</button>
-					</div>
-					
-					<div class="col-md-6">
-						<button >Destroyer</button>
-					</div>
-	</div>
-		<div class="col-md-12">
-			<img id="destroyer" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			class="shipImage"
-			> 
-		</div>
-		
+								<div class="row-center">
+								<h3 class="nameShip">Destoyer</h3>
+								</div>
+						
+							<div class="row containerButton">
+							
+							<div class="col-md-8">
+													<img id="destroyer" src="resources/assetsGame/images/boat.png"
+													draggable="true" ondragstart="drag(event)"
+													class="shipImage"
+													> 
+											</div>
+											<div class="col-md-4" style="padding-bottom:3%">
+												<button id="button-destroyer">Rotate</button>
+											</div>
+											
+											
+											<div class="col-md-2">
+												<button id="button-destroyer-delete">Delete</button>
+											</div>
+											
+											
+								</div>
+							
+								
+							
+								
+						
 	</div>	
 	
+	<!--  sub marine -->
 	<div class="row containerShip">
-			<h3 class="nameShip">Subamrine</h3>
-		<img
-			id="submarine" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			class="shipImage"> 
-			<button id="button-submarine">Submarine</button>
-	</div>
+		
+		
+								<div class="row-center">
+								<h3 class="nameShip">Submarine</h3>
+								</div>
+						
+							<div class="row containerButton">
+							
+							<div class="col-md-8">
+													<img id="submarine" src="resources/assetsGame/images/boat.png"
+													draggable="true" ondragstart="drag(event)"
+													class="shipImage"
+													> 
+											</div>
+											<div class="col-md-4" style="padding-bottom:3%">
+												<button id="button-submarine">Rotate</button>
+											</div>
+											
+											
+											<div class="col-md-2">
+												<button id="button-submarine-delete">Delete</button>
+											</div>
+											
+											
+								</div>
+							
+								
+							
+								
+						
+	</div>	
 	
+	<!--  end sub marine -->
+	
+	
+	
+	
+	
+	<!--  sub cruiser -->
 	<div class="row containerShip">
-			<h3 class="nameShip">Cruiser</h3>
-			<img
-			id="cruiser" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			class="shipImage">
-			<button id="button-cruiser">Cruiser</button>
-	</div>
+		
+		
+								<div class="row-center">
+								<h3 class="nameShip">Cruiser</h3>
+								</div>
+						
+							<div class="row containerButton">
+							
+							<div class="col-md-8">
+													<img id="cruiser" src="resources/assetsGame/images/boat.png"
+													draggable="true" ondragstart="drag(event)"
+													class="shipImage"
+													> 
+											</div>
+											<div class="col-md-4" style="padding-bottom:3%">
+												<button id="button-cruiser">Rotate</button>
+											</div>
+											
+											
+											<div class="col-md-2">
+												<button id="button-cruiser-delete">Delete</button>
+											</div>
+											
+											
+								</div>
+							
+								
+							
+								
+						
+	</div>	
+	
+	<!--  end cruiser -->
 	
 	
+	<!--  battleship -->
 	<div class="row containerShip">
+		
+		
+								<div class="row-center">
+								<h3 class="nameShip">Battleship</h3>
+								</div>
+						
+							<div class="row containerButton">
+							
+							<div class="col-md-8">
+													<img id="battleship" src="resources/assetsGame/images/boat.png"
+													draggable="true" ondragstart="drag(event)"
+													class="shipImage"
+													> 
+											</div>
+											<div class="col-md-4" style="padding-bottom:3%">
+												<button id="button-battleship">Rotate</button>
+											</div>
+											
+											
+											<div class="col-md-2">
+												<button id="button-battleship-delete">Delete</button>
+											</div>
+											
+											
+								</div>
+							
+								
+							
+								
+						
+	</div>	
 	
-			<h3 class="nameShip">Battleship</h3>
-		<img
-			id="battleship" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)" 
-			class="shipImage"> 
-			<button id="button-battleship">Battleship</button>
-	</div>
+	<!--  battleship -->
 	
+	<!--  sub marine -->
 	<div class="row containerShip">
-			<h3 class="nameShip">Aircraft</h3>
-		<img
-			id="aircraft" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			class="shipImage">
-			<button id="button-aircraft">Aircraft</button>
-	</div>
+		
+		
+								<div class="row-center">
+								<h3 class="nameShip">Aircraft</h3>
+								</div>
+						
+							<div class="row containerButton">
+							
+							<div class="col-md-8">
+													<img id="aircraft" src="resources/assetsGame/images/boat.png"
+													draggable="true" ondragstart="drag(event)"
+													class="shipImage"
+													> 
+											</div>
+											<div class="col-md-4" style="padding-bottom:3%">
+												<button id="button-aircraft">Rotate</button>
+											</div>
+											
+											
+											<div class="col-md-2">
+												<button id="button-aircraft-delete">Delete</button>
+											</div>
+											
+											
+								</div>
+							
+								
+							
+								
+						
+	</div>	
+	
+	<!--  end sub marine -->
 		
 
 </div>
