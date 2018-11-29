@@ -18,6 +18,7 @@
 	<script src="resources/assets/js/main.js"></script>
 	<script src="resources/assets/js/navbar.js"></script>
 	 <link rel="stylesheet" href="resources/assets/css/modal.css" />
+	  
 <body>
 
 
