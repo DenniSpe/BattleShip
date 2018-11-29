@@ -48,6 +48,7 @@ function drop(ev) {
 	console.log("Stai droppando sulla cella " + ev.target.id);
 
 	var dir = document.getElementById(data).getAttribute("style");
+	
 	var boatName = document.getElementById(data).getAttribute("id"); // Attenzione,
 	// da
 	// questo
