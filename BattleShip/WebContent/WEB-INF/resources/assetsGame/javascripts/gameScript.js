@@ -17,24 +17,32 @@ function shoot(cellacliccata) {
 	$.ajax({
 		url : "shoot",
 		type : "POST",
+		dataType: "json",
 		data : {
 			'cella' : cellacliccata,
 			'id' : lobbyID
 		},
 		success : function(result) {
-			alert("IL RESULT DI SHOOT E' "+result);
-			if(result=="wait-turn"){
+//			alert("IL RESULT DI SHOOT E' "+result);
+			if(result.youWin){
+				appendTag(result);		
+				$("#modal").on("click", function() {
+				     window.location= "/BattleShip/";
+				});	
+				$("#labelWin").removeClass("hidden");
+				$("#labelLoose").addClass("hidden");
 				$('#modal').modal('show');
+//				if(whoWin == "OWNERWIN"){
+//					alert("HA VINTO L'OWNER");
+//				}
+//				else if(whoWin == "CHALLENGERWIN"){
+//					alert("HA VINTO IL CHALLENGER");
+//				}
+			}
+			else if(result.waitTurn){
+//				$('#modal').modal('show');
 			}else{
-				var whoWin = appendTag(result);
-				alert("WHO WIN E' "+whoWin);
-				if(whoWin == "OWNERWIN"){
-					alert("HA VINTO L'OWNER");
-				}
-				else if(whoWin == "CHALLENGERWIN"){
-					alert("HA VINTO IL CHALLENGER");
-				}
-
+				var whoWin = appendTag(result);				
 			}
 		},
 		error : function() {
@@ -75,28 +83,47 @@ function refreshGrid() {
 
 }
 
+//function appendTag(result) {
+//
+//	var str = result.split('-');
+//	var i = str[1];
+//	var j = str[2];
+//	var winner = str[3];
+//	
+//	if (str[0] == "miss") {
+//		$("#cellCG-" + i + "-" + j)
+//				.append(
+//						'<i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i>');
+//	}
+//	if (str[0] == "hit") {
+//		$("#cellCG-" + i + "-" + j).append(
+//				'<img src="resources/assetsGame/images/1331900690_fire.png">');
+//	
+//		if(str[3] == "OWNERWIN"){
+//			return "OWNERWIN";
+//		}
+//		else if(str[3] == "CHALLENGERWIN"){
+//			return "CHALLENGERWIN";
+//		}
+//	}
+//	
+//}
+
 function appendTag(result) {
 
-	var str = result.split('-');
-	var i = str[1];
-	var j = str[2];
-	var winner = str[3];
+//	var str = result.split('-');
+//	var i = str[1];
+//	var j = str[2];
+//	var winner = str[3];
 	
-	if (str[0] == "miss") {
-		$("#cellCG-" + i + "-" + j)
+	if (result.hit === false) {
+		$("#cellCG-" + result.row + "-" + result.col)
 				.append(
 						'<i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i>');
 	}
-	if (str[0] == "hit") {
-		$("#cellCG-" + i + "-" + j).append(
+	if (result.hit === true) {
+		$("#cellCG-" + result.row + "-" + result.col).append(
 				'<img src="resources/assetsGame/images/1331900690_fire.png">');
-	
-		if(str[3] == "OWNERWIN"){
-			return "OWNERWIN";
-		}
-		else if(str[3] == "CHALLENGERWIN"){
-			return "CHALLENGERWIN";
-		}
 	}
 	
 }
@@ -111,6 +138,22 @@ function checkTurn() {
 			"lobbyid" : lobbyID
 		},
 		success : function(result) {
+			if(result.hasOwnProperty("youWin")){
+				$("#modal").on("click", function() {
+				     window.location= "/BattleShip/";
+				});
+				if(result.youWin===true){
+//					alert("ganaste");
+					$("#labelWin").removeClass("hidden");
+					$("#labelLoose").addClass("hidden");
+					$('#modal').modal('show');
+				}else{
+					$("#labelWin").addClass("hidden");
+					$("#labelLoose").removeClass("hidden");
+					$('#modal').modal('show');
+				}
+				return;
+			}
 			if (result.turn == true) {
 				$("#turnMessage").html("It's your turn");
 				$("#turnMessage").removeClass("label-danger");

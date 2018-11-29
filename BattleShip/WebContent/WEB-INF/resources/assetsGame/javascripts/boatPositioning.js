@@ -1,35 +1,73 @@
 var nBoatsPositioned = 0;
 
 $(document).ready(function() {
-	$("#button1").click(function() {
-		rotateBoat("boat-1");
+	$("#IR").hide();
+	$("#loading").hide();
+	$("#button-destroyer").click(function() {
+		rotateBoat("destroyer");
+		deleteButton("destroyer");
 	});
-	$("#button2").click(function() {
-		rotateBoat("boat-2");
+	$("#button-submarine").click(function() {
+		rotateBoat("submarine");
 	});
-	$("#button3").click(function() {
-		rotateBoat("boat-3");
+	$("#button-cruiser").click(function() {
+		rotateBoat("cruiser");
 	});
-	$("#button4").click(function() {
-		rotateBoat("boat-4");
+	$("#button-battleship").click(function() {
+		rotateBoat("battleship");
 	});
-	$("#button5").click(function() {
-		rotateBoat("boat-5");
+	$("#button-aircraft").click(function() {
+		rotateBoat("aircraft");
 	});
-
-	$("button#IR").attr("disabled", "disabled");
 	
+	/*
+	 * 
+	 * Delete button
+	 */
+	
+	$("#button-destroyer-delete").click(function() {
+		
+		$("#destroyer").show();
+	});
+$("#button-submarine-delete").click(function() {
+		
+		$("#submarine").show();
+	});
+$("#button-cruiser-delete").click(function() {
+	
+	$("#cruiser").show();
 });
+$("#button-battleship-delete").click(function() {
+	
+	$("#battleship").show();
+});
+$("#button-aircraft-delete").click(function() {
+	
+	$("#aircraft").show();
+});
+	
+
+	
+
+});
+
+/*
+ * TO DO
+ */
+function deleteShip(id)
+{
+
+}
 
 function rotateBoat(id) {
 	console.log("MY ID IS = " + id);
 	var img = document.getElementById(id);
-	if (img.getAttribute("style") == "transform:rotate(90deg); height: 50px; width: 50%;") {
+	if (img.getAttribute("style") == "transform:rotate(90deg); height: 45%; width: 75%;") {
 		img.setAttribute("style",
-				"transform:rotate(0deg); height: 50px; width: 50%;")
+				"transform:rotate(0deg); height: 45%; width: 75%;")
 	} else {
 		img.setAttribute("style",
-				"transform:rotate(90deg); height: 50px; width: 50%;")
+				"transform:rotate(90deg); height: 45%; width: 75%;")
 	}
 }
 
@@ -41,6 +79,10 @@ function drag(ev) {
 	ev.dataTransfer.setData("text", ev.target.id);
 }
 
+
+
+
+
 function drop(ev) {
 	ev.preventDefault();
 	var data = ev.dataTransfer.getData("text");
@@ -48,7 +90,9 @@ function drop(ev) {
 	console.log("Stai droppando sulla cella " + ev.target.id);
 
 	var dir = document.getElementById(data).getAttribute("style");
-	var size = document.getElementById(data).getAttribute("id").split("-")[1]; // Attenzione,
+	
+	
+	var boatName = document.getElementById(data).getAttribute("id"); // Attenzione,
 	// da
 	// questo
 	// id
@@ -59,8 +103,6 @@ function drop(ev) {
 	// size
 	// della
 	// boat
-
-	var url = new URL(window.location.href);
 	var lobbyID = $("#lobbyId").attr("value");
 
 	$
@@ -70,7 +112,7 @@ function drop(ev) {
 					'ID' : lobbyID,
 					'cella' : ev.target.id,
 					"dir" : dir,
-					"size" : size
+					"boatName" : boatName
 				},
 				success : function(result) {
 					if (!result.localeCompare("ERROR")) {
@@ -94,22 +136,122 @@ function drop(ev) {
 							for (var i = col; i < col + size; i++) {
 								console.log("Appendi l'immagine su riga = "
 										+ row + " e col = " + i);
-
+								
+								
+								if(boatName =="submarine")	
+									{
+									$("#button-submarine").hide();
+									$("#submarine").hide();
+									
 								ev.target.appendChild(document
 										.getElementById(data));
+								
 								document.getElementById("cellOG-" + row + "-"
-										+ i).style.background = 'red';
+										+ i).style.background = 'green';
+									}
+								else if(boatName =="cruiser")
+									{
+									$("#button-cruiser").hide();
+									$("#cruiser").hide();
+									ev.target.appendChild(document
+											.getElementById(data));
+									
+									document.getElementById("cellOG-" + row + "-"
+											+ i).style.background = 'red';
+									}
+								else if(boatName =="destroyer")
+								{
+									$("#button-destroyer").hide();
+									$("#destroyer").hide();
+									ev.target.appendChild(document
+											.getElementById(data));
+									
+									document.getElementById("cellOG-" + row + "-"
+											+ i).style.background = 'yellow';
+								}
+								else if(boatName =="battleship")
+								{
+									$("#button-battleship").hide();
+									$("#battleship").hide();
+									ev.target.appendChild(document
+											.getElementById(data));
+									
+									document.getElementById("cellOG-" + row + "-"
+											+ i).style.background = 'blue';
+								}
+								else if(boatName =="aircraft")
+								{
+									$("#button-aircraft").hide();
+									$("#aircraft").hide();
+									
+									ev.target.appendChild(document
+											.getElementById(data));
+									
+									document.getElementById("cellOG-" + row + "-"
+											+ i).style.background = 'orange';
+								}
 							}
 
 						} else if (direction == 1) { // Vertical
 							for (var j = row; j < row + size; j++) {
 								console.log("Appendi l'immagine su riga = " + j
 										+ " e col = " + col);
-
+								if(boatName =="submarine")	
+								{
+									$("#button-submarine").hide();
+									$("#submarine").hide();
+									
 								ev.target.appendChild(document
 										.getElementById(data));
+								
 								document.getElementById("cellOG-" + j + "-"
-										+ col).style.background = 'blue';
+										+ col).style.background = 'green';
+								}
+								else if(boatName =="cruiser")
+								{
+									$("#button-cruiser").hide();
+									$("#cruiser").hide();
+									
+									ev.target.appendChild(document
+											.getElementById(data));
+									
+									document.getElementById("cellOG-" + j + "-"
+											+ col).style.background = 'red';
+								}
+								else if(boatName =="destroyer")
+								{
+
+									$("#button-destroyer").hide();
+									$("#destroyer").hide();
+									
+									ev.target.appendChild(document
+											.getElementById(data));
+									
+									document.getElementById("cellOG-" + j + "-"
+											+ col).style.background = 'yellow';
+								}
+								else if(boatName =="battleship")
+								{
+									$("#button-battleship").hide();
+									$("#battleship").hide();
+									
+									ev.target.appendChild(document
+											.getElementById(data));
+									
+									document.getElementById("cellOG-" + j + "-"
+											+ col).style.background = 'blue';
+								}
+								else if(boatName =="aircraft")
+								{
+									$("#button-aircraft").hide();
+									$("#aircraft").hide();
+									
+									ev.target.appendChild(document
+											.getElementById(data));
+									
+									document.getElementById("cellOG-" + j + "-"
+											+ col).style.background = 'orange';
+								}
 
 							}
 						}
@@ -128,7 +270,8 @@ function drop(ev) {
 
 function checkUserIsReady(nBoatsPositioned) {
 	if (nBoatsPositioned >= 5) { // The user put all his boats in the grid
-		$("button#IR").removeAttr("disabled");
+		
+		$("#IR").show();
 	}
 
 }
@@ -144,7 +287,11 @@ function waitingStart() {
 			if (!result.localeCompare("game")) { // If it's game
 				window.location = "/BattleShip/game?id=" + lobbyID;
 			} else if (!result.localeCompare("boatPositioning")) {
-				// do nothing
+				
+				$("#positioning").hide();
+				
+				$("#IR").hide();
+				$("#loading").show();
 			}
 
 			setTimeout(function() {
@@ -160,3 +307,4 @@ function waitingStart() {
 		}
 	});
 }
+

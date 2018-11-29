@@ -4,25 +4,19 @@
 <html>
 
 <head>
-<title>Battleship</title>
+<jsp:include page="nav_bar.jsp"></jsp:include>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<jsp:include page="nav_bar.jsp"></jsp:include>
 
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/underscore.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/vendor/jquery-1.11.3.min.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/jshashtable-2.1.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/jquery.numeric.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/jquery.numberformatter.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/backbone.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/icanhaz.js"></script>
+<style>
+body{
+padding-top: 5%;
+	padding-left: 2%;
+}
+
+</style>
 <script type="text/javascript"
 	src="resources/assetsGame/javascripts/gameScript.js"></script>
 <script type="text/javascript"
@@ -579,14 +573,14 @@
 
 	</div>
 
-	<c:forEach var="i" begin="0" end="9">
-		<c:forEach var="j" begin="0" end="9">
+	<c:forEach var="i" begin="1" end="10">
+		<c:forEach var="j" begin="1" end="10">
 			<c:if test="${grid.hasShip(i,j)}">
 				<c:choose>
 
 					<c:when test="${grid.tipeShip(i,j) == 2}">
 						<script>
-					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat submarine");
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat destroyer");
 			</script>
 					</c:when>
 					<c:when test="${grid.tipeShip(i,j) == 3}">
@@ -627,7 +621,7 @@
 					</button>
 					<h4 class="modal-title" id="modalLabel">BattleShip MVC</h4>
 				</div>
-				<div class="modal-body">Is not your turn yet</div>
+				<div class="modal-body"><h2 id="labelWin">You are the winner!!!!</h2><h2 id="labelLoose">You loose!!!</h2></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>

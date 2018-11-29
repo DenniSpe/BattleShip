@@ -5,26 +5,21 @@
 
 <head>
 <title>Battleship</title>
+<jsp:include page="nav_bar.jsp"></jsp:include>
+<style type="text/css">
+body {
+	
+	padding-top: 5%;
+	padding-left: 2%;
+}
+</style>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 <script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/underscore.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/vendor/jquery-1.11.3.min.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/jshashtable-2.1.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/jquery.numeric.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/jquery.numberformatter.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/backbone.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/icanhaz.js"></script>
-<script type="text/javascript"
 	src="resources/assetsGame/javascripts/boatPositioning.js"></script>
+	
 <script type="text/javascript"
 	src="resources/assetsGame/vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -38,15 +33,228 @@
 <link rel="stylesheet" href="resources/assetsGame/vendor/animate.css">
 <link rel="stylesheet" href="resources/assetsGame/stylesheets/main.css"
 	type="text/css" media="screen">
+	
+	<link rel="stylesheet" href="resources/assets/css/loading.css" />
 
 </head>
 
 <body>
-	<div class="row">
+<div class="row" style="padding-left:60%; padding-bottom: 3%; padding-top: 5%;">
+			<div class="col-md-12">
+				<input type="button" id="IR" class="btn btn-success"  onclick="waitingStart()" value="Ready!">
+					</input>
+			
+				<hidden hidden id="lobbyId" value="${lobby.id}"></hidden>
+			</div>
 
+</div>
 
-		<div class="col-6">
-			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-6 text-center">
+	<div class="row" id="positioning">
+	
+<div class="col-md-4">
+	
+	<div class="row containerShip" id="destroyerContainer">
+		
+		
+								<div class="row-center">
+								<h3 class="nameShip">Destoyer</h3>
+								</div>
+						
+							<div class="row containerButton">
+							
+							<div class="col-md-8">
+													<img id="destroyer" src="resources/assetsGame/images/boat.png"
+													draggable="true" ondragstart="drag(event)"
+													class="shipImage" style="transform: rotate(0deg); 
+	height: 45%; 
+	width: 75%;
+	padding-left: 10%;"
+													> 
+											</div>
+											<div class="col-md-4" style="padding-bottom:3%">
+												<button id="button-destroyer">Rotate</button>
+											</div>
+											
+											
+											<div class="col-md-2">
+												<button id="button-destroyer-delete">Delete</button>
+											</div>
+											
+											
+								</div>
+							
+								
+							
+								
+						
+	</div>	
+	
+	<!--  sub marine -->
+	<div class="row containerShip" id="submarineContainer">
+		
+		
+								<div class="row-center">
+								<h3 class="nameShip">Submarine</h3>
+								</div>
+						
+							<div class="row containerButton">
+							
+							<div class="col-md-8">
+													<img id="submarine" src="resources/assetsGame/images/boat.png"
+													draggable="true" ondragstart="drag(event)"
+													style="transform: rotate(0deg); 
+	height: 45%; 
+	width: 75%;
+	padding-left: 10%;"
+													> 
+											</div>
+											<div class="col-md-4" style="padding-bottom:3%">
+												<button id="button-submarine">Rotate</button>
+											</div>
+											
+											
+											<div class="col-md-2">
+												<button id="button-submarine-delete">Delete</button>
+											</div>
+											
+											
+								</div>
+							
+								
+							
+								
+						
+	</div>	
+	
+	<!--  end sub marine -->
+	
+	
+	
+	
+	
+	<!--  sub cruiser -->
+	<div class="row containerShip" id="cruiserContainer">
+		
+		
+								<div class="row-center">
+								<h3 class="nameShip">Cruiser</h3>
+								</div>
+						
+							<div class="row containerButton">
+							
+							<div class="col-md-8">
+													<img id="cruiser" src="resources/assetsGame/images/boat.png"
+													draggable="true" ondragstart="drag(event)"
+													style="transform: rotate(0deg); 
+	height: 45%; 
+	width: 75%;
+	padding-left: 10%;"
+													> 
+											</div>
+											<div class="col-md-4" style="padding-bottom:3%">
+												<button id="button-cruiser">Rotate</button>
+											</div>
+											
+											
+											<div class="col-md-2">
+												<button id="button-cruiser-delete">Delete</button>
+											</div>
+											
+											
+								</div>
+							
+								
+							
+								
+						
+	</div>	
+	
+	<!--  end cruiser -->
+	
+	
+	<!--  battleship -->
+	<div class="row containerShip" id="battleshipContainer">
+		
+		
+								<div class="row-center">
+								<h3 class="nameShip">Battleship</h3>
+								</div>
+						
+							<div class="row containerButton">
+							
+							<div class="col-md-8">
+													<img id="battleship" src="resources/assetsGame/images/boat.png"
+													draggable="true" ondragstart="drag(event)"
+													style="transform: rotate(0deg); 
+	height: 45%; 
+	width: 75%;
+	padding-left: 10%;"
+													> 
+											</div>
+											<div class="col-md-4" style="padding-bottom:3%">
+												<button id="button-battleship">Rotate</button>
+											</div>
+											
+											
+											<div class="col-md-2">
+												<button id="button-battleship-delete">Delete</button>
+											</div>
+											
+											
+								</div>
+							
+								
+							
+								
+						
+	</div>	
+	
+	<!--  battleship -->
+	
+	<!--  sub marine -->
+	<div class="row containerShip" id="aircraftContainer">
+		
+		
+								<div class="row-center">
+								<h3 class="nameShip">Aircraft</h3>
+								</div>
+						
+							<div class="row containerButton">
+							
+							<div class="col-md-8">
+													<img id="aircraft" src="resources/assetsGame/images/boat.png"
+													draggable="true" ondragstart="drag(event)"
+													style="transform: rotate(0deg); 
+	height: 45%; 
+	width: 75%;
+	padding-left: 10%;"
+													> 
+											</div>
+											<div class="col-md-4" style="padding-bottom:3%">
+												<button id="button-aircraft">Rotate</button>
+											</div>
+											
+											
+											<div class="col-md-2">
+												<button id="button-aircraft-delete">Delete</button>
+											</div>
+											
+											
+								</div>
+							
+								
+							
+								
+						
+	</div>	
+	
+	<!--  end sub marine -->
+		
+
+</div>
+
+		<div class="col-md-8">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
 				<div id="container">
 					<table class="board table table-responsive animated fadeInUp"
 						id="ownerGrid">
@@ -299,48 +507,191 @@
 				</div>
 			</div>
 		</div>
+		
+		
 
 
 	</div>
+	
 
-	<h2 id="message"></h2>
+<div class="row" id="loading">
+
+<div class='container'>
+		<div class='row'>
+			<div class='loaderPixel'>
+			
+			<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+			</div>
+		</div>
+		
+		<h1 style="text-align:center">Waiting your challenger finish to place the ship</h1>
+</div>
+</div>
+	
 
 
 
-	<div>
-		<button id="button1">Boat 1</button>
-		<button id="button2">Boat 2</button>
-		<button id="button3">Boat 3</button>
-		<button id="button4">Boat 4</button>
-		<button id="button5">Boat 5</button>
-
-		<img id="boat-1" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			style="transform: rotate(0deg); height: 50px; width: 50%;"> <img
-			id="boat-2" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			style="transform: rotate(0deg); height: 50px; width: 50%;"> <img
-			id="boat-3" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			style="transform: rotate(0deg); height: 50px; width: 50%;"> <img
-			id="boat-4" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			style="transform: rotate(0deg); height: 50px; width: 50%;"> <img
-			id="boat-5" src="resources/assetsGame/images/boat.png"
-			draggable="true" ondragstart="drag(event)"
-			style="transform: rotate(0deg); height: 50px; width: 50%;">
-
-	</div>
+	
 
 
 	<!--  End choose ships -->
 
+	<c:forEach var="i" begin="1" end="10">
+		<c:forEach var="j" begin="1" end="10">
+			<c:if test="${grid.hasShip(i,j)}">
+				<c:choose>
+
+					<c:when test="${grid.tipeShip(i,j) == 2}">
+						<script>
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat destroyer");
+			</script>
+					</c:when>
+					<c:when test="${grid.tipeShip(i,j) == 3}">
+						<script>
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","class showBoat cruiser");
+			</script>
+					</c:when>
+					<c:when test="${grid.tipeShip(i,j) == 4}">
+						<script>
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat battleship");
+			</script>
+					</c:when>
+					<c:when test="${grid.tipeShip(i,j) == 5}">
+						<script>
+					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat aircraft-carrier");
+			</script>
+					</c:when>
+					<c:otherwise>
+
+					</c:otherwise>
+				</c:choose>
+
+			</c:if>
 
 
-	<button id="IR" type="button" onclick="waitingStart()">I'm
-		Ready !</button>
-
-	<hidden hidden id="lobbyId" value="${lobby.id}"></hidden>
+		</c:forEach>
+	</c:forEach>
 
 
 </body>

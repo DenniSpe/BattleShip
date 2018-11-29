@@ -16,12 +16,17 @@ public class Lobby
     private boolean lobbyStarted;
     
     private String whoPlays;
-    
+
     private Date startingTimeStamp;
     
     private Date endingTimeStamp;
 
-   
+    private String winner;
+    
+    public String getWinner() {
+		return winner;
+	}
+
     
     public Date getEndingTimeStamp() {
 		return endingTimeStamp;
@@ -37,6 +42,10 @@ public class Lobby
 
 	public void setStartingTimeStamp(Date startingTimeStamp) {
 		this.startingTimeStamp = startingTimeStamp;
+	}
+	
+	public void setWinner(String winner) {
+		this.winner = winner;
 	}
 
 	public String getWhoPlays() {
