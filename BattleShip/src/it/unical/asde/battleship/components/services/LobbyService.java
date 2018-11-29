@@ -23,6 +23,10 @@ public class LobbyService
         super();
     }
 
+    public int getNumberOfLobbies() {
+    	return lobbies.size();
+    }
+    
     public void addChallenger(final Lobby lobby, final String challenger)
     {
         lobbies.get(lobby.getId()).setChallenger(challenger);

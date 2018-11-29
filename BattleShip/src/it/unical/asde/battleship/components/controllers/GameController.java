@@ -22,6 +22,7 @@ import it.unical.asde.battleship.components.services.GameService;
 import it.unical.asde.battleship.components.services.LobbyService;
 import it.unical.asde.battleship.game.Lobby;
 import it.unical.asde.battleship.model.Grid;
+import it.unical.asde.battleship.model.Ship;
 import it.unical.asde.battleship.model.User;
 
 @Controller
