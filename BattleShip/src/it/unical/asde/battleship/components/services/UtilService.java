@@ -1,6 +1,7 @@
 package it.unical.asde.battleship.components.services;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -20,11 +21,15 @@ public class UtilService {
 
 	@Autowired
 	private MatchDAOImpl matchDAO;
+	
+	HashMap<String, User> playingUsers;
 
 	@PostConstruct
 	public void init() {
 		User a = new User("mano", "mano");
 		User b = new User("borro", "borro");
+		
+		playingUsers = new HashMap<>();
 
 		userDAO.save(a);
 		userDAO.save(b);
@@ -102,6 +107,18 @@ public class UtilService {
 
 	}
 
+	public void setPlayingUser(User u) {
+		playingUsers.put(u.getUsername(), u);
+	}
+	
+	public User getPlayingUser(String username) {
+		return playingUsers.get(username);
+	}
+	
+	public void deletePlayingUser(User u) {
+		playingUsers.remove(u.getUsername());
+	}
+	
 	public long numUsers() {
 		return userDAO.numberOfUsers();
 	}
@@ -113,7 +130,7 @@ public class UtilService {
 	public List<Match> getUserMatches(User user, int page, int amount) {
 
 //		long total = matchDAO.countUserMatches(user);
-		int start = (page - 1) * amount + 1;
+		int start = (page - 1) * amount;
 
 		return matchDAO.getUserMatches(user, start, amount);
 

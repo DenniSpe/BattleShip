@@ -1,6 +1,7 @@
 package it.unical.asde.battleship.components.controllers;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ForkJoinPool;
@@ -26,6 +27,12 @@ import it.unical.asde.battleship.model.User;
 @Controller
 public class GameController {
 
+	@Autowired
+	private GameService gameService;
+
+	@Autowired
+	private LobbyService lobbyService;
+	
 	private static boolean hasErrorOnPositioning(final int row, final int col, final int dir, final Grid grid,
 			final int boatSize) {
 
@@ -83,12 +90,6 @@ public class GameController {
 
 		return false;
 	}
-
-	@Autowired
-	GameService gameService;
-
-	@Autowired
-	LobbyService lobbyService;
 
 	// TODO Cosa fa sto metodo ? Diamo nomi esplicativi. Credo restituisca la cella
 	// colpita.. serve ancora??
@@ -271,6 +272,10 @@ public class GameController {
 		}
 
 		if (gameService.usersAreReady(lobbyID)) {
+			
+			lobbyService.getLobby(lobbyID).setStartingTimeStamp(new Date());
+			System.out.println("LA PARTITA STA INIZIANDO "+lobbyService.getLobby(lobbyID).getStartingTimeStamp());
+			
 			ForkJoinPool.commonPool().submit(() -> {
 				output.setResult("game");
 			});

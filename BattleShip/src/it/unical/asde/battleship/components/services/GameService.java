@@ -1,5 +1,6 @@
 package it.unical.asde.battleship.components.services;
 
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.annotation.PostConstruct;
@@ -7,16 +8,23 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.unical.asde.battleship.components.persistence.MatchDAO;
 import it.unical.asde.battleship.game.Lobby;
 import it.unical.asde.battleship.model.Grid;
+import it.unical.asde.battleship.model.Match;
 
 @Service
 public class GameService
 {
 
     @Autowired
-    LobbyService lobbyService;
+    private LobbyService lobbyService;
 
+    @Autowired
+    private UtilService utilService;
+    
+    @Autowired
+    private MatchDAO matchDao;
 
     // K = Username, V = Grid
     private HashMap<String, Grid> gridOwner;
@@ -45,6 +53,21 @@ public class GameService
     				return true;
     		}
 		}
+    	
+    	currentLobby.setEndingTimeStamp(new Date());
+    	
+    	Match match = new Match();
+    	match.setEndTime(currentLobby.getEndingTimeStamp());
+    	match.setStartTime(currentLobby.getStartingTimeStamp());
+    	match.setWonCreator(isOwner);
+    	match.setChallenger(utilService.getPlayingUser(currentLobby.getChallenger()));
+    	match.setCreator(utilService.getPlayingUser(currentLobby.getOwner()));
+    	match.setMatchName(currentLobby.getName());
+    	
+    	System.out.println("PRINT MATCH : "+match);
+		
+		matchDao.save(match);
+    	
     	return false;
     }
     

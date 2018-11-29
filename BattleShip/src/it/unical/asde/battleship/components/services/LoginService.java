@@ -12,8 +12,8 @@ public class LoginService {
 	@Autowired
 	private UsersDAOImpl usersDAO;
 	
-	public boolean checkCredentials(String uname, String pwd) {
+	public User checkCredentials(String uname, String pwd) {
 		return usersDAO.checkCredentials(new User(uname, pwd));
 	}
-
+	
 }

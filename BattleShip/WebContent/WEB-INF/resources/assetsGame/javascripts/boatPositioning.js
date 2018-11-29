@@ -134,7 +134,6 @@ function checkUserIsReady(nBoatsPositioned) {
 }
 
 function waitingStart() {
-	var url = new URL(window.location.href);
 	var lobbyID = $("#lobbyId").attr("value");
 	$.ajax({
 		url : "waitingStart",

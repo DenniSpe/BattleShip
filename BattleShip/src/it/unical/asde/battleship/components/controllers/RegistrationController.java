@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import it.unical.asde.battleship.components.services.RegistrationService;
+import it.unical.asde.battleship.components.services.UtilService;
 import it.unical.asde.battleship.model.User;
 
 @Controller
@@ -18,6 +19,9 @@ public class RegistrationController
 
     @Autowired
     private RegistrationService registrationService;
+    
+    @Autowired
+    private UtilService utilService;
 
     @PostMapping("/registration")
     @ResponseBody
@@ -41,6 +45,9 @@ public class RegistrationController
         registrationService.insertUser(u);
         session.setAttribute("username", uname);
         session.setAttribute("user", u);
+        
+        utilService.setPlayingUser(u);
+        
         return "CORRECT";
 
     }

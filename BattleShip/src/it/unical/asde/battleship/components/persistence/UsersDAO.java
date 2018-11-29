@@ -5,7 +5,7 @@ import it.unical.asde.battleship.model.User;
 
 public interface UsersDAO extends BaseDAO<User, Long> {
 
-	public boolean checkCredentials(User user);
+	public User checkCredentials(User user);
 
 	public boolean userExists(String username);
 

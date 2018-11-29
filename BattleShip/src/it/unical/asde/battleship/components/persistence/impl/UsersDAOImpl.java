@@ -47,12 +47,12 @@ public class UsersDAOImpl extends AbstractBaseDAO<User, Long> implements UsersDA
 //
 //	}
 
-	public boolean checkCredentials(User user) {
+	public User checkCredentials(User user) {
 		Session openSession = sessionFactory.openSession();
 		Query<User> query = openSession.createQuery("from User as u where u.username=:n and u.password=:p", User.class)
 				.setParameter("n", user.getUsername()).setParameter("p", user.getPassword());
 
-		boolean result = query.uniqueResult() != null;
+		User result = query.uniqueResult();
 		openSession.close();
 		return result;
 	}

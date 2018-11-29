@@ -1,5 +1,7 @@
 package it.unical.asde.battleship.game;
 
+import java.util.Date;
+
 public class Lobby
 {
 
@@ -14,8 +16,30 @@ public class Lobby
     private boolean lobbyStarted;
     
     private String whoPlays;
+    
+    private Date startingTimeStamp;
+    
+    private Date endingTimeStamp;
 
-    public String getWhoPlays() {
+   
+    
+    public Date getEndingTimeStamp() {
+		return endingTimeStamp;
+	}
+
+	public void setEndingTimeStamp(Date endingTimeStamp) {
+		this.endingTimeStamp = endingTimeStamp;
+	}
+
+	public Date getStartingTimeStamp() {
+		return startingTimeStamp;
+	}
+
+	public void setStartingTimeStamp(Date startingTimeStamp) {
+		this.startingTimeStamp = startingTimeStamp;
+	}
+
+	public String getWhoPlays() {
 		return whoPlays;
 	}
 

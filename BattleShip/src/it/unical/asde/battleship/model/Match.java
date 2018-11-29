@@ -13,6 +13,11 @@ import javax.persistence.Table;
 @Table
 @Entity
 public class Match {
+	
+	public Match() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -141,5 +146,13 @@ public class Match {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Match [id=" + id + ", startTime=" + startTime + ", endTime=" + endTime + ", wonCreator=" + wonCreator
+				+ ", matchName=" + matchName + ", challenger=" + challenger + ", creator=" + creator + "]";
+	}
+	
+	
 
 }

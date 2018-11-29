@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import it.unical.asde.battleship.components.persistence.UsersDAO;
 import it.unical.asde.battleship.components.services.LoginService;
+import it.unical.asde.battleship.components.services.UtilService;
 import it.unical.asde.battleship.model.User;
 
 @Controller
@@ -19,6 +21,9 @@ public class LoginController
 
     @Autowired
     private LoginService loginService;
+    
+    @Autowired
+    private UtilService utilService;
 
     @PostMapping("/login")
     @ResponseBody
@@ -26,12 +31,18 @@ public class LoginController
             final Model model)
     {
 
-        if (loginService.checkCredentials(uname, pwd))
+    	
+    	User user = loginService.checkCredentials(uname, pwd);
+        if (user != null)
         {
             System.out.print("_-------u------rtrtrt---------------LOGGED");
-            session.setAttribute("username", uname);
-            session.setAttribute("user", new User(uname, pwd));
+            
+            
+            session.setAttribute("username", user.getUsername());
+            session.setAttribute("user", user);
 
+            utilService.setPlayingUser(user);
+            
             return "CORRECT";
         }
         model.addAttribute("error", "Wrong credentials!");
@@ -41,7 +52,8 @@ public class LoginController
     @GetMapping("/logout")
     public String logout(final HttpSession session)
     {
-        session.invalidate();
+    	//utilService.deletePlayingUser((User) session.getAttribute("user")); 
+    	session.invalidate();
         return "log_reg";
     }
 
