@@ -6,6 +6,7 @@
 <html>
 <head>
 <head>
+<title>BattleShip ${user.username }'s History </title>
 <jsp:include page="nav_bar.jsp"></jsp:include>
 <script src="resources/assets/js/main.js"></script>
 <script type="text/javascript">
@@ -59,11 +60,11 @@ select#amount{
 	<hidden hidden id="amount" value="${amount }"></hidden>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-9">
-				<h2 class="history-title">User Match History</h2>
+			<div class="col-md-8">
+				<h2 class="history-title">Your Match History</h2>
 			</div>
 			
-			<div class="col-md-3 text-right">
+			<div class="col-md-4 text-right">
 				<b>Number of rows:</b> <select class="form-control" id="amount">
 					<option value="20">20</option>
 					<option value="50">50</option>
