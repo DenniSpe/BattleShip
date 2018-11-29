@@ -24,7 +24,11 @@ import it.unical.asde.battleship.components.services.GameService;
 import it.unical.asde.battleship.components.services.LobbyService;
 import it.unical.asde.battleship.game.Lobby;
 import it.unical.asde.battleship.model.Grid;
+<<<<<<< HEAD
 import it.unical.asde.battleship.model.Tupla;
+=======
+import it.unical.asde.battleship.model.Ship;
+>>>>>>> branch 'master' of https://github.com/DenniSpe/BattleShip
 import it.unical.asde.battleship.model.User;
 
 @Controller

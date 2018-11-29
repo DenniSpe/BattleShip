@@ -52,9 +52,9 @@ public class LoginController
     @GetMapping("/logout")
     public String logout(final HttpSession session)
     {
-    	//utilService.deletePlayingUser((User) session.getAttribute("user")); 
+    	utilService.deletePlayingUser((User) session.getAttribute("user")); 
     	session.invalidate();
-        return "log_reg";
+        return "redirect:/";
     }
 
 }

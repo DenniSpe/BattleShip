@@ -107,6 +107,10 @@ public class UtilService {
 
 	}
 
+	public int getOnlineUsers() {
+		return playingUsers.size();
+	}
+	
 	public void setPlayingUser(User u) {
 		playingUsers.put(u.getUsername(), u);
 	}

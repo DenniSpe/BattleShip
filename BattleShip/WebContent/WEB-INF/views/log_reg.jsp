@@ -18,6 +18,7 @@
 	<script src="resources/assets/js/main.js"></script>
 	<script src="resources/assets/js/navbar.js"></script>
 	 <link rel="stylesheet" href="resources/assets/css/modal.css" />
+	  
 <body>
 
 
@@ -28,7 +29,7 @@
 
 				<div class="inner">
 					<h1>Battleship MVC</h1>
-					<p>A final project developed for the Agile Software Development for Enterprise</a></p>
+					<p>A final project developed for the Agile Software Development for Enterprise</p>
 				</div>			
 			</header>
 
@@ -43,21 +44,21 @@
 		<div class="col-4 col-sm-4">
     <div class="counter col_fourth">
       <i class="fa fa-code fa-2x"></i>
-      <h2 class="timer count-title count-number" data-to="300" data-speed="1500"></h2>
+      <h2 class="timer count-title count-number" data-to="${ userRegistered }" data-speed="1500"></h2>
        <p class="count-text ">Users registered</p>
     </div>
     </div>
 <div class="col-4 col-sm-4 ">
     <div class="counter col_fourth">
       <i class="fa fa-coffee fa-2x"></i>
-      <h2 class="timer count-title count-number" data-to="1700" data-speed="1500"></h2>
+      <h2 class="timer count-title count-number" data-to="${ userOnline }" data-speed="1500"></h2>
       <p class="count-text ">Users connected</p>
     </div>
 </div>
 <div class="col-4 col-sm-4">
     <div class="counter col_fourth">
       <i class="fa fa-lightbulb-o fa-2x"></i>
-      <h2 class="timer count-title count-number" data-to="11900" data-speed="1500"></h2>
+      <h2 class="timer count-title count-number" data-to="${ availableLobby }" data-speed="1500"></h2>
       <p class="count-text ">Lobby available</p>
     </div>
     </div>

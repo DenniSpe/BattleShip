@@ -156,14 +156,7 @@
               </div>
             </div>
             
-                 
-
-            </fieldset>
-            </form>
-      </div>
-    </div>
-      </div>
-      <div class="alert alert-success" role="alert" id="signUpCorrect">
+              <div class="alert alert-success" role="alert" id="signUpCorrect">
   User created
 </div>
 <div class="alert alert-danger" role="alert" id="usernameError">
@@ -171,7 +164,14 @@
 </div>
 <div class="alert alert-danger" role="alert" id="passwordMatch">
   Password not match
-</div>
+</div>   
+
+            </fieldset>
+            </form>
+      </div>
+    </div>
+      </div>
+      
       <div class="modal-footer">
       <center>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
