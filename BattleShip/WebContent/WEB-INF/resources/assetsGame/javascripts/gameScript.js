@@ -128,6 +128,23 @@ function appendTag(result) {
 	
 }
 
+
+function cleanLobbyAfterFinish(){
+	alert("Clean")
+	$.ajax({
+		url : "quit_lobby",
+		type : "POST",
+		success : function(result) {
+			alert("CLEAN LOBBY "+result)
+		},
+			
+		error : function() {
+			
+		}
+	});
+}
+
+
 function checkTurn() {
 	var lobbyID = $("#lobbyId").attr("value");
 	$.ajax({
@@ -140,7 +157,8 @@ function checkTurn() {
 		success : function(result) {
 			if(result.hasOwnProperty("youWin")){
 				$("#modal").on("click", function() {
-				     window.location= "/BattleShip/";
+					cleanLobbyAfterFinish();
+				    window.location= "/BattleShip/";
 				});
 				if(result.youWin===true){
 //					alert("ganaste");
@@ -179,7 +197,7 @@ function checkTurn() {
 			
 			setTimeout(function() {
 				checkTurn();
-			}, 3000);
+			}, 1000);
 		},
 
 		error : function() {

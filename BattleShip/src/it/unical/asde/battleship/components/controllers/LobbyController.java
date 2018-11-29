@@ -152,6 +152,7 @@ public class LobbyController
     }
 
     @GetMapping("/quit_lobby")
+    @ResponseBody
     public String quit(@RequestParam final String lobby_id, final HttpSession session)
     {
 
@@ -175,6 +176,7 @@ public class LobbyController
         {
             lobbyService.getLobby(id).setChallenger(null);
         }
+        
         return "index";
     }
 
