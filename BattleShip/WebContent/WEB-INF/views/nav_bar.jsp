@@ -22,16 +22,17 @@
   <span class="glyphicon glyphicon-chevron-right" style="color:white;"></span>
     
   </button>
-      <a class="pull-left" href="#"><img class="img-responsive2" src="resources/assets/css/images/logo.png"  width= 170px></a>
+      <a class="pull-left" href='<c:url value="/"></c:url>'><img class="img-responsive2" src="resources/assets/css/images/logo.png"  width= 170px></a>
     </div>
     <div class="collapse navbar-collapse" id="navMain">
       <ul class="nav navbar-nav pull-right">
-        <li class="active"><a href="#">Home</a></li>
-        
         <c:if test="${user!=null}">
-     	<li class="active"><a href="#">${user.username }'s Profile</a></li>
+     		<li><a href="#">Welcome ${user.username }</a></li>
      	</c:if>
-     	
+        <li class="active"><a href='<c:url value="/"></c:url>'>Home</a></li>
+     	<c:if test="${user!=null}">
+     		<li class="active"><a href='<c:url value="/userHistory"></c:url>'>History</a></li>
+     	</c:if>     	
      	<c:if test="${user==null}">
         <li><a href="#" data-toggle="modal" data-target=".log-sign">Log in</a></li> 
            </c:if>
