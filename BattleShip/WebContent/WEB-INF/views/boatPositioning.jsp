@@ -33,6 +33,8 @@ body {
 <link rel="stylesheet" href="resources/assetsGame/vendor/animate.css">
 <link rel="stylesheet" href="resources/assetsGame/stylesheets/main.css"
 	type="text/css" media="screen">
+	
+	<link rel="stylesheet" href="resources/assets/css/loading.css" />
 
 </head>
 
@@ -47,7 +49,7 @@ body {
 
 </div>
 
-	<div class="row">
+	<div class="row" id="positioning">
 	
 <div class="col-md-4">
 	
@@ -510,8 +512,143 @@ body {
 
 
 	</div>
+	
 
-	<h2>${grid.hasShip(1,1)}</h2>
+<div class="row" id="loading">
+
+<div class='container'>
+		<div class='row'>
+			<div class='loaderPixel'>
+			
+			<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+				<div class='pixels'></div>
+			</div>
+		</div>
+		
+		<h1 style="text-align:center">Waiting your challenger finish to place the ship</h1>
+</div>
+</div>
+	
 
 
 

@@ -2,6 +2,7 @@ var nBoatsPositioned = 0;
 
 $(document).ready(function() {
 	$("#IR").hide();
+	$("#loading").hide();
 	$("#button-destroyer").click(function() {
 		rotateBoat("destroyer");
 		deleteButton("destroyer");
@@ -46,7 +47,7 @@ $("#button-aircraft-delete").click(function() {
 });
 	
 
-	$("button#IR").attr("disabled", "disabled");
+	
 
 });
 
@@ -286,7 +287,11 @@ function waitingStart() {
 			if (!result.localeCompare("game")) { // If it's game
 				window.location = "/BattleShip/game?id=" + lobbyID;
 			} else if (!result.localeCompare("boatPositioning")) {
-				// do nothing
+				
+				$("#positioning").hide();
+				
+				$("#IR").hide();
+				$("#loading").show();
 			}
 
 			setTimeout(function() {
