@@ -96,15 +96,18 @@ public class LobbyController
     }
 
     @GetMapping("/insideLobby")
-    public String insideLobby(@RequestParam final String id, final Model model)
+    public String insideLobby(@RequestParam final String id, final Model model, HttpSession session)
     {
         //		String some = (String) model.asMap().get("lobbyId");
-        final int idLobby = Integer.parseInt(id);
-        final Lobby mylobby = lobbyService.getLobby(idLobby);
-        model.addAttribute("lobbies", lobbyService.getLobbies());
-        model.addAttribute("lobby", mylobby);
-        model.addAttribute("currentLobbyID", mylobby.getId());
-        return "lobby";
+    	if(session.getAttribute("user")!=null) {
+	        final int idLobby = Integer.parseInt(id);
+	        final Lobby mylobby = lobbyService.getLobby(idLobby);
+	        model.addAttribute("lobbies", lobbyService.getLobbies());
+	        model.addAttribute("lobby", mylobby);
+	        model.addAttribute("currentLobbyID", mylobby.getId());
+	        return "lobby";
+    	}
+    	return "redirect:/";
     }
 
     @GetMapping("/join_lobby")

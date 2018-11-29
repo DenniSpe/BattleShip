@@ -276,14 +276,19 @@ public class GameController {
 
 	@GetMapping("/startPositioning")
 	public String startPositioning(final Model model, final HttpSession session, @RequestParam final String ID) {
-		Lobby lobb = lobbyService.getLobby(Integer.parseInt(ID));
 		User user = (User) session.getAttribute("user");
-		if (user.getUsername().equals(lobb.getOwner())) {
-			lobb.setLobbyStarted(true);
-			gameService.startGame(lobb.getId());
+		Lobby lobb = lobbyService.getLobby(Integer.parseInt(ID));
+		if(user!=null && lobb!=null) {
+			if(user.getUsername().equals(lobb.getChallenger()) || user.getUsername().equals(lobb.getOwner())) {
+				if (user.getUsername().equals(lobb.getOwner())) {
+					lobb.setLobbyStarted(true);
+					gameService.startGame(lobb.getId());
+				}
+				model.addAttribute("lobby", lobb);
+				return "boatPositioning";
+			}
 		}
-		model.addAttribute("lobby", lobb);
-		return "boatPositioning";
+		return "redirect:/";
 
 	}
 
