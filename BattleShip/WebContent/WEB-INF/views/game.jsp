@@ -9,20 +9,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <jsp:include page="nav_bar.jsp"></jsp:include>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/underscore.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/vendor/jquery-1.11.3.min.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/jshashtable-2.1.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/jquery.numeric.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/jquery.numberformatter.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/backbone.js"></script>
-<script type="text/javascript"
-	src="resources/assetsGame/javascripts/ext/icanhaz.js"></script>
+
+<style>
+body{
+padding-top: 5%;
+	padding-left: 2%;
+}
+
+</style>
 <script type="text/javascript"
 	src="resources/assetsGame/javascripts/gameScript.js"></script>
 <script type="text/javascript"
