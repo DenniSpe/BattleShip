@@ -25,7 +25,10 @@ function shoot(cellacliccata) {
 		success : function(result) {
 //			alert("IL RESULT DI SHOOT E' "+result);
 			if(result.youWin){
-				appendTag(result);				
+				appendTag(result);		
+				$("#modal").on("click", function() {
+				     window.location= "/BattleShip/";
+				});	
 				$("#labelWin").removeClass("hidden");
 				$("#labelLoose").addClass("hidden");
 				$('#modal').modal('show');
@@ -136,6 +139,9 @@ function checkTurn() {
 		},
 		success : function(result) {
 			if(result.hasOwnProperty("youWin")){
+				$("#modal").on("click", function() {
+				     window.location= "/BattleShip/";
+				});
 				if(result.youWin===true){
 //					alert("ganaste");
 					$("#labelWin").removeClass("hidden");
