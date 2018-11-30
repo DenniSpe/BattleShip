@@ -11,11 +11,16 @@ import java.util.concurrent.ForkJoinPool;
 
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.dialect.identity.SybaseAnywhereIdentityColumnSupport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.async.DeferredResult;
@@ -120,6 +125,48 @@ public class GameController {
 		return false;
 	}
 
+	
+	@PostMapping("/deleteBoatFromGrid")
+	@ResponseBody
+	public boolean deleteBoatFromGrid(@RequestParam String boatID, @RequestParam String ID, @RequestParam String row, @RequestParam String col, @RequestParam String dir, HttpSession session) {
+		System.out.println("YOU ARE DELETING BOAT "+boatID);
+		
+		int boatRow = Integer.parseInt(row);
+		int boatCol = Integer.parseInt(col);
+		int length = getLength(boatID);
+		int direction = Integer.parseInt(dir);
+		Lobby currentLobby = lobbyService.getLobby(Integer.parseInt(ID));
+		User user = (User) session.getAttribute("user");
+		
+		Grid grid = new Grid();
+		
+		try {
+			if(user.getUsername().equals(currentLobby.getOwner())) {
+				grid = gameService.getOwnerGrid(currentLobby.getId());
+				
+				grid.deleteShip(boatRow, boatCol, length, direction);
+				System.out.println("CANCELLO LA BARCA DI OWNER ED OTTENGO");
+				grid.print();
+				
+			}
+			else {  //If you are the challenger 
+				grid = gameService.getChallengerGrid(currentLobby.getId());
+				
+				grid.deleteShip(boatRow, boatCol, length, direction);
+				System.out.println("CANCELLO LA BARCA DI CHALLENGER ED OTTENGO");
+				grid.print();
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
+	
 	// TODO Cosa fa sto metodo ? Diamo nomi esplicativi. Credo restituisca la cella
 	// colpita.. serve ancora??
 	@PostMapping("/shoot")

@@ -87,6 +87,21 @@ public class Grid {
 		}
 	}
 	
+	public void deleteShip(int row, int col, int numShip, int direction) {
+		
+		if (direction == 0) { // horizontal
+			for(int i = col; i < col + numShip; i++) {
+					grid[row][i] = 0;
+			}
+		}
+		if (direction == 1) { // vertical
+			for(int j = row; j < row + numShip; j++) {
+				grid[j][col] = 0;
+		}
+	}
+}
+	
+	
 	
 	public void print() {
 		for (int i = 1; i < grid.length; i++) {

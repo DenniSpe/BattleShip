@@ -184,15 +184,25 @@ public class LobbyController
     
     @PostMapping("/destroy_lobby")
     @ResponseBody
-    public void destroy_lobby(@RequestParam String lobby_id) {
+    public boolean destroy_lobby(@RequestParam String lobby_id) {
     	int id = Integer.parseInt(lobby_id);
     	
     	if(lobbyService.getLobbies().contains(lobbyService.getLobby(id)))
     	{
+    		try {
     		System.out.println("++++и+и+и+и+и+и+и+ INSIDE DESTROY LOBBY +и+и+ии+и+и+и+ии+и+и");
 	    	gameService.deleteGame(id);
 	        lobbyService.deleteLobby(id);
-    	}    
+	        
+	        }
+    		catch(Exception e)
+    		{
+    			e.printStackTrace();
+    			return false;
+    		}
+    	}
+    	
+    	return true;
     }
     
     

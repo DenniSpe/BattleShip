@@ -1,11 +1,31 @@
 var nBoatsPositioned = 0;
 
+var rowDestroyer = 0;
+var colDestroyer = 0;
+var dirDestroyer = 0;
+
+var rowSubmarine = 0;
+var colSubmarine = 0;
+var dirSubmarine = 0;
+
+var rowCruiser = 0;
+var colCruiser = 0;
+var dirCruiser = 0;
+
+var rowBattleShip = 0;
+var colBattleShip = 0;
+var dirBattleShip = 0;
+
+var rowAircraft = 0;
+var colAircraft = 0;
+var dirAircraft = 0;
+
 $(document).ready(function() {
 	$("#IR").hide();
 	$("#loading").hide();
+	
 	$("#button-destroyer").click(function() {
 		rotateBoat("destroyer");
-		deleteButton("destroyer");
 	});
 	$("#button-submarine").click(function() {
 		rotateBoat("submarine");
@@ -26,24 +46,111 @@ $(document).ready(function() {
 	 */
 	
 	$("#button-destroyer-delete").click(function() {
+		var ID = $("#lobbyId").attr("value");
+		nBoatsPositioned--;
+		checkUserIsReady();
 		
-		$("#destroyer").show();
+		$.ajax({
+			url : "deleteBoatFromGrid",
+			type : "POST",
+			data : {"boatID" : "destroyer", "ID" : ID, "row": rowDestroyer, "col" : colDestroyer, "dir" : dirDestroyer},
+			success : function(result){
+				
+				alert("Deleting boat destroyer");
+				
+			},
+			error : function (){
+				
+			}
+				
+		});
+		
+		
+		
+		//$("#destroyer").show();
 	});
 $("#button-submarine-delete").click(function() {
-		
-		$("#submarine").show();
-	});
-$("#button-cruiser-delete").click(function() {
+	var ID = $("#lobbyId").attr("value");
+	nBoatsPositioned--;
+	checkUserIsReady();
 	
-	$("#cruiser").show();
+	$.ajax({
+		url : "deleteBoatFromGrid",
+		type : "POST",
+		data : {"boatID" : "submarine", "ID" : ID, "row" : rowSubmarine, "col" : colSubmarine, "dir" : dirSubmarine},
+		success : function(result){
+			
+			alert("Deleting boat submarine");
+			
+		},
+		error : function (){
+			
+		}
+	});
+		//$("#submarine").show();
+});
+
+$("#button-cruiser-delete").click(function() {
+	var ID = $("#lobbyId").attr("value");
+	nBoatsPositioned--;
+	checkUserIsReady();
+	
+	$.ajax({
+		url : "deleteBoatFromGrid",
+		type : "POST",
+		data : {"boatID" : "cruiser", "ID" : ID, "row" : rowCruiser, "col" : colCruiser, "dir" : dirCruiser},
+		success : function(result){
+			
+			alert("Deleting boat cruiser");
+			
+		},
+		error : function (){
+			
+		}
+	});
+	//$("#cruiser").show();
 });
 $("#button-battleship-delete").click(function() {
+	var ID = $("#lobbyId").attr("value");
+	nBoatsPositioned--;
+	checkUserIsReady();
 	
-	$("#battleship").show();
+	$.ajax({
+		url : "deleteBoatFromGrid",
+		type : "POST",
+		data : {"boatID" : "battleship", "ID" : ID, "row" : rowBattleShip, "col" : colBattleShip, "dir" : dirBattleShip},
+		success : function(result){
+			
+			alert("Deleting boat battleship");
+
+		},
+		error : function (){
+			
+		}
+	});
+	
+	//$("#battleship").show();
 });
+
 $("#button-aircraft-delete").click(function() {
+	var ID = $("#lobbyId").attr("value");
+	nBoatsPositioned--;
+	checkUserIsReady();
 	
-	$("#aircraft").show();
+	$.ajax({
+		url : "deleteBoatFromGrid",
+		type : "POST",
+		data : {"boatID" : "aircraft", "ID" : ID, "row": rowAircraft, "col" : colAircraft, "dir" : dirAircraft},
+		success : function(result){
+			
+			alert("Deleting boat aircraft");
+			
+		},
+		error : function (){
+			
+		}
+	});
+	//$("#aircraft").show();
 });
 	
 
@@ -56,19 +163,43 @@ $("#button-aircraft-delete").click(function() {
  */
 function deleteShip(id)
 {
-
+	
 }
 
 function rotateBoat(id) {
 	console.log("MY ID IS = " + id);
+	
+	var pos = 0;
+	
 	var img = document.getElementById(id);
 	if (img.getAttribute("style") == "transform:rotate(90deg); height: 45%; width: 75%;") {
-		img.setAttribute("style",
-				"transform:rotate(0deg); height: 45%; width: 75%;")
+		img.setAttribute("style","transform:rotate(0deg); height: 45%; width: 75%;");
+		
+		pos = 0;
 	} else {
-		img.setAttribute("style",
-				"transform:rotate(90deg); height: 45%; width: 75%;")
+		img.setAttribute("style","transform:rotate(90deg); height: 45%; width: 75%;");
+		
+		pos = 1;
 	}
+	
+	switch(id) {
+    case "destroyer" :
+        dirDestroyer = pos;
+        break;
+    case "submarine" :
+    	dirSubmarine = pos;
+        break;
+    case "cruiser" :
+    	disCruiser = pos;
+    	break;
+    case "battleship" :
+    	dirBattleShip = pos;
+    	break;
+    case "aircraft" :
+    	dirAircraft = pos;
+    	break;
+	} 
+	
 }
 
 function allowDrop(ev) {
@@ -88,21 +219,40 @@ function drop(ev) {
 	var data = ev.dataTransfer.getData("text");
 
 	console.log("Stai droppando sulla cella " + ev.target.id);
-
+	
 	var dir = document.getElementById(data).getAttribute("style");
 	
+	var boatName = document.getElementById(data).getAttribute("id");
+
+	var tmpRow = ev.target.id.split("-")[1];
+	var tmpCol = ev.target.id.split("-")[2];
 	
-	var boatName = document.getElementById(data).getAttribute("id"); // Attenzione,
-	// da
-	// questo
-	// id
-	// dell'img
-	// mi
-	// prendo
-	// la
-	// size
-	// della
-	// boat
+	//alert("LE COORDINATE DELLA BARCA SONO "+tmpRow+" e "+tmpCol);
+	
+	switch(boatName) {
+    case "destroyer" :
+        rowDestroyer = tmpRow;
+        colDestroyer = tmpCol;
+        break;
+    case "submarine" :
+    	rowSubmarine = tmpRow;
+    	colSubmarine = tmpCol;
+        break;
+    case "cruiser" :
+    	rowCruiser = tmpRow;
+    	colCruiser = tmpCol;
+    	break;
+    case "battleship" :
+    	rowBattleShip = tmpRow;
+    	colBattleShip = tmpCol;
+    	break;
+    case "aircraft" :
+    	rowAircraft = tmpRow;
+    	colAircraft = tmpCol;
+    	break;
+     	
+	} 
+	
 	var lobbyID = $("#lobbyId").attr("value");
 
 	$
@@ -272,6 +422,9 @@ function checkUserIsReady(nBoatsPositioned) {
 	if (nBoatsPositioned >= 5) { // The user put all his boats in the grid
 		
 		$("#IR").show();
+	}
+	else {
+		$('#IR').hide();
 	}
 
 }
