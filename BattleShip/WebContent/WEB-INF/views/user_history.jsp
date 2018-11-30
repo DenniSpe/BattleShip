@@ -58,7 +58,8 @@ select#amount{
 		value="<c:url value="/userHistory"></c:url>"></hidden>
 	<hidden hidden id="page" value="${page }"></hidden>
 	<hidden hidden id="amount" value="${amount }"></hidden>
-	<div class="container">
+	
+	<div class="container" style="padding-top:5%;">
 		<div class="row">
 			<div class="col-md-8">
 				<h2 class="history-title">Your Match History</h2>
