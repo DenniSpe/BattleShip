@@ -1,4 +1,4 @@
-package it.unical.asde.battleship.components.services;
+/*package it.unical.asde.battleship.components.services;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -51,3 +51,4 @@ public class EventsService {
 	
 
 }
+*/

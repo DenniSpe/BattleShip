@@ -28,14 +28,35 @@ public class GameService
 
     // K = Username, V = Grid
     private HashMap<String, Grid> gridOwner;
-
     private HashMap<String, Grid> gridChallenger;
 
     // K = Username, V = boolean
     private HashMap<String, Boolean> isReadyOwner;
-
     private HashMap<String, Boolean> isReadyChallenger;
 
+    
+    @PostConstruct
+    public void init()
+    {
+        gridOwner = new HashMap<>();
+        gridChallenger = new HashMap<>();
+
+        isReadyOwner = new HashMap<>();
+        isReadyChallenger = new HashMap<>();
+    }
+    
+    public void startGame(final int lobbyID)
+    {
+        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
+
+        gridOwner.put(currentLobby.getOwner(), new Grid());
+        gridChallenger.put(currentLobby.getChallenger(), new Grid());
+
+        isReadyOwner.put(currentLobby.getOwner(), false);
+        isReadyChallenger.put(currentLobby.getChallenger(), false);
+    }
+    
+    // Check if in the grid there are ships
     public boolean hasMoreShips(int lobbyID, boolean isOwner) {
     	Lobby currentLobby = lobbyService.getLobby(lobbyID);
     	
@@ -64,7 +85,7 @@ public class GameService
     	match.setCreator(utilService.getPlayingUser(currentLobby.getOwner()));
     	match.setMatchName(currentLobby.getName());
     	
-    	System.out.println("PRINT MATCH : "+match);
+    	//System.out.println("PRINT MATCH : "+match);
 		
 		matchDao.save(match);
     	
@@ -72,16 +93,35 @@ public class GameService
     }
     
    
-    
-    public void challengerIsReady(final int lobbyID)
-    {
-        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-
-        isReadyChallenger.put(currentLobby.getChallenger(), true);
+    // Set the user that has positioned his boats
+    public void userIsReady(int lobbyID, boolean isOwner) {
+    	Lobby currentLobby = lobbyService.getLobby(lobbyID);
+    	
+    	if(isOwner) {
+    		isReadyOwner.put(currentLobby.getOwner(), true);
+    	}
+    	else {
+    		isReadyChallenger.put(currentLobby.getChallenger(), true);
+    	}
     }
+    
+	// ++ REFACTORED ++ 
+//    public void challengerIsReady(final int lobbyID)
+//    {
+//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
+//
+//        isReadyChallenger.put(currentLobby.getChallenger(), true);
+//    }
+//    
+//    public void ownerIsReady(final int lobbyID)
+//    {
+//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
+//
+//        isReadyOwner.put(currentLobby.getOwner(), true);
+//    }
+	// ++ REFACTORED ++ 
 
-    // TODO Before to delete the Lobby in the LobbyService (CHECK THE CONTROLLER CLASS, NOT THE SERVICE ONE),
-    // Call this method to avoid NullPointerException
+    // The two player have finished the game
     public void deleteGame(final int lobbyID)
     {
         final Lobby currentLobby = lobbyService.getLobby(lobbyID);
@@ -93,89 +133,99 @@ public class GameService
         isReadyChallenger.remove(currentLobby.getChallenger());
     }
 
-    public Grid getChallengerGrid(final int lobbyID)
-    {
-        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-
-        return gridChallenger.get(currentLobby.getChallenger());
+    //++ REFACTORED ++
+    public Grid getGrid(int lobbyID, boolean isOwner) {
+    	Lobby currentLobby = lobbyService.getLobby(lobbyID);
+    	
+    	System.out.println("CONTROLLO LA GRIGLIA DI "+(isOwner ? "OWNER" :  "CHALLENGER"));
+    	
+    	if(isOwner) {
+    		return gridOwner.get(currentLobby.getOwner());
+    	}
+    	else {
+    		return gridChallenger.get(currentLobby.getChallenger());
+    	}
     }
+    //++ REFACTORED ++
+    
+  //++REFACTORED
+//    public Grid getChallengerGrid(final int lobbyID)
+//    {
+//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
+//
+//        return gridChallenger.get(currentLobby.getChallenger());
+//    }
+//
+//    public Grid getOwnerGrid(final int lobbyID)
+//    {
+//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
+//
+//        return gridOwner.get(currentLobby.getOwner());
+//    }
 
-    public Grid getOwnerGrid(final int lobbyID)
-    {
-        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
+	// ++ REFACTORED ++ 
+//    public boolean hasShipChallenger(final int lobbyID, final int row, final int col)
+//    {
+//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
+//
+//        return gridChallenger.get(currentLobby.getChallenger()).hasShip(row, col);
+//    }
+//
+//    public boolean hasShipOwner(final int lobbyID, final int row, final int col)
+//    {
+//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
+//
+//        return gridOwner.get(currentLobby.getOwner()).hasShip(row, col);
+//    }
+	 
 
-        return gridOwner.get(currentLobby.getOwner());
+   
+
+//    public boolean isAlreadyGuessedChallenger(final int lobbyID, final int row, final int col)
+//    {
+//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
+//
+//        return gridChallenger.get(currentLobby.getChallenger()).alreadyGuessed(row, col);
+//    }
+//
+//    public boolean isAlreadyGuessedOwner(final int lobbyID, final int row, final int col)
+//    {
+//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
+//
+//        return gridOwner.get(currentLobby.getOwner()).alreadyGuessed(row, col);
+//    }
+	// ++ REFACTORED ++ 
+    
+
+    public void putShip(int lobbyID, int row, int col, int numShip, int dir, boolean isOwner) {
+    	final Lobby currentLobby = lobbyService.getLobby(lobbyID);
+    	
+    	if(isOwner) {
+    		gridOwner.get(currentLobby.getOwner()).setShip(row, col, numShip, dir);
+    	}
+    	else {
+    		gridChallenger.get(currentLobby.getChallenger()).setShip(row, col, numShip, dir);
+    	}
     }
+    
+ // ++REFACTORED++
+//    public void putShipChallenger(final int lobbyID, final int row, final int col, final int numShip, final int dir)
+//    {
+//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
+//
+//        gridChallenger.get(currentLobby.getChallenger()).setShip(row, col, numShip, dir);
+//    }
+//
+//    public void putShipOwner(final int lobbyID, final int row, final int col, final int numShip, final int dir)
+//    {
+//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
+//        gridOwner.get(currentLobby.getOwner()).setShip(row, col, numShip, dir);
+//    }
+ // ++REFACTORED++
 
-    public boolean hasShipChallenger(final int lobbyID, final int row, final int col)
-    {
-        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-
-        return gridChallenger.get(currentLobby.getChallenger()).hasShip(row, col);
-    }
-
-    public boolean hasShipOwner(final int lobbyID, final int row, final int col)
-    {
-        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-
-        return gridOwner.get(currentLobby.getOwner()).hasShip(row, col);
-    }
-
-    @PostConstruct
-    public void init()
-    {
-        gridOwner = new HashMap<>();
-        gridChallenger = new HashMap<>();
-
-        isReadyOwner = new HashMap<>();
-        isReadyChallenger = new HashMap<>();
-    }
-
-    public boolean isAlreadyGuessedChallenger(final int lobbyID, final int row, final int col)
-    {
-        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-
-        return gridChallenger.get(currentLobby.getChallenger()).alreadyGuessed(row, col);
-    }
-
-    public boolean isAlreadyGuessedOwner(final int lobbyID, final int row, final int col)
-    {
-        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-
-        return gridOwner.get(currentLobby.getOwner()).alreadyGuessed(row, col);
-    }
-
-    public void ownerIsReady(final int lobbyID)
-    {
-        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-
-        isReadyOwner.put(currentLobby.getOwner(), true);
-    }
-
-    public void putShipChallenger(final int lobbyID, final int row, final int col, final int numShip, final int dir)
-    {
-        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-
-        gridChallenger.get(currentLobby.getChallenger()).setShip(row, col, numShip, dir);
-    }
-
-    public void putShipOwner(final int lobbyID, final int row, final int col, final int numShip, final int dir)
-    {
-        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-        gridOwner.get(currentLobby.getOwner()).setShip(row, col, numShip, dir);
-    }
-
-    public void startGame(final int lobbyID)
-    {
-        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-
-        gridOwner.put(currentLobby.getOwner(), new Grid());
-        gridChallenger.put(currentLobby.getChallenger(), new Grid());
-
-        isReadyOwner.put(currentLobby.getOwner(), false);
-        isReadyChallenger.put(currentLobby.getChallenger(), false);
-    }
-
+    
+   
+    // Check if the users have positioned their boats
     public boolean usersAreReady(final int lobbyID)
     {
         final Lobby currentLobby = lobbyService.getLobby(lobbyID);
