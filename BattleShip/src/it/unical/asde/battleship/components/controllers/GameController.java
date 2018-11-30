@@ -200,9 +200,6 @@ public class GameController {
 
 		}
 
-//		ForkJoinPool.commonPool().submit(() -> {
-//				output.setResult(shot);
-//		});
 		return response;
 	}
 
