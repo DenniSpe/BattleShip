@@ -329,6 +329,9 @@ public class GameController {
 	public String startPositioning(final Model model, final HttpSession session, @RequestParam final String ID) {
 		User user = (User) session.getAttribute("user");
 		Lobby lobb = lobbyService.getLobby(Integer.parseInt(ID));
+		if(lobb.getWhoPlays() != null && !lobb.getWhoPlays().isEmpty()) {
+			return "redirect:/game?id="+lobb.getId();
+		}
 		if (user != null && lobb != null) {
 			if (user.getUsername().equals(lobb.getChallenger()) || user.getUsername().equals(lobb.getOwner())) {
 				if (user.getUsername().equals(lobb.getOwner())) {
@@ -386,14 +389,14 @@ public class GameController {
 	@GetMapping("/game")
 	public String playGame(Model model, HttpSession session, String id) {
 		User user = (User) session.getAttribute("user");
-		if (user != null || id != null) {
+		if (user != null && id != null) {
 			Lobby currentLobby = lobbyService.getLobby(Integer.parseInt(id));
-			if (currentLobby.getOwner().equals(user.getUsername())) {
+			if (currentLobby.getOwner()!=null && currentLobby.getOwner().equals(user.getUsername())) {
 				model.addAttribute("grid", gameService.getOwnerGrid(currentLobby.getId()));
 				if (currentLobby.getWhoPlays() == null || currentLobby.getWhoPlays().isEmpty()) {
 					currentLobby.setWhoPlays(currentLobby.getOwner());
 				}
-			} else if (currentLobby.getChallenger().equals(user.getUsername())) {
+			} else if (currentLobby.getChallenger()!=null && currentLobby.getChallenger().equals(user.getUsername())) {
 				model.addAttribute("grid", gameService.getChallengerGrid(currentLobby.getId()));
 			}
 			model.addAttribute("lobby", currentLobby);
