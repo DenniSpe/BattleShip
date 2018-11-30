@@ -135,7 +135,7 @@ function cleanLobbyAfterFinish(lobbyid){
 		type : "POST",
 		data : { "lobby_id" : lobbyid },
 		success : function(result) {
-			
+			window.location= "/BattleShip/";
 		},
 			
 		error : function(res) {
@@ -158,7 +158,7 @@ function checkTurn() {
 		success : function(result) {
 			if(result.hasOwnProperty("youWin")){
 				$("#modal").on("click", function() {
-				    window.location= "/BattleShip/";
+//				    window.location= "/BattleShip/";
 				    cleanLobbyAfterFinish(lobbyID);
 				});
 				if(result.youWin===true){

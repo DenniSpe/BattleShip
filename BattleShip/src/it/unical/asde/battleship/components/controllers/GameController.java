@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ForkJoinPool;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -279,9 +280,10 @@ public class GameController {
 //	}
 
 	@GetMapping("/startPositioning")
-	public String startPositioning(final Model model, final HttpSession session, @RequestParam final String ID) {
+	public String startPositioning(final Model model, final HttpSession session, @RequestParam final String ID, HttpServletResponse response) {
 		User user = (User) session.getAttribute("user");
 		Lobby lobb = lobbyService.getLobby(Integer.parseInt(ID));
+		response.setHeader( "Cache-Control", "no-cache, max-age=0, must-revalidate, no-store");
 		if(lobb.getWhoPlays() != null && !lobb.getWhoPlays().isEmpty()) {
 			return "redirect:/game?id="+lobb.getId();
 		}
@@ -340,16 +342,17 @@ public class GameController {
 	}
 
 	@GetMapping("/game")
-	public String playGame(Model model, HttpSession session, String id) {
+	public String playGame(Model model, HttpSession session, String id, HttpServletResponse response) {
 		User user = (User) session.getAttribute("user");
 		if (user != null && id != null) {
+			response.setHeader( "Cache-Control", "no-cache, max-age=0, must-revalidate, no-store");
 			Lobby currentLobby = lobbyService.getLobby(Integer.parseInt(id));
-			if (currentLobby.getOwner()!=null && currentLobby.getOwner().equals(user.getUsername())) {
+			if (currentLobby != null && currentLobby.getOwner()!=null && currentLobby.getOwner().equals(user.getUsername())) {
 				model.addAttribute("grid", gameService.getOwnerGrid(currentLobby.getId()));
 				if (currentLobby.getWhoPlays() == null || currentLobby.getWhoPlays().isEmpty()) {
 					currentLobby.setWhoPlays(currentLobby.getOwner());
 				}
-			} else if (currentLobby.getChallenger()!=null && currentLobby.getChallenger().equals(user.getUsername())) {
+			} else if (currentLobby != null && currentLobby.getChallenger()!=null && currentLobby.getChallenger().equals(user.getUsername())) {
 				model.addAttribute("grid", gameService.getChallengerGrid(currentLobby.getId()));
 			}
 			model.addAttribute("lobby", currentLobby);
