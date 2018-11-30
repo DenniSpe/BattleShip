@@ -129,16 +129,17 @@ function appendTag(result) {
 }
 
 
-function cleanLobbyAfterFinish(){
-	alert("Clean")
+function cleanLobbyAfterFinish(lobbyid){
 	$.ajax({
-		url : "quit_lobby",
+		url : "destroy_lobby",
 		type : "POST",
+		data : { "lobby_id" : lobbyid },
 		success : function(result) {
-			alert("CLEAN LOBBY "+result)
+			
 		},
 			
-		error : function() {
+		error : function(res) {
+			console.log("errorrrrrrrrrrrrrrrrrrr"+res);
 			
 		}
 	});
@@ -157,8 +158,8 @@ function checkTurn() {
 		success : function(result) {
 			if(result.hasOwnProperty("youWin")){
 				$("#modal").on("click", function() {
-					cleanLobbyAfterFinish();
 				    window.location= "/BattleShip/";
+				    cleanLobbyAfterFinish(lobbyID);
 				});
 				if(result.youWin===true){
 //					alert("ganaste");

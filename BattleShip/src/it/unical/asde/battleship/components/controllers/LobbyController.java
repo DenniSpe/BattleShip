@@ -5,6 +5,8 @@ import java.util.concurrent.ForkJoinPool;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -152,7 +154,6 @@ public class LobbyController
     }
 
     @GetMapping("/quit_lobby")
-    @ResponseBody
     public String quit(@RequestParam final String lobby_id, final HttpSession session)
     {
 
@@ -180,6 +181,23 @@ public class LobbyController
         return "index";
     }
 
+    
+    @PostMapping("/destroy_lobby")
+    @ResponseBody
+    public void destroy_lobby(@RequestParam String lobby_id) {
+    	int id = Integer.parseInt(lobby_id);
+    	
+    	if(lobbyService.getLobbies().contains(lobbyService.getLobby(id)))
+    	{
+    		System.out.println("++++и+и+и+и+и+и+и+ INSIDE DESTROY LOBBY +и+и+ии+и+и+и+ии+и+и");
+	    	gameService.deleteGame(id);
+	        lobbyService.deleteLobby(id);
+    	}    
+    }
+    
+    
+    
+    
     @PostMapping("/refreshLobbyList")
     @ResponseBody
     public DeferredResult<String> refresh(final Model model)
