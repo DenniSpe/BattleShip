@@ -22,7 +22,7 @@
   <span class="glyphicon glyphicon-chevron-right" style="color:white;"></span>
     
   </button>
-      <a class="pull-left" href='<c:url value="/"></c:url>'><img class="img-responsive2" src="resources/assets/css/images/logo.png"  width= 170px></a>
+      <a id="linkLogo" class="pull-left" href='<c:url value="/"></c:url>'><img class="img-responsive2" src="resources/assets/css/images/logo.png"  width= 170px></a>
     </div>
     <div class="collapse navbar-collapse" id="navMain">
       <ul class="nav navbar-nav pull-right">
