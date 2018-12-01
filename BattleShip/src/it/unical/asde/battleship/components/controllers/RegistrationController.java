@@ -45,6 +45,7 @@ public class RegistrationController
         registrationService.insertUser(u);
         session.setAttribute("username", uname);
         session.setAttribute("user", u);
+        session.setAttribute("firstTime", true);
         
         utilService.setPlayingUser(u);
         

@@ -73,7 +73,7 @@ select#amount{
 				</select>
 			</div>
 		</div>
-
+${match.wonCreator}
 		<div class="table-responsive mt-1">
 			<table class="table table-hover">
 				<thead class="thead-dark">
@@ -88,6 +88,9 @@ select#amount{
 				</thead>
 				<tbody class="table-striped">
 					<c:forEach items="${ matches }" var="match">
+						<div>${match.wonCreator}</div>
+						<div>${match.creator.username}</div>
+						<div>${user.username}</div>
 						<tr>
 							<!--  <th scope="row">1</th>-->
 							<td><c:out value="${ match.matchName }"></c:out></td>
@@ -97,17 +100,26 @@ select#amount{
 									timeStyle="short" value="${match.startTime}" /></td>
 							<td><fmt:formatDate type="both" dateStyle="short"
 									timeStyle="short" value="${match.endTime}" /></td>
-							<td><c:choose>
+							<td>
+								<c:choose>
 									<c:when
 										test="${match.wonCreator && match.creator.username == user.username}">
 									Yes
-								</c:when>
+									</c:when>
 									<c:otherwise>
-									No
+									<c:choose>
+										<c:when
+										test="${!match.wonCreator && match.challenger.username == user.username}">
+										Yes
+										</c:when>
+										<c:otherwise>
+										No
+									</c:otherwise>
+								</c:choose>
 								</c:otherwise>
-								</c:choose></td>
-						</tr>
-
+								</c:choose>
+							</td>
+						</tr>					
 					</c:forEach>
 
 				</tbody>
@@ -173,7 +185,6 @@ select#amount{
 
  -->
 	</div>
-
 </body>
 </html>
 

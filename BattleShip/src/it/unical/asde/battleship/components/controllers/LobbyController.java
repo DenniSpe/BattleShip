@@ -231,7 +231,10 @@ public class LobbyController
             //System.out.println("===================================== INIZIO LOBBIES =====================================");
 
             model.addAttribute("lobbies", lobbyService.getLobbies());
-
+            if(session.getAttribute("firstTime")!=null) {
+            	model.addAttribute("fTime", session.getAttribute("firstTime"));
+            	session.removeAttribute("firstTime");
+            }
             //System.out.println("===================================== FINE LOBBIES =====================================");
 
             return "index";
