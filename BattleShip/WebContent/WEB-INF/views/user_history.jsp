@@ -88,9 +88,6 @@ ${match.wonCreator}
 				</thead>
 				<tbody class="table-striped">
 					<c:forEach items="${ matches }" var="match">
-						<div>${match.wonCreator}</div>
-						<div>${match.creator.username}</div>
-						<div>${user.username}</div>
 						<tr>
 							<!--  <th scope="row">1</th>-->
 							<td><c:out value="${ match.matchName }"></c:out></td>
