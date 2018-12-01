@@ -41,6 +41,7 @@ $(document).ready(function() {
 		rotateBoat("aircraft");
 	});
 	
+	
 	/*
 	 * 
 	 * Delete button
@@ -155,9 +156,23 @@ $("#button-aircraft-delete").click(function() {
 });
 	
 
+
+	$("#IR").click(function(){
+		$("#button-destroyer-delete").hide();
+		$("#button-submarine-delete").hide();
+		$("#button-cruiser-delete").hide();
+		$("#button-battleship-delete").hide();
+		$("#button-aircraft-delete").hide();
+		
+		$(".nameShip").hide();
+	});
 	
 
 });
+
+
+
+
 
 /*
  * TO DO
@@ -196,7 +211,7 @@ function checkAlive() {
 			console.log(result);
 			if(result)
 				{
-					if(result == "endGame")
+					if(result == false)
 						{
 						alert("Game interrupted");
 						window.location = "/BattleShip/lobbies";

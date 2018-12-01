@@ -94,17 +94,17 @@ public class GameController
 
     @PostMapping("/checkAlive")
     @ResponseBody
-    public String checkPlayerAreStillAlive(final Model model, final HttpSession session, @RequestParam final String lobby_id)
+    public boolean checkPlayerAreStillAlive(final Model model, final HttpSession session, @RequestParam final String lobby_id)
     {
         final int id = Integer.parseInt(lobby_id);
         final Lobby lobbyStillExist = lobbyService.getLobby(id);
 
         if (lobbyStillExist == null)
         {
-            return "endGame";
+            return false;
         }
 
-        return null;
+        return true;
 
     }
 
