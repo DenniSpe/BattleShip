@@ -21,6 +21,7 @@ var colAircraft = 0;
 var dirAircraft = 0;
 
 $(document).ready(function() {
+	checkAlive();
 	$("#IR").hide();
 	$("#loading").hide();
 	
@@ -80,7 +81,7 @@ $("#button-submarine-delete").click(function() {
 		data : {"boatID" : "submarine", "ID" : ID, "row" : rowSubmarine, "col" : colSubmarine, "dir" : dirSubmarine},
 		success : function(result){
 			
-			alert("Deleting boat submarine");
+			alert("Deleting boat submarine"+rowSubmarine+"..."+colSubmarine+".."+dirSubmarine+"--"+ID);
 			
 		},
 		error : function (){
@@ -161,10 +162,61 @@ $("#button-aircraft-delete").click(function() {
 /*
  * TO DO
  */
-function deleteShip(id)
+function deleteShip(id,direction)
 {
-	
+	if(id=="submarine")
+		{
+			for(var i=0; i<3;i++)
+				{
+						for(var j=0;j<3;j++)
+							{
+								if(direction==0)//in orizzontale
+									{
+										//ASK TO DARIO 
+									}
+							}
+				}
+		}
 }
+
+
+
+function checkAlive() {
+	var lobbyID = $("#lobbyId").attr("value");
+	
+	
+	$.ajax({
+		url : "checkAlive",
+		type : "POST",
+		data : {
+			"lobby_id" : lobbyID
+		},
+		success : function(result) {
+			
+			console.log(result);
+			if(result)
+				{
+					if(result == "endGame")
+						{
+						alert("Game interrupted");
+						window.location = "/BattleShip/lobbies";
+						}
+				}
+			setTimeout(function() {
+				checkAlive();
+			}, 1000);
+		},
+		error : function(result) {
+			console.log("ERRORE CHECK OWNER" + result);
+
+			//call events again after some time
+			setTimeout(function() {
+				checkAlive();
+			}, 1000);
+		}
+	});
+}
+
 
 function rotateBoat(id) {
 	console.log("MY ID IS = " + id);
@@ -209,6 +261,7 @@ function allowDrop(ev) {
 function drag(ev) {
 	ev.dataTransfer.setData("text", ev.target.id);
 }
+
 
 
 

@@ -168,6 +168,8 @@ body {
 
 	<div class='container'>
 		<div class='row'>
+		
+		<div class="col-md-12 col-sm-12">
 			<div class='loaderPixel'>
 				<h1 id="lobbyName" style="padding-bottom:5%">${ lobby.name }</h1>
 
@@ -286,32 +288,33 @@ body {
 
 			</div>
 		</div>
+		</div>
 
 
 	</div>
 
 <div class="row">
 <div class="col-md-12" style="padding-left:30%; padding-bottom:3%;">
-<h5 style="font-size:180%" class="challengerArrived">Hi ${user.username }, the challenger is arrived, start
+<h5 style="font-size:180%" class="challengerArrived">Hi ${user.username },  ${lobby.challenger } want to play with you, please start
 								the game</h5>
 								</div>
 </div>
 
+
 <div class="row">
-<div class="col-md-6" >
-		<a style="padding-left:70%"
+<div class="col-md-6 col-sm-12" >
+		<a 
 			href="<c:url value="/quit_lobby">
 				 				<c:param name="lobby_id" value="${lobby.id}" />
 				 		  </c:url>">
 			<input type="image"  src="resources/assets/css/images/goBack.png" style="width:30%; height:15%;"></input>
 		</a>
 	</div>
-<div class="col-md-6">
+<div class="col-md-6 col-sm-12">
 
-		<div class="challengerArrived" style="padding-left:10%;">
+		<div class="challengerArrived">
 		
-							
-		
+								
 							<form method="GET" action="startPositioning">
 								<input type="image"  src="resources/assets/css/images/start.png" style="width:30%; height:15%;">
 									</input>
@@ -324,7 +327,6 @@ body {
 	
 
 </div>
-
 
 
 </body>

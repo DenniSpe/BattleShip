@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	 for (var i = 1; i <= 10; i++) {
 		for (var j = 1; j <= 10; j++) {
 			console.log("#cellCG-" + i + "-" + j);
@@ -9,6 +10,7 @@ $(document).ready(function() {
 	}
 
 	checkTurn();
+	checkAlive();
 
 });
 
@@ -141,6 +143,42 @@ function cleanLobbyAfterFinish(lobbyid){
 		error : function(res) {
 			console.log("errorrrrrrrrrrrrrrrrrrr"+res);
 			
+		}
+	});
+}
+
+function checkAlive() {
+	var lobbyID = $("#lobbyId").attr("value");
+	
+	
+	$.ajax({
+		url : "checkAlive",
+		type : "POST",
+		data : {
+			"lobby_id" : lobbyID
+		},
+		success : function(result) {
+			
+			console.log(result);
+			if(result)
+				{
+					if(result == "endGame")
+						{
+						alert("Game interrupted");
+						window.location = "/BattleShip/lobbies";
+						}
+				}
+			setTimeout(function() {
+				checkAlive();
+			}, 1000);
+		},
+		error : function(result) {
+			console.log("ERRORE CHECK OWNER" + result);
+
+			//call events again after some time
+			setTimeout(function() {
+				checkAlive();
+			}, 1000);
 		}
 	});
 }

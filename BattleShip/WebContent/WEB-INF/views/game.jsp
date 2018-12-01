@@ -37,6 +37,14 @@ padding-top: 5%;
 
 <body>
 
+			<div class="col-md-6">
+			<a 
+			href="<c:url value="/leaveGame">
+				 				<c:param name="lobby_id" value="${lobby.id}" />
+				 		  </c:url>">
+			<input type="image"  src="resources/assets/css/images/leaveGame.png" style="width:10%; height:5%;"></input>
+		</a>
+		</div>
 	<div class="row text-center">		
 		<c:choose>
 			<c:when test="${user.username == lobby.owner}">
