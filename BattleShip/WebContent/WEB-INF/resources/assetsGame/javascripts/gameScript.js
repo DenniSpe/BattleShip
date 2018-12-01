@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	$("#arbitraryWin").hide();
 	
 	 for (var i = 1; i <= 10; i++) {
 		for (var j = 1; j <= 10; j++) {
@@ -11,6 +12,7 @@ $(document).ready(function() {
 
 	checkTurn();
 	checkAlive();
+	
 
 });
 
@@ -85,31 +87,7 @@ function refreshGrid() {
 
 }
 
-//function appendTag(result) {
-//
-//	var str = result.split('-');
-//	var i = str[1];
-//	var j = str[2];
-//	var winner = str[3];
-//	
-//	if (str[0] == "miss") {
-//		$("#cellCG-" + i + "-" + j)
-//				.append(
-//						'<i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i>');
-//	}
-//	if (str[0] == "hit") {
-//		$("#cellCG-" + i + "-" + j).append(
-//				'<img src="resources/assetsGame/images/1331900690_fire.png">');
-//	
-//		if(str[3] == "OWNERWIN"){
-//			return "OWNERWIN";
-//		}
-//		else if(str[3] == "CHALLENGERWIN"){
-//			return "CHALLENGERWIN";
-//		}
-//	}
-//	
-//}
+
 
 function appendTag(result) {
 
@@ -160,14 +138,20 @@ function checkAlive() {
 		success : function(result) {
 			
 			console.log(result);
-			if(result)
-				{
-					if(result == "endGame")
+			
+					if(result == false)
 						{
-						alert("Game interrupted");
-						window.location = "/BattleShip/lobbies";
+						$("#labelWin").addClass("hidden");
+						$("#labelLoose").addClass("hidden");
+						$("#arbitraryWin").show();
+						
+						$('#modal').modal('show');
+						setTimeout(function() {
+							window.location = "/BattleShip/lobbies";
+						}, 3000);
+						
 						}
-				}
+				
 			setTimeout(function() {
 				checkAlive();
 			}, 1000);

@@ -209,14 +209,13 @@ function checkAlive() {
 		success : function(result) {
 			
 			console.log(result);
-			if(result)
-				{
+			
 					if(result == false)
 						{
-						alert("Game interrupted");
+						alert("Match interrupted, your challenger left the game !!");
 						window.location = "/BattleShip/lobbies";
 						}
-				}
+				
 			setTimeout(function() {
 				checkAlive();
 			}, 1000);
@@ -239,12 +238,12 @@ function rotateBoat(id) {
 	var pos = 0;
 	
 	var img = document.getElementById(id);
-	if (img.getAttribute("style") == "transform:rotate(90deg); height: 45%; width: 75%;") {
-		img.setAttribute("style","transform:rotate(0deg); height: 45%; width: 75%;");
+	if (img.getAttribute("style") == "transform:rotate(90deg); height: 5%; width: 35%;") {
+		img.setAttribute("style","transform:rotate(0deg); height: 5%; width: 35%;");
 		
 		pos = 0;
 	} else {
-		img.setAttribute("style","transform:rotate(90deg); height: 45%; width: 75%;");
+		img.setAttribute("style","transform:rotate(90deg); height: 5%; width: 35%;");
 		
 		pos = 1;
 	}
