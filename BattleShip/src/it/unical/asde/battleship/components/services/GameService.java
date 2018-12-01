@@ -80,7 +80,7 @@ public class GameService
     	Match match = new Match();
     	match.setEndTime(currentLobby.getEndingTimeStamp());
     	match.setStartTime(currentLobby.getStartingTimeStamp());
-    	match.setWonCreator(isOwner);
+    	match.setWonCreator(isOwner); 
     	match.setChallenger(utilService.getPlayingUser(currentLobby.getChallenger()));
     	match.setCreator(utilService.getPlayingUser(currentLobby.getOwner()));
     	match.setMatchName(currentLobby.getName());

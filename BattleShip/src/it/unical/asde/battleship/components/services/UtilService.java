@@ -28,11 +28,17 @@ public class UtilService {
 	public void init() {
 		User a = new User("mano", "mano");
 		User b = new User("borro", "borro");
+		User c = new User("de", "de");
+		User d = new User("fra", "fra");
+		User e = new User("da","da");
 		
 		playingUsers = new HashMap<>();
 
 		userDAO.save(a);
 		userDAO.save(b);
+		userDAO.save(c);
+		userDAO.save(d);
+		userDAO.save(e);
 
 		Match m = new Match();
 		m.setEndTime(new Date());
@@ -96,6 +102,55 @@ public class UtilService {
 		m7.setCreator(b);
 		m7.setMatchName("Hard Match");
 
+		
+		Match m8 = new Match();
+		m8.setEndTime(new Date());
+		m8.setStartTime(new Date());
+		m8.setWonCreator(true);
+		m8.setChallenger(d);
+		m8.setCreator(c);
+		m8.setMatchName("Stanza");
+		
+		Match m9 = new Match();
+		m9.setEndTime(new Date());
+		m9.setStartTime(new Date());
+		m9.setWonCreator(true);
+		m9.setChallenger(a);
+		m9.setCreator(c);
+		m9.setMatchName("ItalianRoom");
+		
+		Match m10 = new Match();
+		m10.setEndTime(new Date());
+		m10.setStartTime(new Date());
+		m10.setWonCreator(true);
+		m10.setChallenger(e);
+		m10.setCreator(c);
+		m10.setMatchName("Sfida");
+		
+		Match m11 = new Match();
+		m11.setEndTime(new Date());
+		m11.setStartTime(new Date());
+		m11.setWonCreator(true);
+		m11.setChallenger(e);
+		m11.setCreator(d);
+		m11.setMatchName("Match 1");
+		
+		Match m12 = new Match();
+		m12.setEndTime(new Date());
+		m12.setStartTime(new Date());
+		m12.setWonCreator(true);
+		m12.setChallenger(c);
+		m12.setCreator(d);
+		m12.setMatchName("Match Piana");
+		
+		Match m13 = new Match();
+		m13.setEndTime(new Date());
+		m13.setStartTime(new Date());
+		m13.setWonCreator(true);
+		m13.setChallenger(d);
+		m13.setCreator(e);
+		m13.setMatchName("Challange");
+		
 		matchDAO.save(m);
 		matchDAO.save(m1);
 		matchDAO.save(m2);
@@ -104,6 +159,12 @@ public class UtilService {
 		matchDAO.save(m5);
 		matchDAO.save(m6);
 		matchDAO.save(m7);
+		matchDAO.save(m8);
+		matchDAO.save(m9);
+		matchDAO.save(m10);
+		matchDAO.save(m11);
+		matchDAO.save(m12);
+		matchDAO.save(m13);
 
 	}
 

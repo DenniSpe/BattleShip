@@ -5,8 +5,6 @@ import java.util.concurrent.ForkJoinPool;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,14 +27,14 @@ public class LobbyController
 
     @Autowired
     private LobbyService lobbyService;
+    
     @Autowired
     private GameService gameService;
 
     @PostMapping("/checkOwner")
     @ResponseBody
     public DeferredResult<String> checkOwner(@RequestParam final String lobby_id)
-    {//@RequestParam String lobbyID){
-
+    {
         int id = -1;
         try
         {
@@ -44,8 +42,9 @@ public class LobbyController
         }
         catch (final Exception e)
         {
-            // TODO: handle exception
+        	e.printStackTrace();
         }
+        
         final Lobby fakeLobby = new Lobby();
         fakeLobby.setId(id);
 
@@ -54,10 +53,7 @@ public class LobbyController
             {
 
                 final boolean isLobby = lobbyService.getLobbies().contains(fakeLobby);
-                //String o = (!lobbyService.getLobby(ID).getOwner().equals(null) ? "owner" : "notOwner");
 
-                //System.out.println("O IN JAVA "+o);
-                //output.setResult(o);
                 if (isLobby)
                 {
                     output.setResult("owner");
@@ -71,27 +67,27 @@ public class LobbyController
         return output;
     }
 
+    
     @PostMapping("/new_lobby")
     public String createLobby(final Model model, @RequestParam final String lobby_name, @RequestParam final String lobby_owner,
             final HttpSession session)
     {
 
-        System.out.println("===================================== INIZIO NEW LOBBY =====================================");
-
-        final User owner = (User) session.getAttribute("user");
+        //System.out.println("===================================== INIZIO NEW LOBBY =====================================");
 
         final Lobby myLobby = new Lobby(lobbyService.assignLobbyID(), lobby_name, lobby_owner);
         myLobby.setLobbyStarted(false);
 
-        System.out.println("OWNER =======================" + owner.getUsername());
-        System.out.println("LOBBY ID =======================" + myLobby.getId());
         lobbyService.addLobby(myLobby);
-        //E' necessario caricarle tutte qui?
+        
+        //TODO : E' necessario caricarle tutte qui?
         model.addAttribute("lobbies", lobbyService.getLobbies());
+        //TODO : Il lobby ID non me lo posso ricavare con ${ lobby.id} ??
+        //E' necessario salvarlo in "currentLobbyID" ?
         model.addAttribute("lobby", myLobby);
         model.addAttribute("currentLobbyID", myLobby.getId());
 
-        System.out.println("===================================== FINE NEW LOBBY =====================================");
+        //System.out.println("===================================== FINE NEW LOBBY =====================================");
 
         return "redirect:/insideLobby?id=" + myLobby.getId();
 
@@ -100,10 +96,10 @@ public class LobbyController
     @GetMapping("/insideLobby")
     public String insideLobby(@RequestParam final String id, final Model model, HttpSession session)
     {
-        //		String some = (String) model.asMap().get("lobbyId");
     	if(session.getAttribute("user")!=null) {
 	        final int idLobby = Integer.parseInt(id);
 	        final Lobby mylobby = lobbyService.getLobby(idLobby);
+	        //TODO : Perchи inside lobbies ci servono tutte le lobby ?  
 	        model.addAttribute("lobbies", lobbyService.getLobbies());
 	        model.addAttribute("lobby", mylobby);
 	        model.addAttribute("currentLobbyID", mylobby.getId());
@@ -119,32 +115,21 @@ public class LobbyController
         if (session.getAttribute("user") != null)
         {
             final User user = (User) session.getAttribute("user");
-            System.out.println("===================================== INIZIO JOIN LOBBY =====================================");
+            //System.out.println("===================================== INIZIO JOIN LOBBY =====================================");
             final int id = Integer.parseInt(lobby_id);
-
             final Lobby myLobby = lobbyService.getLobby(id);
-            System.out.println("LOBBY ID= " + myLobby.getId());
-            System.out.println("NAME= " + myLobby.getName());
-            System.out.println("OWNER= " + myLobby.getOwner());
-            System.out.println(" CHALLENGER= " + myLobby.getChallenger());
+
             if (myLobby.getChallenger() == null && !user.getUsername().equalsIgnoreCase(myLobby.getOwner()))
             {
-                System.out.println("LOBBY ID= " + myLobby.getId());
-                System.out.println("NAME= " + myLobby.getName());
-                System.out.println("OWNER= " + myLobby.getOwner());
-                System.out.println(" CHALLENGER= " + myLobby.getChallenger());
-
                 myLobby.setChallenger(user.getUsername());
-
                 lobbyService.addLobby(myLobby);
 
+                //TODO : Anche qui, perchи ci salviamo l'id della lobby e non lo prendiamo direttamente
+                // con ${ lobby.id }
                 model.addAttribute("lobby", myLobby);
                 model.addAttribute("currentLobbyID", myLobby.getId());
 
-                System.out.println("======================JOIN LOBBY CHALLENGER AGGIUNTO ========" + myLobby.getChallenger());
-                System.out.println("======================JOIN LOBBY ID ========" + myLobby.getId());
-
-                System.out.println("===================================== FINE JOIN LOBBY =====================================");
+                //System.out.println("===================================== FINE JOIN LOBBY =====================================");
 
                 return "lobby";
             }
@@ -153,6 +138,7 @@ public class LobbyController
         return "redirect:/";
     }
 
+    
     @GetMapping("/quit_lobby")
     public String quit(@RequestParam final String lobby_id, final HttpSession session)
     {
@@ -162,11 +148,8 @@ public class LobbyController
         if (username != null && username.equals(lobbyService.getLobby(id).getOwner())
                 && lobbyService.getLobby(id).getChallenger() != null)
         {
-            //			existsOwner = false;
         	gameService.deleteGame(id);
             lobbyService.deleteLobby(id);
-
-            //lobbyService.getLobby(id).setChallenger(lobbyService.getLobby(id).getChallenger());
         }
         else if (session.getAttribute("username").equals(lobbyService.getLobby(id).getOwner())
                 && lobbyService.getLobby(id).getChallenger() == null)
@@ -190,7 +173,7 @@ public class LobbyController
     	if(lobbyService.getLobbies().contains(lobbyService.getLobby(id)))
     	{
     		try {
-    		System.out.println("++++и+и+и+и+и+и+и+ INSIDE DESTROY LOBBY +и+и+ии+и+и+и+ии+и+и");
+    		//System.out.println("++++и+и+и+и+и+и+и+ INSIDE DESTROY LOBBY +и+и+ии+и+и+и+ии+и+и");
 	    	gameService.deleteGame(id);
 	        lobbyService.deleteLobby(id);
 	        
@@ -213,7 +196,7 @@ public class LobbyController
     public DeferredResult<String> refresh(final Model model)
     {
 
-        System.out.println("===================================== INIZIO REFRESH =====================================");
+        //System.out.println("===================================== INIZIO REFRESH =====================================");
         model.addAttribute("lobbies", lobbyService.getLobbies());
         //System.out.println("SIZE DELLE LOBBIES = "+lobbyService.getLobbies())
         final DeferredResult<String> output = new DeferredResult<>();
@@ -222,7 +205,7 @@ public class LobbyController
         try
         {
             final String jsonArray = obj.writeValueAsString(lobbyService.getLobbies());
-            System.out.println(jsonArray);
+            //System.out.println(jsonArray);
             ForkJoinPool.commonPool().submit(() ->
                 {
                     output.setResult(jsonArray);
@@ -230,11 +213,10 @@ public class LobbyController
         }
         catch (final JsonProcessingException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        System.out.println("===================================== FINE REFRESH =====================================");
+        //System.out.println("===================================== FINE REFRESH =====================================");
 
         return output;
 
@@ -246,14 +228,11 @@ public class LobbyController
 
         if (session.getAttribute("user") != null)
         {
-
-            System.out.println("===================================== INIZIO LOBBIES =====================================");
-
-            System.out.println("====================== SIZE DELLE LOBBIES = " + lobbyService.getLobbies().size());
+            //System.out.println("===================================== INIZIO LOBBIES =====================================");
 
             model.addAttribute("lobbies", lobbyService.getLobbies());
 
-            System.out.println("===================================== FINE LOBBIES =====================================");
+            //System.out.println("===================================== FINE LOBBIES =====================================");
 
             return "index";
         }
@@ -268,41 +247,22 @@ public class LobbyController
     public DeferredResult<String> waiting(final Model model, final HttpSession session, @RequestParam final String lobbyID)
             throws InterruptedException
     {
-        System.out.println("===================================== INIZIO WAITING =====================================");
+        //System.out.println("===================================== INIZIO WAITING =====================================");
         final int ID = Integer.parseInt(lobbyID);
         final Lobby l = lobbyService.getLobby(ID);
 
         model.addAttribute("lobby", l);
 
-        System.err.println(l.isLobbyStarted() + "______>_>_>rsdtfyghujk");
         final DeferredResult<String> output = new DeferredResult<>();
         ForkJoinPool.commonPool().submit(() ->
             {
-                System.out.println("tertwertert " + l.getId());
                 output.setResult(l.getChallenger() == null ? "" : l.getChallenger() + ":" + l.isLobbyStarted());
 
             });
 
-        System.out.println("===================================== FINE WAITING =====================================");
+        //System.out.println("===================================== FINE WAITING =====================================");
 
         return output;
     }
-
-    //	@GetMapping("/getEvents")
-    //	@ResponseBody
-    //	public DeferredResult<String> getEvents(HttpSession session) {
-    //
-    //		DeferredResult<String> output = new DeferredResult<>();
-    //		ForkJoinPool.commonPool().submit(() -> {
-    //			try {
-    //				//output.setResult(eventsService.nextEvent(session.getId()));
-    //				output.setResult(eventsService.giveMeChallenger(session.getId()));
-    //			} catch (InterruptedException e) {
-    //				output.setResult("An error occurred during event retrieval");
-    //			}
-    //		});
-    //
-    //		return output;
-    //}
 
 }

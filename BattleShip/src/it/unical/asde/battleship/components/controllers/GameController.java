@@ -38,6 +38,7 @@ public class GameController {
 
 	public int getLength(String boatName) {
 		int boatSize = 0;
+		
 		switch (boatName) {
 		case "destroyer":
 			boatSize = (2);
@@ -63,23 +64,16 @@ public class GameController {
 	private static boolean hasErrorOnPositioning(final int row, final int col, final int dir, final Grid grid,
 			final int boatSize) {
 
-		// Count � la size della mia barca
-		System.out.println("MY DEBUG: length is " + boatSize);
-
-		// Check if off grid - Horizontal
+		// If the direction is Horizontal (0)
 		if (dir == 0) {
-			// final int checker = length + col;
-			System.out.println("MY DEBUG HORIZONTAL : checker is " + (col + boatSize - 1));
 			if (col + boatSize - 1 > 10) {
 				return true;
 			}
 		}
 
-		// Check if off grid - Vertical
-		if (dir == 1) // VERTICAL
+		// If the direction is Vertical (1)
+		if (dir == 1) 
 		{
-			// final int checker = length + row;
-			System.out.println("MY DEBUG VERTICAL: checker is " + (row + boatSize - 1));
 			if (row + boatSize - 1 > 10) {
 				return true;
 			}
@@ -88,13 +82,11 @@ public class GameController {
 		// Check if overlapping with another ship
 		if (dir == 0) // Hortizontal
 		{
-			if (col + boatSize - 1 > 10) {
-				System.out.println("MY DEBUG: vuoi scrivere fino a = " + (col + boatSize - 1));
-				return true;
-			}
+//			if (col + boatSize - 1 > 10) {
+//				return true;
+//			}
 			// For each location a ship occupies, check if ship is already there
 			for (int i = col; i < col + boatSize; i++) {
-				System.out.println("MY DEBUG: row = " + row + "; col = " + i);
 				if (grid.hasShip(row, i)) {
 					return true;
 				}
@@ -102,13 +94,11 @@ public class GameController {
 		} else if (dir == 1) // Vertical
 		{
 
-			if (row + boatSize - 1 > 10) {
-				System.out.println("MY DEBUG: vuoi scrivere fino a = " + (row + boatSize - 1));
-
-			}
+//			if (row + boatSize - 1 > 10) {
+//				return true;
+//			}
 			// For each location a ship occupies, check if ship is already there
 			for (int i = row; i < row + boatSize; i++) {
-				System.out.println("DEBUG: row = " + i + "; col = " + col);
 				if (grid.hasShip(i, col)) {
 					return true;
 				}
@@ -122,8 +112,7 @@ public class GameController {
 	@PostMapping("/deleteBoatFromGrid")
 	@ResponseBody
 	public boolean deleteBoatFromGrid(@RequestParam String boatID, @RequestParam String ID, @RequestParam String row, @RequestParam String col, @RequestParam String dir, HttpSession session) {
-		System.out.println("YOU ARE DELETING BOAT "+boatID);
-		
+
 		int boatRow = Integer.parseInt(row);
 		int boatCol = Integer.parseInt(col);
 		int length = getLength(boatID);
@@ -167,18 +156,14 @@ public class GameController {
 		return true;
 	}
 	
-	
-	
-	// TODO Cosa fa sto metodo ? Diamo nomi esplicativi. Credo restituisca la cella
-	// colpita.. serve ancora??
+
 	@PostMapping("/shoot")
 	@ResponseBody
 	public Map<String, Object> shoot(final String cella, final HttpSession session, String id) {
-		// final DeferredResult<String> output = new DeferredResult<>();
 
 		int row = Integer.parseInt(cella.split("-")[1]);
 		int col = Integer.parseInt(cella.split("-")[2]);
-		String shot = "";
+
 		Map<String, Object> response = new HashMap<String, Object>();
 		User user = (User) session.getAttribute("user");
 		if (user != null || id != null) {
@@ -198,18 +183,14 @@ public class GameController {
 						gameService.getGrid(currentLobby.getId(), !isOwner).print();
 						System.out.println(isOwner ? "CHALLANGER" : "OWNER" +"END GRID AFTER SHOOT");
 						
-						shot = "hit-" + row + "-" + col;
 						response.put("hit", true);
 						if (!gameService.hasMoreShips(currentLobby.getId(), isOwner)) {
 							// OWNER WIN
 							currentLobby.setWinner(user.getUsername());
-							shot += "-OWNERWIN";
 							response.put("youWin", true);
 						}
 					} else {
 							gameService.getGrid(currentLobby.getId(), !isOwner).markMiss(row, col);
-							// output.setResult("miss-" + row + "-" + col);
-							shot = "miss-" + row + "-" + col;
 							response.put("hit", false);
 							currentLobby.setWhoPlays(isOwner ? currentLobby.getChallenger() : currentLobby.getOwner());
 						}
@@ -275,7 +256,6 @@ public class GameController {
 				//++REFACTORED
 			} else {
 				response.put("waitTurn", true);
-				shot = "wait-turn";
 			}
 
 		}
@@ -295,14 +275,11 @@ public class GameController {
 
 		final int lobbyID = Integer.parseInt(ID);
 		final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-		System.out.println("LOOOOOOOOBBY" + lobbyID);
 
 		final int row = Integer.parseInt(cella.split("-")[1]);
 		final int col = Integer.parseInt(cella.split("-")[2]);
 
 		final int direction = dir.split("\\([^0-9]*")[1].split("deg")[0].equals("0") ? 0 : 1;
-
-		// TODO I extract boat-size from the id of the img tag in the jsp
 
 		final DeferredResult<String> output = new DeferredResult<>();
 
@@ -383,15 +360,10 @@ public class GameController {
 		return output;
 	}
 
-//	@GetMapping("/startGame")
-//	public String startGame(@RequestParam final String id) { // TODO prendere l'id della lobby dalla jsp
-//		final int lobbyID = Integer.parseInt(id);
-//		gameService.startGame(lobbyID);
-//		return "game";
-//	}
-
+	
 	@GetMapping("/startPositioning")
 	public String startPositioning(final Model model, final HttpSession session, @RequestParam final String ID) {
+		
 		User user = (User) session.getAttribute("user");
 		Lobby lobb = lobbyService.getLobby(Integer.parseInt(ID));
 		if(lobb.getWhoPlays() != null && !lobb.getWhoPlays().isEmpty()) {
@@ -414,17 +386,14 @@ public class GameController {
 	@GetMapping("/waitingStart")
 	@ResponseBody
 	public DeferredResult<String> waitingStart(@RequestParam final String ID, final HttpSession session) {
+
 		final int lobbyID = Integer.parseInt(ID);
 		final DeferredResult<String> output = new DeferredResult<>();
 		final Lobby currentLobby = lobbyService.getLobby(lobbyID);
 
-		boolean isOwner = false;
-
 		final String username = (String) session.getAttribute("username");
-		if (username.equals(currentLobby.getOwner())) {
-			isOwner = true;
-		}
-
+		boolean isOwner = username.equals(currentLobby.getOwner());
+		
 		gameService.userIsReady(lobbyID, isOwner);
 		
 		// ++ REFACTORED ++ 
@@ -439,7 +408,6 @@ public class GameController {
 		if (gameService.usersAreReady(lobbyID)) {
 
 			lobbyService.getLobby(lobbyID).setStartingTimeStamp(new Date());
-			System.out.println("LA PARTITA STA INIZIANDO " + lobbyService.getLobby(lobbyID).getStartingTimeStamp());
 
 			ForkJoinPool.commonPool().submit(() -> {
 				output.setResult("game");
@@ -456,8 +424,10 @@ public class GameController {
 		return output;
 	}
 
+	
 	@GetMapping("/game")
 	public String playGame(Model model, HttpSession session, String id) {
+		
 		User user = (User) session.getAttribute("user");
 		if (user != null && id != null) {
 			Lobby currentLobby = lobbyService.getLobby(Integer.parseInt(id));
@@ -492,6 +462,7 @@ public class GameController {
 		return "redirect:/";
 	}
 
+	
 	@PostMapping("/checkTurn")
 	@ResponseBody
 	public Map<String, Object> checkTurn(Optional<Integer> lobbyid, HttpSession session) {
@@ -518,7 +489,7 @@ public class GameController {
 			
 			// ====================================================================
 			boolean isOwner = current.getOwner().equals(user.getUsername());
-			System.out.println("E' IL TURNO DI "+ (isOwner ? "OWNER" : "CHALLENGER"));
+
 			List<Tupla> list = new ArrayList<>();
 			for (int i = 1; i <= 10; i++) {
 				for (int j = 1; j <= 10; j++) {
