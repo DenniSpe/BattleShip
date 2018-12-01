@@ -2,13 +2,9 @@ package it.unical.asde.battleship.components.persistence.global;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractBaseDAO<T, X extends Serializable> {
@@ -50,7 +46,6 @@ public abstract class AbstractBaseDAO<T, X extends Serializable> {
 			session.persist(object);
 			tx.commit();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			tx.rollback();
 		}
@@ -68,7 +63,6 @@ public abstract class AbstractBaseDAO<T, X extends Serializable> {
 			session.update(object);
 			tx.commit();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			tx.rollback();
 		}
@@ -82,7 +76,6 @@ public abstract class AbstractBaseDAO<T, X extends Serializable> {
 			session.delete(object);
 			tx.commit();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			tx.rollback();
 		}
@@ -107,10 +100,12 @@ public abstract class AbstractBaseDAO<T, X extends Serializable> {
 		}
 	}
 
+	
+	//TODO : Possiamo eliminarla ??
 	public List<T> getAll() {
 
 		return (List<T>) getCurrentSession().createQuery("from " + gettClass()).list();
-
+//
 //		Session session = sessionFactory.getCurrentSession();
 //		CriteriaBuilder builder = session.getCriteriaBuilder();
 //		CriteriaQuery<T> query = builder.createQuery(tClass);
@@ -119,5 +114,6 @@ public abstract class AbstractBaseDAO<T, X extends Serializable> {
 //		Query<T> q = session.createQuery(query);
 //		return q.getResultList();
 	}
+
 
 }

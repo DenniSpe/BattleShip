@@ -22,8 +22,8 @@ import org.springframework.web.context.request.async.DeferredResult;
 
 import it.unical.asde.battleship.components.services.GameService;
 import it.unical.asde.battleship.components.services.LobbyService;
-import it.unical.asde.battleship.game.Lobby;
 import it.unical.asde.battleship.model.Grid;
+import it.unical.asde.battleship.model.Lobby;
 import it.unical.asde.battleship.model.Tupla;
 import it.unical.asde.battleship.model.User;
 

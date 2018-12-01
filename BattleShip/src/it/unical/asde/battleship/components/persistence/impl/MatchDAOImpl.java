@@ -1,9 +1,7 @@
 package it.unical.asde.battleship.components.persistence.impl;
 
-import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;

@@ -1,4 +1,4 @@
-package it.unical.asde.battleship.game;
+package it.unical.asde.battleship.model;
 
 import java.util.Date;
 

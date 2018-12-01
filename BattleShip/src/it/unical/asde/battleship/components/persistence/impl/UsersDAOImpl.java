@@ -3,10 +3,7 @@ package it.unical.asde.battleship.components.persistence.impl;
 import javax.annotation.PostConstruct;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import it.unical.asde.battleship.components.persistence.UsersDAO;
@@ -21,14 +18,15 @@ public class UsersDAOImpl extends AbstractBaseDAO<User, Long> implements UsersDA
 		// TODO Auto-generated constructor stub
 	}
 
-	@PostConstruct
-	public void init() {
-//		save(new User("Dennis","1234"));
-//		save(new User("Francesco","abcd"));
-//		save(new User("Pierpaolo","P1"));
-//		save(new User("Dario","dario"));
-
-	}
+	//++REFACTORED++
+//	@PostConstruct
+//	public void init() {
+////		save(new User("Dennis","1234"));
+////		save(new User("Francesco","abcd"));
+////		save(new User("Pierpaolo","P1"));
+////		save(new User("Dario","dario"));
+//
+//	}
 
 //	public void save(User user) {
 //		Session session = sessionFactory.openSession();
@@ -46,7 +44,9 @@ public class UsersDAOImpl extends AbstractBaseDAO<User, Long> implements UsersDA
 //		session.close();
 //
 //	}
-
+	//++REFACTORED++
+	
+	
 	public User checkCredentials(User user) {
 		Session openSession = sessionFactory.openSession();
 		Query<User> query = openSession.createQuery("from User as u where u.username=:n and u.password=:p", User.class)

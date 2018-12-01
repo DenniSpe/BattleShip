@@ -8,7 +8,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
 
-import it.unical.asde.battleship.game.Lobby;
+import it.unical.asde.battleship.model.Lobby;
 
 @Service
 public class LobbyService

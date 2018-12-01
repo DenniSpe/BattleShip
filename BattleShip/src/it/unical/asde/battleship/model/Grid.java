@@ -8,7 +8,6 @@ public class Grid {
 	public static final int NUM_COLS = 11;
 
 	public Grid() {
-		System.out.println("================= COSTRUISCO GRID ======================");
 		grid = new int[NUM_ROWS][NUM_COLS];
 		for (int row = 1; row < grid.length; row++) {
 			for (int col = 1; col < grid[row].length; col++) {
@@ -18,8 +17,7 @@ public class Grid {
 		}
 	}
 
-	// Mark a hit in this location by calling the markHit method
-	// on the Location object.
+	// Mark a hit in this location
 	public void markHit(int row, int col) {
 		grid[row][col] = 1;
 	}
@@ -29,8 +27,6 @@ public class Grid {
 		grid[row][col] = -1;
 	}
 
-	
-	
 	// Get the status of this location in the grid
 	public int getContent(int row, int col) {
 		return grid[row][col];
@@ -44,6 +40,7 @@ public class Grid {
 		return false;
 
 	}
+
 
 	public int tipeShip(int row, int col) {
 		if(hasShip(row, col)) {
@@ -72,10 +69,8 @@ public class Grid {
 	}
 
 	public void setShip(int row, int col, int numShip, int direction) {
-		System.out.println("===== DENTRO GRID SETSHIP CON row = "+row+" col = "+col+" numship = "+numShip+" direction = "+direction);
-		
-		
-			if (direction == 0) { // horizontal
+
+		if (direction == 0) { // horizontal
 				for(int i = col; i < col + numShip; i++) {
 						grid[row][i] = numShip;
 				}

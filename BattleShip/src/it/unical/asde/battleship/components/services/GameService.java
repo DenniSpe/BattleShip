@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.unical.asde.battleship.components.persistence.MatchDAO;
-import it.unical.asde.battleship.game.Lobby;
 import it.unical.asde.battleship.model.Grid;
+import it.unical.asde.battleship.model.Lobby;
 import it.unical.asde.battleship.model.Match;
 
 @Service
@@ -136,8 +136,6 @@ public class GameService
     //++ REFACTORED ++
     public Grid getGrid(int lobbyID, boolean isOwner) {
     	Lobby currentLobby = lobbyService.getLobby(lobbyID);
-    	
-    	System.out.println("CONTROLLO LA GRIGLIA DI "+(isOwner ? "OWNER" :  "CHALLENGER"));
     	
     	if(isOwner) {
     		return gridOwner.get(currentLobby.getOwner());

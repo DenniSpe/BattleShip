@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.unical.asde.battleship.components.services.GameService;
 import it.unical.asde.battleship.components.services.LobbyService;
-import it.unical.asde.battleship.game.Lobby;
+import it.unical.asde.battleship.model.Lobby;
 import it.unical.asde.battleship.model.User;
 
 @Controller
