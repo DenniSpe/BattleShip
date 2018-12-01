@@ -163,6 +163,8 @@ $("#button-aircraft-delete").click(function() {
 		$("#button-cruiser-delete").hide();
 		$("#button-battleship-delete").hide();
 		$("#button-aircraft-delete").hide();
+		
+		$(".nameShip").hide();
 	});
 	
 
