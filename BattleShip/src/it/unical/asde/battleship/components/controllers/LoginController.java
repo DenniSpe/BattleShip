@@ -48,8 +48,9 @@ public class LoginController
     @GetMapping("/logout")
     public String logout(final HttpSession session)
     {
-        utilService.deletePlayingUser((User) session.getAttribute("user"));
-
+    	if(session.getAttribute("user")!=null) {
+    		utilService.deletePlayingUser((User) session.getAttribute("user"));
+    	}
         session.invalidate();
         return "redirect:/";
     }

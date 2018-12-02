@@ -11,12 +11,11 @@ $(document).ready(function() {
 	}
 
 	checkTurn();
-	checkAlive();
-	
+	checkAlive();	
 
 });
 
-
+var winner = false;
 
 function shoot(cellacliccata) {
 	var lobbyID = $("#lobbyId").attr("value");
@@ -32,12 +31,15 @@ function shoot(cellacliccata) {
 //			alert("IL RESULT DI SHOOT E' "+result);
 			
 			if(result.youWin){
-				appendTag(result);		
+				winner = true;
+				appendTag(result);
 				$("#modal").on("click", function() {
 				     window.location= "/BattleShip/";
 				});	
 				$("#labelWin").removeClass("hidden");
 				$("#labelLoose").addClass("hidden");
+				$("#boatDestroyed").addClass("hidden");
+				
 				$('#modal').modal('show');
 //				if(whoWin == "OWNERWIN"){
 //					alert("HA VINTO L'OWNER");
@@ -45,12 +47,16 @@ function shoot(cellacliccata) {
 //				else if(whoWin == "CHALLENGERWIN"){
 //					alert("HA VINTO IL CHALLENGER");
 //				}
+				
 			}
 			else if(result.waitTurn){
 //				$('#modal').modal('show');
 			}
 			else if(result.boatDestroyed == true){
-				alert("You have destroyed a boat !!");
+				$("#labelWin").addClass("hidden");
+				$("#labelLoose").addClass("hidden");
+				$("#boatDestroyed").removeClass("hidden");
+				$('#modal').modal('show');
 			}
 			else{
 				var whoWin = appendTag(result);				
@@ -144,12 +150,12 @@ function checkAlive() {
 		},
 		success : function(result) {
 			
-			console.log(result);
-			
-					if(result == false)
+			console.log(winner);
+					if(result == false && !winner)
 						{
 						$("#labelWin").addClass("hidden");
 						$("#labelLoose").addClass("hidden");
+						$("#boatDestroyed").addClass("hidden");
 						$("#arbitraryWin").show();
 						
 						$('#modal').modal('show');
@@ -188,6 +194,7 @@ function checkTurn() {
 		success : function(result) {
 
 			if(result.hasOwnProperty("youWin")){
+				winner = true;
 				$("#modal").on("click", function() {
 				    window.location= "/BattleShip/";
 				    cleanLobbyAfterFinish(lobbyID);
@@ -196,9 +203,11 @@ function checkTurn() {
 //					alert("ganaste");
 					$("#labelWin").removeClass("hidden");
 					$("#labelLoose").addClass("hidden");
+					$("#boatDestroyed").addClass("hidden");
 					$('#modal').modal('show');
 				}else{
 					$("#labelWin").addClass("hidden");
+					$("#boatDestroyed").addClass("hidden");
 					$("#labelLoose").removeClass("hidden");
 					$('#modal').modal('show');
 				}

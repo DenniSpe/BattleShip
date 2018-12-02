@@ -533,6 +533,7 @@ padding-top: 15%;
 				<h2 id="labelWin" style="color:#429ef4;">You are the winner!!!!</h2>
 				<h2 id="labelLoose" style="color:#429ef4;">You loose!!!</h2></div>
 				<h2 id="arbitraryWin" style="color:#429ef4;">Match interrupted, your challenger left the game !!</h2>
+				<h2 id="boatDestroyed" style="color:#429ef4;">You have destroyed a boat !!</h2>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>

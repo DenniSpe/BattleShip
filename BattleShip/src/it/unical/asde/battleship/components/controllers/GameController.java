@@ -311,7 +311,7 @@ public class GameController
         if (user != null && id != null)
         {
             final Lobby currentLobby = lobbyService.getLobby(Integer.parseInt(id));
-            final boolean isOwner = currentLobby.getOwner().equals(user.getUsername());
+            final boolean isOwner = currentLobby.getOwner()!=null?currentLobby.getOwner().equals(user.getUsername()):false;
 
             if (currentLobby.getOwner() != null && isOwner)
             {
