@@ -189,7 +189,8 @@ body {
 				<div class="modal-body">
 					<div>
 						<h2>Create or join to a lobby</h2>
-						<br> To start playing you have two options: - Create your own
+						<br> To start playing you have two options: <br>
+						- Create your own
 						lobby in which you wait for a challenger to start playing<br>
 						- Join a game already created by selecting it from the list of
 						lobbies<br>
