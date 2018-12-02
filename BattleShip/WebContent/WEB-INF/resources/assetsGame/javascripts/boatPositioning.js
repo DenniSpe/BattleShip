@@ -20,6 +20,8 @@ var rowAircraft = 0;
 var colAircraft = 0;
 var dirAircraft = 0;
 
+
+
 $(document).ready(function() {
 	checkAlive();
 	$("#IR").hide();
@@ -47,6 +49,9 @@ $(document).ready(function() {
 	 * Delete button
 	 */
 	
+
+	$("#button-destroyer-delete").hide();
+	
 	$("#button-destroyer-delete").click(function() {
 		var ID = $("#lobbyId").attr("value");
 		nBoatsPositioned--;
@@ -58,7 +63,7 @@ $(document).ready(function() {
 			data : {"boatID" : "destroyer", "ID" : ID, "row": rowDestroyer, "col" : colDestroyer, "dir" : dirDestroyer},
 			success : function(result){
 				
-				alert("Deleting boat destroyer");
+				deleteShip("destroyer");
 				
 			},
 			error : function (){
@@ -71,6 +76,9 @@ $(document).ready(function() {
 		
 		//$("#destroyer").show();
 	});
+	
+	
+	
 $("#button-submarine-delete").click(function() {
 	var ID = $("#lobbyId").attr("value");
 	nBoatsPositioned--;
@@ -82,7 +90,7 @@ $("#button-submarine-delete").click(function() {
 		data : {"boatID" : "submarine", "ID" : ID, "row" : rowSubmarine, "col" : colSubmarine, "dir" : dirSubmarine},
 		success : function(result){
 			
-			alert("Deleting boat submarine"+rowSubmarine+"..."+colSubmarine+".."+dirSubmarine+"--"+ID);
+			deleteShip("submarine");
 			
 		},
 		error : function (){
@@ -103,8 +111,7 @@ $("#button-cruiser-delete").click(function() {
 		data : {"boatID" : "cruiser", "ID" : ID, "row" : rowCruiser, "col" : colCruiser, "dir" : dirCruiser},
 		success : function(result){
 			
-			alert("Deleting boat cruiser");
-			
+			deleteShip("cruiser");			
 		},
 		error : function (){
 			
@@ -123,7 +130,7 @@ $("#button-battleship-delete").click(function() {
 		data : {"boatID" : "battleship", "ID" : ID, "row" : rowBattleShip, "col" : colBattleShip, "dir" : dirBattleShip},
 		success : function(result){
 			
-			alert("Deleting boat battleship");
+			deleteShip("battleship");
 
 		},
 		error : function (){
@@ -145,7 +152,7 @@ $("#button-aircraft-delete").click(function() {
 		data : {"boatID" : "aircraft", "ID" : ID, "row": rowAircraft, "col" : colAircraft, "dir" : dirAircraft},
 		success : function(result){
 			
-			alert("Deleting boat aircraft");
+			deleteShip("aircraft");
 			
 		},
 		error : function (){
@@ -174,24 +181,80 @@ $("#button-aircraft-delete").click(function() {
 
 
 
-/*
- * TO DO
- */
-function deleteShip(id,direction)
+
+function deleteShip(id)
 {
-	if(id=="submarine")
-		{
-			for(var i=0; i<3;i++)
-				{
-						for(var j=0;j<3;j++)
-							{
-								if(direction==0)//in orizzontale
+							
+								
+											
+								if(id=="destroyer")
 									{
-										//ASK TO DARIO 
+									var row=rowDestroyer;
+									var col=colDestroyer;
+									var direction=dirDestroyer;
+									var size=3;
+									$("#button-destroyer").show();
+									$("#destroyer").show();
 									}
-							}
-				}
-		}
+								else if(id=="submarine")
+									{
+									var row=rowSubmarine;
+									var col=colSubmarine;
+									var direction=dirSubmarine;
+									var size=3;
+									$("#button-submarine").show();
+									$("#submarine").show();
+									}
+								else if(id=="aircraft")
+								{
+									var row=rowAircraft;
+									var col=colAircraft;
+									var direction=dirAircraft;
+									var size=3;
+									$("#button-aircraft").show();
+									$("#aircraft").show();
+								}
+								else if(id=="battleship")
+								{
+									var row=rowBattleShip;
+									var col=colBattleShip;
+									var direction=dirBattleship;
+									var size=5;
+									$("#button-battleship").show();
+									$("#battleship").show();
+								}
+								else if(id=="cruiser")
+								{
+									var row=rowCruiser;
+									var col=colCruiser;
+									var direction=dirCruiser;
+									var size=5;
+									$("#button-cruiser").show();
+									$("#cruiser").show();
+								}
+								
+								
+								
+								
+								
+								
+								if (direction == 0) // Horizontal
+								{
+												for (var i = col; i < col + size; i++) {
+													document.getElementById("cellOG-" + row + "-"
+															+ i).style.background = '';
+												}
+												
+								}
+								else if(direction == 1)
+									{
+												for (var j = row; j < row + size; j++) {
+													document.getElementById("cellOG-" + j + "-"
+															+ col).style.background = '';
+												}
+									}
+							
+	
 }
 
 
@@ -357,15 +420,18 @@ function drop(ev) {
 								
 								if(boatName =="submarine")	
 									{
-									$("#button-submarine").hide();
-									$("#submarine").hide();
+									/*$("#button-submarine").hide();
+									/*$("#submarine").hide();*/
 									
 								ev.target.appendChild(document
 										.getElementById(data));
 								
+								$("#button-destroyer-delete").show();
+								
 								document.getElementById("cellOG-" + row + "-"
 										+ i).style.background = 'green';
-								$("#hint").html("<h2>The Submarine take 3 cells</h2>");
+								
+								$("#hint").html("<h2>The Submarine take 345 cells</h2>");
 								document.getElementById("hint").style.color = 'green';
 								
 								setTimeout(function() {

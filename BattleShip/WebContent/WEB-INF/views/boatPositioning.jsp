@@ -337,7 +337,7 @@ body {
 							<h3 class="nameShip">Submarine</h3>
 						
 										<div class="row">
-															<div class="row" >
+															<div class="row" id="rowImageSubM">
 															<img id="submarine" src="resources/assetsGame/images/2.png"
 																							draggable="true" ondragstart="drag(event)"
 																							 style="transform: rotate(0deg); height: 15%; width: 80%;padding-bottom:30%;" />
