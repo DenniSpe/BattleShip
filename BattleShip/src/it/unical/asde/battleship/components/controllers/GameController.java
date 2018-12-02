@@ -231,7 +231,7 @@ public class GameController
 
             grid = gameService.getGrid(currentLobby.getId(), isOwner);
 
-            grid.deleteShip(boatRow, boatCol, length, direction);
+            grid.deleteShip(boatRow, boatCol, length, direction, boatID);
 
             //++REFACTORED++
             //			if(user.getUsername().equals(currentLobby.getOwner())) {
@@ -379,7 +379,7 @@ public class GameController
         }
         else
         {
-            gameService.putShip(lobbyID, row, col, getLength(boatName), direction, isOwner);
+            gameService.putShip(lobbyID, row, col, getLength(boatName), direction, isOwner, boatName);
             System.out.println(isOwner ? "OWNER" : "CHALLENGER" + " GRID ==========");
             gameService.getGrid(lobbyID, isOwner).print();
             System.out.println("============= FINE GRID ==========");
@@ -465,12 +465,23 @@ public class GameController
                     if (gameService.getGrid(currentLobby.getId(), !isOwner).hasShip(row, col))
                     {
 
-                        gameService.getGrid(currentLobby.getId(), !isOwner).markHit(row, col);
+                        //gameService.getGrid(currentLobby.getId(), !isOwner).markHit(row, col);
+                    	gameService.getGrid(currentLobby.getId(), !isOwner).mark(row, col);
                         gameService.getGrid(currentLobby.getId(), !isOwner).addHitCell(new Tupla(row, col, 1));
+                        
+                        if(gameService.getGrid(currentLobby.getId(), !isOwner).isBoatDestroyed(row, col)) {
+                        	response.put("boatDestroyed", true);
+                        }
+                        else {
+                        	response.put("boatDestroyed", false);
+                        }
+                        
+                        
+                        
                         System.out.println((isOwner ? "CHALLANGER" : "OWNER") + "GRID AFTER SHOOT");
                         gameService.getGrid(currentLobby.getId(), !isOwner).print();
                         System.out.println((isOwner ? "CHALLANGER" : "OWNER") + "END GRID AFTER SHOOT");
-
+                        
                         response.put("hit", true);
                         if (!gameService.hasMoreShips(currentLobby.getId(), isOwner))
                         {
@@ -481,8 +492,14 @@ public class GameController
                     }
                     else
                     {
-                        gameService.getGrid(currentLobby.getId(), !isOwner).markMiss(row, col);
+                        //gameService.getGrid(currentLobby.getId(), !isOwner).markMiss(row, col);
+                    	gameService.getGrid(currentLobby.getId(), !isOwner).mark(row, col);
                         gameService.getGrid(currentLobby.getId(), !isOwner).addMissedCell(new Tupla(row, col, -1));
+                        
+                        
+                       response.put("boatDestroyed", false);
+                      
+                        
                         response.put("hit", false);
                         currentLobby.setWhoPlays(isOwner ? currentLobby.getChallenger() : currentLobby.getOwner());
                     }

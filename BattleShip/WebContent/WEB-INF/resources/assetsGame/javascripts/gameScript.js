@@ -48,7 +48,11 @@ function shoot(cellacliccata) {
 			}
 			else if(result.waitTurn){
 //				$('#modal').modal('show');
-			}else{
+			}
+			else if(result.boatDestroyed == true){
+				alert("You have destroyed a boat !!");
+			}
+			else{
 				var whoWin = appendTag(result);				
 			}
 		},

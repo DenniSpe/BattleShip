@@ -37,4 +37,11 @@ public class Tupla {
 		this.value = value;
 	}
 
+	@Override
+	public String toString() {
+		return "Tupla [row=" + row + ", col=" + col + ", value=" + value + "]";
+	}
+	
+	
+
 }

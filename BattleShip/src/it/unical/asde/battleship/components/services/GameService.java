@@ -195,14 +195,14 @@ public class GameService
 	// ++ REFACTORED ++ 
     
 
-    public void putShip(int lobbyID, int row, int col, int numShip, int dir, boolean isOwner) {
+    public void putShip(int lobbyID, int row, int col, int numShip, int dir, boolean isOwner, String boatName) {
     	final Lobby currentLobby = lobbyService.getLobby(lobbyID);
     	
     	if(isOwner) {
-    		gridOwner.get(currentLobby.getOwner()).setShip(row, col, numShip, dir);
+    		gridOwner.get(currentLobby.getOwner()).setShip(row, col, numShip, dir, boatName);
     	}
     	else {
-    		gridChallenger.get(currentLobby.getChallenger()).setShip(row, col, numShip, dir);
+    		gridChallenger.get(currentLobby.getChallenger()).setShip(row, col, numShip, dir, boatName);
     	}
     }
     
