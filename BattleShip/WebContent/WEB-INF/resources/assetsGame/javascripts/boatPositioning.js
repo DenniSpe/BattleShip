@@ -209,14 +209,13 @@ function checkAlive() {
 		success : function(result) {
 			
 			console.log(result);
-			if(result)
-				{
+			
 					if(result == false)
 						{
-						alert("Game interrupted");
+						alert("Match interrupted, your challenger left the game !!");
 						window.location = "/BattleShip/lobbies";
 						}
-				}
+				
 			setTimeout(function() {
 				checkAlive();
 			}, 1000);

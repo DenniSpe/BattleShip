@@ -338,7 +338,7 @@ body {
 
 				<div class="row">
 									<div class="row" >
-									<img id="destroyer"  src="resources/assetsGame/images/boat.png"
+									<img id="destroyer"  src="resources/assetsGame/images/1.png"
 																	draggable="true" ondragstart="drag(event)"
 																	 style="transform: rotate(0deg); height: 5%; 
 																										width: 35%;" />
@@ -364,7 +364,7 @@ body {
 
 				<div class="row">
 									<div class="row" >
-									<img id="submarine" src="resources/assetsGame/images/boat.png"
+									<img id="submarine" src="resources/assetsGame/images/2.png"
 																	draggable="true" ondragstart="drag(event)"
 																	 style="transform: rotate(0deg); height: 5%; 
 																										width: 35%;" />
@@ -389,7 +389,7 @@ body {
 
 				<div class="row">
 									<div class="row" >
-									<img id="cruiser" src="resources/assetsGame/images/boat.png"
+									<img id="cruiser" src="resources/assetsGame/images/3.png"
 																	draggable="true" ondragstart="drag(event)"
 																	 style="transform: rotate(0deg); height: 5%; 
 																										width: 35%;" />
@@ -414,7 +414,7 @@ body {
 
 				<div class="row">
 									<div class="row" >
-									<img id="battleship" src="resources/assetsGame/images/boat.png"
+									<img id="battleship" src="resources/assetsGame/images/4.png"
 																	draggable="true" ondragstart="drag(event)"
 																	 style="transform: rotate(0deg); height: 5%; 
 																										width: 35%;" />
@@ -439,7 +439,7 @@ body {
 
 				<div class="row">
 									<div class="row" >
-									<img id="aircraft" src="resources/assetsGame/images/boat.png"
+									<img id="aircraft" src="resources/assetsGame/images/5.png"
 																	draggable="true" ondragstart="drag(event)"
 																	 style="transform: rotate(0deg); height: 5%; 
 																										width: 35%;" />

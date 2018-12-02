@@ -9,12 +9,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <jsp:include page="nav_bar.jsp"></jsp:include>
-
+<link rel="stylesheet" href="resources/assets/css/modal.css" />
 <style>
 body{
 padding-top: 5%;
 	padding-left: 2%;
+
 }
+
 
 </style>
 <script type="text/javascript"
@@ -468,118 +470,7 @@ padding-top: 5%;
 	</div>
 
 	<h2 id="message"></h2>
-	<div class="row vertical-align">
-
-		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-lg-offset-1">
-			<div class="row stats animated fadeInRight">
-
-				<div class="col-xs-12 text-center">
-					<i class="fa fa-ship fa-5x animated pulse"></i>
-					<h2></h2>
-				</div>
-
-				<div class="col-xs-12">
-					<div class="panel panel-info">
-						<div class="panel-heading">
-							<div class="row">
-								<div class="col-xs-3">
-									<i class="fa fa-bullseye fa-5x"></i>
-								</div>
-								<div class="col-xs-9 text-right">
-									<div class="huge">
-										<span id="totalShotsRemaining">40</span>
-									</div>
-									<div>Colpi andati bene</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xs-12">
-					<div class="panel panel-warning">
-						<div class="panel-heading">
-							<div class="row">
-								<div class="col-xs-3">
-									<i class="fa fa-retweet fa-5x"></i>
-								</div>
-								<div class="col-xs-9 text-right">
-									<div class="huge">
-										<span id="shotsRemainingForIteration">40</span>
-									</div>
-									<div>Colpi rimasti</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xs-12">
-					<div class="panel panel-success">
-						<div class="panel-heading">
-							<div class="row">
-								<div class="col-xs-3">
-									<i class="fa fa-money fa-5x"></i>
-								</div>
-								<div class="col-xs-9 text-right">
-									<div class="huge">
-										<span id="funds">US$ 400.000</span>
-									</div>
-									<div>Bilancio rimanente</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-6 text-center">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Player Name</th>
-						<th>Cell</th>
-						<th>Result</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Default</td>
-						<td>Defaultson</td>
-						<td>def@somemail.com</td>
-					</tr>
-					<tr class="success">
-						<td>Success</td>
-						<td>Doe</td>
-						<td>john@example.com</td>
-					</tr>
-					<tr class="danger">
-						<td>Danger</td>
-						<td>Moe</td>
-						<td>mary@example.com</td>
-					</tr>
-					<tr class="info">
-						<td>Info</td>
-						<td>Dooley</td>
-						<td>july@example.com</td>
-					</tr>
-					<tr class="warning">
-						<td>Warning</td>
-						<td>Refs</td>
-						<td>bo@example.com</td>
-					</tr>
-					<tr class="active">
-						<td>Active</td>
-						<td>Activeson</td>
-						<td>act@example.com</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-	</div>
+	
 
 	<c:forEach var="i" begin="1" end="10">
 		<c:forEach var="j" begin="1" end="10">
@@ -617,11 +508,14 @@ padding-top: 5%;
 		</c:forEach>
 	</c:forEach>
 
+
+
 	<!-- The modal -->
 	<div class="modal fade" id="modal" tabindex="-1" role="dialog"
 		aria-labelledby="modalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
+		
+		<div class="modal-dialog" role="document" style="background-color:#232b2b; background-size:cover; z-inedx:4;">
+			<div class="modal-content" style="background">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -629,18 +523,28 @@ padding-top: 5%;
 					</button>
 					<h4 class="modal-title" id="modalLabel">BattleShip MVC</h4>
 				</div>
-				<div class="modal-body"><h2 id="labelWin">You are the winner!!!!</h2><h2 id="labelLoose">You loose!!!</h2></div>
+				<div class="modal-body" >
+				<h2 id="labelWin" style="color:#429ef4;">You are the winner!!!!</h2>
+				<h2 id="labelLoose" style="color:#429ef4;">You loose!!!</h2></div>
+				<h2 id="arbitraryWin" style="color:#429ef4;">Match interrupted, your challenger left the game !!</h2>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>  <!--  end modal -->
+	
+	
+	
+	
 
 	<hidden hidden id="lobbyId"
 		value="${lobby.id}"></hidden>
-
+		
+		
+		
+		
 </body>
 
 </html>

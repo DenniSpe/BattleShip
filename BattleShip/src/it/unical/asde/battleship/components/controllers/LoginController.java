@@ -20,7 +20,7 @@ public class LoginController
 
     @Autowired
     private LoginService loginService;
-    
+
     @Autowired
     private UtilService utilService;
 
@@ -30,28 +30,27 @@ public class LoginController
             final Model model)
     {
 
-    	
-    	User user = loginService.checkCredentials(uname, pwd);
+        final User user = loginService.checkCredentials(uname, pwd);
         if (user != null)
         {
             session.setAttribute("username", user.getUsername());
             session.setAttribute("user", user);
 
             utilService.setPlayingUser(user);
-            
+
             return "CORRECT";
         }
-        
+
         model.addAttribute("error", "Wrong credentials!");
         return "ERROR";
     }
 
-    
     @GetMapping("/logout")
     public String logout(final HttpSession session)
     {
-    	utilService.deletePlayingUser((User) session.getAttribute("user")); 
-    	session.invalidate();
+        utilService.deletePlayingUser((User) session.getAttribute("user"));
+
+        session.invalidate();
         return "redirect:/";
     }
 

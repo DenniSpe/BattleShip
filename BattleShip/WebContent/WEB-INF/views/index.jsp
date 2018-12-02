@@ -133,7 +133,27 @@
 					<h4 class="modal-title" id="modalLabel">BattleShip Instructions</h4>
 				</div>
 				<div class="modal-body">
-					Here we have to write the instructions of the game, COMING SOON
+					<div>
+						<h2>Create or join to a lobby</h2><br>
+						To start playing you have two options:
+						-	Create your own lobby in which you wait for a challenger to start playing<br>
+						-	Join a game already created by selecting it from the list of lobbies<br>						
+					</div>
+					<br>
+					<div>
+					<h2>Ships positioning</h2> <br>
+						When the creator starts it is necessary to position the boats first. You must decide the orientation (Vertical, horizontal) with the button rotate, then just drag and drop the ship in the desired position, it is possible to eliminate it later.					
+					</div>
+					<br>
+					<div>
+					 <h2>Playing</h2><br>
+						Once on the field of play you must wait your turn to make the shot. If you hit, you keep your turn otherwise the turn pass to the opponent. The game ends when one of the players completely destroys the rival ships.					
+					</div>
+					<br>
+					<div class="text-center">
+						GOOD LUCK
+					</div>
+					
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"

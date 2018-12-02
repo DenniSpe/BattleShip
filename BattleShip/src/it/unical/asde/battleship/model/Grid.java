@@ -1,7 +1,12 @@
 package it.unical.asde.battleship.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Grid {
 	private int[][] grid;
+	private List<Tupla> hitteds;
+	private List<Tupla> misseds;
 
 	// Constants for number of rows and columns.
 	public static final int NUM_ROWS = 11;
@@ -15,6 +20,25 @@ public class Grid {
 				grid[row][col] = tempLoc;
 			}
 		}
+		
+		hitteds = new LinkedList<Tupla>();
+		misseds = new LinkedList<Tupla>();
+	}
+	
+	public void addHitCell(Tupla cell) {
+		hitteds.add(cell);
+	}
+	
+	public void addMissedCell(Tupla cell) {
+		misseds.add(cell);
+	}
+	
+	public List<Tupla> getHitteds() {
+		return hitteds;
+	}
+	
+	public List<Tupla> getMisseds() {
+		return misseds;
 	}
 
 	// Mark a hit in this location
