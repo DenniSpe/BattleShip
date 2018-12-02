@@ -94,14 +94,11 @@ public abstract class AbstractBaseDAO<T, X extends Serializable> {
 			session.saveOrUpdate(object);
 			tx.commit();
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			tx.rollback();
 		}
 	}
 
-	
-	//TODO : Possiamo eliminarla ??
 	public List<T> getAll() {
 
 		return (List<T>) getCurrentSession().createQuery("from " + gettClass()).list();

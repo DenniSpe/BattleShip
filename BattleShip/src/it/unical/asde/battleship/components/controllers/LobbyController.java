@@ -80,9 +80,9 @@ public class LobbyController
 
         lobbyService.addLobby(myLobby);
         
-        //TODO : E' necessario caricarle tutte qui?
+
 //        model.addAttribute("lobbies", lobbyService.getLobbies());
-        //TODO : Il lobby ID non me lo posso ricavare con ${ lobby.id} ??
+
         //E' necessario salvarlo in "currentLobbyID" ?
 //        model.addAttribute("lobby", myLobby);
 //        model.addAttribute("currentLobbyID", myLobby.getId());
@@ -99,7 +99,7 @@ public class LobbyController
     	if(session.getAttribute("user")!=null) {
 	        final int idLobby = Integer.parseInt(id);
 	        final Lobby mylobby = lobbyService.getLobby(idLobby);
-	        //TODO : Perchè inside lobbies ci servono tutte le lobby ?  
+
 //	        model.addAttribute("lobbies", lobbyService.getLobbies());
 	        model.addAttribute("lobby", mylobby);
 //	        model.addAttribute("currentLobbyID", mylobby.getId());
@@ -124,7 +124,7 @@ public class LobbyController
                 myLobby.setChallenger(user.getUsername());
                 lobbyService.addLobby(myLobby);
 
-                //TODO : Anche qui, perchè ci salviamo l'id della lobby e non lo prendiamo direttamente
+
                 // con ${ lobby.id }
                 model.addAttribute("lobby", myLobby);
 //                model.addAttribute("currentLobbyID", myLobby.getId());

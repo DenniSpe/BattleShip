@@ -54,7 +54,6 @@ public class DispatcherConfiguration implements WebMvcConfigurer
         }
         catch (final IOException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return lsfb.getObject();

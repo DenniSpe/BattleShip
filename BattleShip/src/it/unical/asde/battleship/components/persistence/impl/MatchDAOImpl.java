@@ -21,7 +21,6 @@ public class MatchDAOImpl extends AbstractBaseDAO<Match, Long> implements MatchD
 
 	@Override
 	public long numMatchPlayed() {
-		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
 		Query countQuery = session.createQuery("Select count (id) from Match");
 		long count = (long) countQuery.uniqueResult();
@@ -31,7 +30,6 @@ public class MatchDAOImpl extends AbstractBaseDAO<Match, Long> implements MatchD
 
 	@Override
 	public long countUserMatches(User user) {
-		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
 		String hql = "select count(id)from Match where challenger.username = :ch or creator.username = :ow";
 		Query query = session.createQuery(hql);
@@ -44,8 +42,6 @@ public class MatchDAOImpl extends AbstractBaseDAO<Match, Long> implements MatchD
 
 	@Override
 	public List<Match> getUserMatches(User user, int start, int count) {
-		// TODO Auto-generated method stub
-
 		Session session = sessionFactory.openSession();
 		String hql = "from Match where challenger.username = :ch or creator.username = :ow";
 		Query query = session.createQuery(hql);
