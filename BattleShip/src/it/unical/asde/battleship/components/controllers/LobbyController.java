@@ -81,11 +81,11 @@ public class LobbyController
         lobbyService.addLobby(myLobby);
         
         //TODO : E' necessario caricarle tutte qui?
-        model.addAttribute("lobbies", lobbyService.getLobbies());
+//        model.addAttribute("lobbies", lobbyService.getLobbies());
         //TODO : Il lobby ID non me lo posso ricavare con ${ lobby.id} ??
         //E' necessario salvarlo in "currentLobbyID" ?
-        model.addAttribute("lobby", myLobby);
-        model.addAttribute("currentLobbyID", myLobby.getId());
+//        model.addAttribute("lobby", myLobby);
+//        model.addAttribute("currentLobbyID", myLobby.getId());
 
         //System.out.println("===================================== FINE NEW LOBBY =====================================");
 
@@ -100,9 +100,9 @@ public class LobbyController
 	        final int idLobby = Integer.parseInt(id);
 	        final Lobby mylobby = lobbyService.getLobby(idLobby);
 	        //TODO : Perchè inside lobbies ci servono tutte le lobby ?  
-	        model.addAttribute("lobbies", lobbyService.getLobbies());
+//	        model.addAttribute("lobbies", lobbyService.getLobbies());
 	        model.addAttribute("lobby", mylobby);
-	        model.addAttribute("currentLobbyID", mylobby.getId());
+//	        model.addAttribute("currentLobbyID", mylobby.getId());
 	        return "lobby";
     	}
     	return "redirect:/";
@@ -127,7 +127,7 @@ public class LobbyController
                 //TODO : Anche qui, perchè ci salviamo l'id della lobby e non lo prendiamo direttamente
                 // con ${ lobby.id }
                 model.addAttribute("lobby", myLobby);
-                model.addAttribute("currentLobbyID", myLobby.getId());
+//                model.addAttribute("currentLobbyID", myLobby.getId());
 
                 //System.out.println("===================================== FINE JOIN LOBBY =====================================");
 

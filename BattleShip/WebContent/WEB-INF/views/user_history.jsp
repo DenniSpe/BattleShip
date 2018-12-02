@@ -73,7 +73,6 @@ select#amount{
 				</select>
 			</div>
 		</div>
-${match.wonCreator}
 		<div class="table-responsive mt-1">
 			<table class="table table-hover">
 				<thead class="thead-dark">

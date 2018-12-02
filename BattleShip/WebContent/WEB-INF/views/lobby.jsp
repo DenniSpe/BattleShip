@@ -163,7 +163,7 @@ body {
  -->
 
 	<hidden>
-	<div hidden  id="lobby_id">${ currentLobbyID }</div>
+	<div hidden  id="lobby_id">${ lobby.id }</div>
 	</hidden>
 
 	<div class='container'>
