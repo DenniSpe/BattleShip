@@ -9,8 +9,8 @@
 <style type="text/css">
 body {
 	
-	padding-top: 5%;
-	padding-left: 10%;
+	padding-top: 1%;
+	padding-left: 3%;
 }
 </style>
 <meta charset="utf-8" />
@@ -64,11 +64,12 @@ body {
 
 </div>
 
-<div class="row" id="positioning" style="padding-left: 10%">
+<div class="row" id="positioning">
 	
 
+
 <!-- matrix -->
-<div class="col-md-8" style="text-align: center;">
+<div class="col-md-8" >
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
 				<div id="container">
 					<table class="board table table-responsive animated fadeInUp"
@@ -321,148 +322,156 @@ body {
 					</table>
 				</div>
 			</div>
+			<div id="hint">
+			</div>
+		
 		</div>
 	
 <!-- end matrix -->
 
-</div>
 
-
-
-<!--  drag and drop -->
-<div id="shipsMenu">
+<div class="col-md-4">
 <div class="row">
 
-<div class="col-md-2 col-sm-12 col-12 col-lg-2 col-xl-2" style="text-align:center;">
-<h3 class="nameShip">Destoyer</h3>
+								<div class="col-md-2"  style="text-align:center; padding-right:55%;">
+							<h3 class="nameShip">Submarine</h3>
+						
+										<div class="row">
+															<div class="row" >
+															<img id="submarine" src="resources/assetsGame/images/2.png"
+																							draggable="true" ondragstart="drag(event)"
+																							 style="transform: rotate(0deg); height: 15%; width: 80%;padding-bottom:30%;" />
+																																
+																							
+																							 
+															</div>
+															
+																
+															<div class="row"> <!--  button rotate -->
+															<button id="button-submarine">Rotate</button>
+															<button id="button-submarine-delete">Delete</button>
+															</div>
+															
+															
+															
+										</div>
+						</div> <!--  end ship2 -->
+						
+						<div class="col-md-2"  style="text-align:center;">
+						<h3 class="nameShip">Cruiser</h3>
+						
+										<div class="row">
+															<div class="row" >
+															
+															<img id="cruiser" src="resources/assetsGame/images/3.png"
+																							draggable="true" ondragstart="drag(event)"
+																							 style="transform: rotate(0deg); height: 15%; width: 60%;padding-bottom:30%;" />
+																																
+																							
+																							 
+															</div>
+															
+																
+															<div class="row"> <!--  button rotate -->
+															<button id="button-cruiser">Rotate</button>
+															<button id="button-cruiser-delete">Delete</button>
+															</div>
+															
+															
+															
+										</div>
+						</div> <!--  end ship3 -->
 
-				<div class="row">
-									<div class="row" >
-									<img id="destroyer"  src="resources/assetsGame/images/1.png"
-																	draggable="true" ondragstart="drag(event)"
-																	 style="transform: rotate(0deg); height: 5%; 
-																										width: 35%;" />
-																										
-																	
-																	 
-									</div>
-									
-										
-									<div class="row"> <!--  button rotate -->
-									<button id="button-destroyer">Rotate</button>
-									<button id="button-destroyer-delete">Delete</button>
-									</div>
-									
-									
-									
-				</div>
-</div> <!--  end ship1 -->
+</div>
 
 
-<div class="col-md-2 col-sm-12 col-12 col-lg-2 col-xl-2"  style="text-align:center;">
-<h3 class="nameShip">Submarine</h3>
+<div class="row">
+				<div class="col-md-2"  style="text-align:center;padding-right:55%;">
+				<h3 class="nameShip">Battleship</h3>
+				
+								<div class="row">
+													<div class="row" >
+													<img id="battleship" src="resources/assetsGame/images/4.png"
+																					draggable="true" ondragstart="drag(event)"
+																					 style="transform: rotate(0deg); height: 15%; width: 80%; padding-bottom:30%;" />
+																														
+																					
+																					 
+													</div>
+													
+														
+													<div class="row"> <!--  button rotate -->
+													<button id="button-battleship">Rotate</button>
+													<button id="button-battleship-delete">Delete</button>
+													</div>
+													
+													
+													
+								</div>
+				</div> <!--  end ship4 -->
+				
+									<div class="col-md-2" style="text-align:center;">
+									<h3 class="nameShip">Aircraft</h3>
+					
+									<div class="row">
+														<div class="row" >
+														<img id="aircraft" src="resources/assetsGame/images/5.png"
+																						draggable="true" ondragstart="drag(event)"
+																						 style="transform: rotate(0deg); height: 15%; width: 60%;padding-bottom:30%;" />
+																															
+																						
+																						 
+														</div>
+														
+															
+														<div class="row"> <!--  button rotate -->
+														<button id="button-aircraft">Rotate</button>
+														<button id="button-aircraft-delete">Delete</button>
+														</div>
+														
+														
+														
+									</div>
+					</div> <!--  end ship5 -->
+</div>
 
-				<div class="row">
-									<div class="row" >
-									<img id="submarine" src="resources/assetsGame/images/2.png"
-																	draggable="true" ondragstart="drag(event)"
-																	 style="transform: rotate(0deg); height: 5%; 
-																										width: 35%;" />
-																										
-																	
-																	 
-									</div>
-									
-										
-									<div class="row"> <!--  button rotate -->
-									<button id="button-submarine">Rotate</button>
-									<button id="button-submarine-delete">Delete</button>
-									</div>
-									
-									
-									
-				</div>
-</div> <!--  end ship2 -->
+<div class="row" style="padding-left:28%">
+<div class="col-md-2"  style="text-align:center;padding-right:55%;">
+				<h3 class="nameShip">Destroyer</h3>
+				
+								<div class="row">
+													<div class="row" >
+													<img id="destroyer" src="resources/assetsGame/images/1.png"
+																					draggable="true" ondragstart="drag(event)"
+																					 style="transform: rotate(0deg); height: 15%; width: 80%; padding-bottom:30%;" />
+																														
+																					
+																					 
+													</div>
+													
+														
+													<div class="row"> <!--  button rotate -->
+													<button id="button-destroyer">Rotate</button>
+													<button id="button-destroyer-delete">Delete</button>
+													</div>
+													
+													
+													
+								</div>
+</div>
 
-<div class="col-md-2 col-sm-12 col-12 col-lg-2 col-xl-2"  style="text-align:center;">
-<h3 class="nameShip">Cruiser</h3>
 
-				<div class="row">
-									<div class="row" >
-									<img id="cruiser" src="resources/assetsGame/images/3.png"
-																	draggable="true" ondragstart="drag(event)"
-																	 style="transform: rotate(0deg); height: 5%; 
-																										width: 35%;" />
-																										
-																	
-																	 
-									</div>
-									
-										
-									<div class="row"> <!--  button rotate -->
-									<button id="button-cruiser">Rotate</button>
-									<button id="button-cruiser-delete">Delete</button>
-									</div>
-									
-									
-									
-				</div>
-</div> <!--  end ship3 -->
 
-<div class="col-md-2 col-sm-12 col-12 col-lg-2 col-xl-2"  style="text-align:center;">
-<h3 class="nameShip">Battleship</h3>
+		
+</div>
 
-				<div class="row">
-									<div class="row" >
-									<img id="battleship" src="resources/assetsGame/images/4.png"
-																	draggable="true" ondragstart="drag(event)"
-																	 style="transform: rotate(0deg); height: 5%; 
-																										width: 35%;" />
-																										
-																	
-																	 
-									</div>
-									
-										
-									<div class="row"> <!--  button rotate -->
-									<button id="button-battleship">Rotate</button>
-									<button id="button-battleship-delete">Delete</button>
-									</div>
-									
-									
-									
-				</div>
-</div> <!--  end ship4 -->
 
-<div class="col-md-2 col-sm-12 col-12 col-lg-2 col-xl-2" style="text-align:center;">
-<h3 class="nameShip">Aircraft</h3>
-
-				<div class="row">
-									<div class="row" >
-									<img id="aircraft" src="resources/assetsGame/images/5.png"
-																	draggable="true" ondragstart="drag(event)"
-																	 style="transform: rotate(0deg); height: 5%; 
-																										width: 35%;" />
-																										
-																	
-																	 
-									</div>
-									
-										
-									<div class="row"> <!--  button rotate -->
-									<button id="button-aircraft">Rotate</button>
-									<button id="button-aircraft-delete">Delete</button>
-									</div>
-									
-									
-									
-				</div>
-</div> <!--  end ship5 -->
 
 
 </div>
-</div>
-<!--  end  drag and drop -->
+
+
+
 
 
 

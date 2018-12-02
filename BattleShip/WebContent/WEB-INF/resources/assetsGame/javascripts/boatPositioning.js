@@ -238,12 +238,12 @@ function rotateBoat(id) {
 	var pos = 0;
 	
 	var img = document.getElementById(id);
-	if (img.getAttribute("style") == "transform:rotate(90deg); height: 5%; width: 35%;") {
-		img.setAttribute("style","transform:rotate(0deg); height: 5%; width: 35%;");
+	if (img.getAttribute("style") == "transform:rotate(90deg); height: 15%; width: 60%;padding-bottom:30%;") {
+		img.setAttribute("style","transform:rotate(0deg); height: 15%; width: 60%;padding-bottom:30%;");
 		
 		pos = 0;
 	} else {
-		img.setAttribute("style","transform:rotate(90deg); height: 5%; width: 35%;");
+		img.setAttribute("style","transform:rotate(90deg); height: 15%; width: 60%;padding-bottom:30%;");
 		
 		pos = 1;
 	}
@@ -365,6 +365,14 @@ function drop(ev) {
 								
 								document.getElementById("cellOG-" + row + "-"
 										+ i).style.background = 'green';
+								$("#hint").html("<h2>The Submarine take 3 cells</h2>");
+								document.getElementById("hint").style.color = 'green';
+								
+								setTimeout(function() {
+									$("#hint").html("");
+								}, 2000);
+								
+								
 									}
 								else if(boatName =="cruiser")
 									{
@@ -375,6 +383,13 @@ function drop(ev) {
 									
 									document.getElementById("cellOG-" + row + "-"
 											+ i).style.background = 'red';
+									
+									$("#hint").html("<h2>The Cruiser take 3 cells</h2>");
+									document.getElementById("hint").style.color = 'red';
+									
+									setTimeout(function() {
+										$("#hint").html("");
+									}, 2000);
 									}
 								else if(boatName =="destroyer")
 								{
@@ -385,6 +400,13 @@ function drop(ev) {
 									
 									document.getElementById("cellOG-" + row + "-"
 											+ i).style.background = 'yellow';
+									
+									$("#hint").html("<h2>The Destroyer take 2 cells</h2>");
+									document.getElementById("hint").style.color = 'yellow';
+									
+									setTimeout(function() {
+										$("#hint").html("");
+									}, 2000);
 								}
 								else if(boatName =="battleship")
 								{
@@ -395,6 +417,13 @@ function drop(ev) {
 									
 									document.getElementById("cellOG-" + row + "-"
 											+ i).style.background = 'blue';
+									
+									$("#hint").html("<h2>The Battleship take 4 cells</h2>");
+									document.getElementById("hint").style.color = 'blue';
+									
+									setTimeout(function() {
+										$("#hint").html("");
+									}, 2000);
 								}
 								else if(boatName =="aircraft")
 								{
@@ -406,6 +435,13 @@ function drop(ev) {
 									
 									document.getElementById("cellOG-" + row + "-"
 											+ i).style.background = 'orange';
+									
+									$("#hint").html("<h2>The Aircraft take 5 cells</h2>");
+									document.getElementById("hint").style.color = 'orange';
+									
+									setTimeout(function() {
+										$("#hint").html("");
+									}, 2000);
 								}
 							}
 
@@ -423,6 +459,14 @@ function drop(ev) {
 								
 								document.getElementById("cellOG-" + j + "-"
 										+ col).style.background = 'green';
+								
+								$("#hint").html("<h2>The Submarine take 3 cells</h2>");
+								document.getElementById("hint").style.color = 'green';
+								
+								setTimeout(function() {
+									$("#hint").html("");
+								}, 2000);
+								
 								}
 								else if(boatName =="cruiser")
 								{
@@ -434,6 +478,14 @@ function drop(ev) {
 									
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = 'red';
+									
+									$("#hint").html("<h2>The Cruiser take 4 cells</h2>");
+									document.getElementById("hint").style.color = 'red';
+									
+									setTimeout(function() {
+										$("#hint").html("");
+									}, 2000);
+					
 								}
 								else if(boatName =="destroyer")
 								{
@@ -446,6 +498,14 @@ function drop(ev) {
 									
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = 'yellow';
+									
+									$("#hint").html("<h2>The Destroyer take 2 cells</h2>");
+									document.getElementById("hint").style.color = 'yellow';
+									
+									setTimeout(function() {
+										$("#hint").html("");
+									}, 2000);
+									
 								}
 								else if(boatName =="battleship")
 								{
@@ -457,6 +517,13 @@ function drop(ev) {
 									
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = 'blue';
+									
+									$("#hint").html("<h2>The Battleship take 4 cells</h2>");
+									document.getElementById("hint").style.color = 'blue';
+									
+									setTimeout(function() {
+										$("#hint").html("");
+									}, 2000);
 								}
 								else if(boatName =="aircraft")
 								{
@@ -468,6 +535,15 @@ function drop(ev) {
 									
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = 'orange';
+									
+									$("#hint").html("<h2>The Aircraft take 5 cells</h2>");
+									document.getElementById("hint").style.color = 'orange';
+									
+									setTimeout(function() {
+										$("#hint").html("");
+									}, 2000);
+									
+									
 								}
 
 							}
@@ -516,14 +592,14 @@ function waitingStart() {
 
 			setTimeout(function() {
 				waitingStart();
-			}, 5000);
+			}, 1000);
 		},
 
 		error : function() {
 			// call events again after some time
 			setTimeout(function() {
 				drop(ev);
-			}, 5000);
+			}, 1000);
 		}
 	});
 }

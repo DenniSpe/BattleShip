@@ -39,7 +39,10 @@ padding-top: 15%;
 
 <body>
 
-			<div class="col-md-6">
+			
+	<div class="row">	
+	
+		<div class="col-md-6">
 			<a 
 			href="<c:url value="/leaveGame">
 				 				<c:param name="lobby_id" value="${lobby.id}" />
@@ -47,15 +50,18 @@ padding-top: 15%;
 			<input type="image"  src="resources/assets/css/images/leaveGame.png" style="width:10%; height:5%;"></input>
 		</a>
 		</div>
-	<div class="row text-center" style="padding-top: 20%">		
-		<c:choose>
-			<c:when test="${user.username == lobby.owner}">
-				<h3><span id="turnMessage" class="label label-success">It's your turn</span></h3>
-			</c:when>
-			<c:otherwise>
-				<h3><span id="turnMessage" class="label label-danger">Wait for your turn...</span></h3>
-			</c:otherwise>
-		</c:choose>
+		
+		
+							<div class="col-md-6">	
+										<c:choose>
+											<c:when test="${user.username == lobby.owner}">
+												<h3><span id="turnMessage" class="label label-success">It's your turn</span></h3>
+											</c:when>
+											<c:otherwise>
+												<h3><span id="turnMessage" class="label label-danger">Wait for your turn...</span></h3>
+											</c:otherwise>
+										</c:choose>
+						</div>	
 	</div>
 	
 	<div class="row">
