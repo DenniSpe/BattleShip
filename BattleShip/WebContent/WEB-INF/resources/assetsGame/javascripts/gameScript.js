@@ -14,6 +14,8 @@ $(document).ready(function() {
 
 });
 
+
+
 function shoot(cellacliccata) {
 	var lobbyID = $("#lobbyId").attr("value");
 	$.ajax({
@@ -26,6 +28,7 @@ function shoot(cellacliccata) {
 		},
 		success : function(result) {
 //			alert("IL RESULT DI SHOOT E' "+result);
+			
 			if(result.youWin){
 				appendTag(result);		
 				$("#modal").on("click", function() {
@@ -184,6 +187,7 @@ function checkAlive() {
 }
 
 
+
 function checkTurn() {
 	var lobbyID = $("#lobbyId").attr("value");
 	$.ajax({
@@ -194,6 +198,7 @@ function checkTurn() {
 			"lobbyid" : lobbyID
 		},
 		success : function(result) {
+
 			if(result.hasOwnProperty("youWin")){
 				$("#modal").on("click", function() {
 				    window.location= "/BattleShip/";

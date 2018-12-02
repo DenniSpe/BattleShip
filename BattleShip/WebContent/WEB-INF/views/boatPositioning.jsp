@@ -460,11 +460,9 @@ body {
 </div> <!--  end ship5 -->
 
 
-
 </div>
 </div>
 <!--  end  drag and drop -->
-
 
 
 

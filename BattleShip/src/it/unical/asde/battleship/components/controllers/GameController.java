@@ -199,7 +199,7 @@ public class GameController
 
         return Collections.singletonMap("turn", false);
     }
-
+    
     @PostMapping("/deleteBoatFromGrid")
     @ResponseBody
     public boolean deleteBoatFromGrid(@RequestParam final String boatID, @RequestParam final String ID,
@@ -457,9 +457,9 @@ public class GameController
                     {
 
                         gameService.getGrid(currentLobby.getId(), !isOwner).markHit(row, col);
-                        System.out.println(isOwner ? "CHALLANGER" : "OWNER" + "GRID AFTER SHOOT");
+                        System.out.println((isOwner ? "CHALLANGER" : "OWNER") + "GRID AFTER SHOOT");
                         gameService.getGrid(currentLobby.getId(), !isOwner).print();
-                        System.out.println(isOwner ? "CHALLANGER" : "OWNER" + "END GRID AFTER SHOOT");
+                        System.out.println((isOwner ? "CHALLANGER" : "OWNER") + "END GRID AFTER SHOOT");
 
                         response.put("hit", true);
                         if (!gameService.hasMoreShips(currentLobby.getId(), isOwner))
