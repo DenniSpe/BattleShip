@@ -466,6 +466,7 @@ public class GameController
                     {
 
                         gameService.getGrid(currentLobby.getId(), !isOwner).markHit(row, col);
+                        gameService.getGrid(currentLobby.getId(), !isOwner).addHitCell(new Tupla(row, col, 1));
                         System.out.println((isOwner ? "CHALLANGER" : "OWNER") + "GRID AFTER SHOOT");
                         gameService.getGrid(currentLobby.getId(), !isOwner).print();
                         System.out.println((isOwner ? "CHALLANGER" : "OWNER") + "END GRID AFTER SHOOT");
@@ -481,6 +482,7 @@ public class GameController
                     else
                     {
                         gameService.getGrid(currentLobby.getId(), !isOwner).markMiss(row, col);
+                        gameService.getGrid(currentLobby.getId(), !isOwner).addMissedCell(new Tupla(row, col, -1));
                         response.put("hit", false);
                         currentLobby.setWhoPlays(isOwner ? currentLobby.getChallenger() : currentLobby.getOwner());
                     }

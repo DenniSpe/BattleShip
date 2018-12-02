@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="resources/assets/css/modal.css" />
 <style>
 body{
-padding-top: 5%;
+padding-top: 15%;
 	padding-left: 2%;
 
 }
@@ -47,7 +47,7 @@ padding-top: 5%;
 			<input type="image"  src="resources/assets/css/images/leaveGame.png" style="width:10%; height:5%;"></input>
 		</a>
 		</div>
-	<div class="row text-center">		
+	<div class="row text-center" style="padding-top: 20%">		
 		<c:choose>
 			<c:when test="${user.username == lobby.owner}">
 				<h3><span id="turnMessage" class="label label-success">It's your turn</span></h3>
