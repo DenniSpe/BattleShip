@@ -143,23 +143,32 @@ public class GameController
             // ====================================================================
             final boolean isOwner = current.getOwner().equals(user.getUsername());
 
-            final List<Tupla> list = new ArrayList<>();
-            for (int i = 1; i <= 10; i++)
-            {
-                for (int j = 1; j <= 10; j++)
-                {
-                    if (gameService.getGrid(current.getId(), isOwner).getContent(i, j) == 1)
-                    {
-                        list.add(new Tupla(i, j, 1));
-                    }
-                    else if (gameService.getGrid(current.getId(), isOwner).getContent(i, j) == -1)
-                    {
-                        list.add(new Tupla(i, j, -1));
-                    }
-                }
-            }
+            List<Tupla> refreshGrid = new ArrayList<>();
+            List<Tupla> refreshGridI = new ArrayList<>();
+            
+            refreshGrid.addAll(gameService.getGrid(current.getId(), isOwner).getHitteds());
+            refreshGrid.addAll(gameService.getGrid(current.getId(), isOwner).getMisseds());
+            refreshGridI.addAll(gameService.getGrid(current.getId(), !isOwner).getHitteds());
+           	refreshGridI.addAll(gameService.getGrid(current.getId(), !isOwner).getMisseds());
 
-            response.put("refreshGrid", list);
+//                      
+//            for (int i = 1; i <= 10; i++)
+//            {
+//                for (int j = 1; j <= 10; j++)
+//                {
+//                    if (gameService.getGrid(current.getId(), isOwner).getContent(i, j) == 1)
+//                    {
+//                        list.add(new Tupla(i, j, 1));
+//                    }
+//                    else if (gameService.getGrid(current.getId(), isOwner).getContent(i, j) == -1)
+//                    {
+//                        list.add(new Tupla(i, j, -1));
+//                    }
+//                }
+//            }
+
+            response.put("refreshGrid", refreshGrid);
+            response.put("refreshGridI", refreshGridI);
             // ========================================================================
 
             //++ REFACTORED ++
@@ -457,6 +466,7 @@ public class GameController
                     {
 
                         gameService.getGrid(currentLobby.getId(), !isOwner).markHit(row, col);
+                        gameService.getGrid(currentLobby.getId(), !isOwner).addHitCell(new Tupla(row, col, 1));
                         System.out.println(isOwner ? "CHALLANGER" : "OWNER" + "GRID AFTER SHOOT");
                         gameService.getGrid(currentLobby.getId(), !isOwner).print();
                         System.out.println(isOwner ? "CHALLANGER" : "OWNER" + "END GRID AFTER SHOOT");
@@ -472,6 +482,7 @@ public class GameController
                     else
                     {
                         gameService.getGrid(currentLobby.getId(), !isOwner).markMiss(row, col);
+                        gameService.getGrid(currentLobby.getId(), !isOwner).addHitCell(new Tupla(row, col, -1));
                         response.put("hit", false);
                         currentLobby.setWhoPlays(isOwner ? currentLobby.getChallenger() : currentLobby.getOwner());
                     }

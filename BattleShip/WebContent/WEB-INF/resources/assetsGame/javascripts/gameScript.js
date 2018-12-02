@@ -209,10 +209,22 @@ function checkTurn() {
 				if (result.refreshGrid[i].value === -1) {
 					$("#cellOG-" + result.refreshGrid[i].row + "-" +result.refreshGrid[i].col)
 							.html(
-									'<i class="miss marker animated flipInX fa fa-times fa-2x text-muted"></i>');
+									'<i class="miss marker animated  fa fa-times fa-2x text-muted"></i>');
 				}
 				if (result.refreshGrid[i].value === 1) {
 					$("#cellOG-" + result.refreshGrid[i].row + "-" + result.refreshGrid[i].col).html(
+							'<img src="resources/assetsGame/images/1331900690_fire.png">');
+				}
+			}
+			
+			for (var i = 0; i < result.refreshGridI.length; i++) {
+				if (result.refreshGridI[i].value === -1) {
+					$("#cellCG-" + result.refreshGridI[i].row + "-" +result.refreshGridI[i].col)
+							.html(
+									'<i class="miss marker animated  fa fa-times fa-2x text-muted"></i>');
+				}
+				if (result.refreshGridI[i].value === 1) {
+					$("#cellCG-" + result.refreshGridI[i].row + "-" + result.refreshGridI[i].col).html(
 							'<img src="resources/assetsGame/images/1331900690_fire.png">');
 				}
 			}
