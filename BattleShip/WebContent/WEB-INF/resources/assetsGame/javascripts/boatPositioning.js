@@ -672,12 +672,12 @@ function drop(ev) {
 									$("#button-submarine-delete").show();
 
 									document.getElementById("cellOG-" + j + "-"
-											+ col).style.background = 'green';
+											+ col).style.background = '#4aa3df';
 
 									$("#hint")
 											.html(
 													"<h2>The Submarine take 3 cells</h2>");
-									document.getElementById("hint").style.color = 'green';
+									document.getElementById("hint").style.color = '#4aa3df';
 
 									setTimeout(function() {
 										$("#hint").html("");
@@ -692,12 +692,12 @@ function drop(ev) {
 									$("#button-cruiser-delete").show();
 
 									document.getElementById("cellOG-" + j + "-"
-											+ col).style.background = 'red';
+											+ col).style.background = '#4aa3df';
 
 									$("#hint")
 											.html(
 													"<h2>The Cruiser take 4 cells</h2>");
-									document.getElementById("hint").style.color = 'red';
+									document.getElementById("hint").style.color = '#4aa3df';
 
 									setTimeout(function() {
 										$("#hint").html("");
@@ -713,12 +713,12 @@ function drop(ev) {
 									$("#button-destroyer-delete").show();
 
 									document.getElementById("cellOG-" + j + "-"
-											+ col).style.background = 'yellow';
+											+ col).style.background = '#e67e22';
 
 									$("#hint")
 											.html(
 													"<h2>The Destroyer take 2 cells</h2>");
-									document.getElementById("hint").style.color = 'yellow';
+									document.getElementById("hint").style.color = '#e67e22';
 
 									setTimeout(function() {
 										$("#hint").html("");
@@ -733,12 +733,12 @@ function drop(ev) {
 									$("#button-battleship-delete").show();
 
 									document.getElementById("cellOG-" + j + "-"
-											+ col).style.background = 'blue';
+											+ col).style.background = '#16a085';
 
 									$("#hint")
 											.html(
 													"<h2>The Battleship take 4 cells</h2>");
-									document.getElementById("hint").style.color = 'blue';
+									document.getElementById("hint").style.color = '#16a085';
 
 									setTimeout(function() {
 										$("#hint").html("");
@@ -752,12 +752,12 @@ function drop(ev) {
 									$("#button-aicraft-delete").show();
 
 									document.getElementById("cellOG-" + j + "-"
-											+ col).style.background = 'orange';
+											+ col).style.background = '#e74c3c';
 
 									$("#hint")
 											.html(
 													"<h2>The Aircraft take 5 cells</h2>");
-									document.getElementById("hint").style.color = 'orange';
+									document.getElementById("hint").style.color = '#e74c3c';
 
 									setTimeout(function() {
 										$("#hint").html("");
