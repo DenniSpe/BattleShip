@@ -449,16 +449,16 @@ function rotateBoat(id) {
 	var pos = 0;
 
 	var img = document.getElementById(id);
-	if (img.getAttribute("style") == "transform:rotate(90deg); height: 15%; width: 60%;padding-bottom:30%;") {
+	if (img.getAttribute("style") == "transform:rotate(90deg); height: 15%; width: 20%;") {
 		img
 				.setAttribute("style",
-						"transform:rotate(0deg); height: 15%; width: 60%;padding-bottom:30%;");
+						"transform:rotate(0deg); height: 15%; width: 60%;");
 
 		pos = 0;
 	} else {
 		img
 				.setAttribute("style",
-						"transform:rotate(90deg); height: 15%; width: 60%;padding-bottom:30%;");
+						"transform:rotate(90deg); height: 15%; width: 20%;");
 
 		pos = 1;
 	}
@@ -567,7 +567,7 @@ function drop(ev) {
 
 								if (boatName == "submarine") {
 									$("#button-submarine").hide();
-
+									$("#submarine").hide();
 									ev.target.appendChild(document
 											.getElementById(data));
 
@@ -591,6 +591,7 @@ function drop(ev) {
 											.getElementById(data));
 
 									$("#button-cruiser-delete").show();
+									$("#cruiser").hide();
 
 									document.getElementById("cellOG-" + row
 											+ "-" + i).style.background = '#4aa3df';
@@ -608,6 +609,7 @@ function drop(ev) {
 									ev.target.appendChild(document
 											.getElementById(data));
 									$("#button-destroyer-delete").show();
+									$("#destroyer").hide();
 									document.getElementById("cellOG-" + row
 											+ "-" + i).style.background = '#e67e22';
 
@@ -625,6 +627,7 @@ function drop(ev) {
 											.getElementById(data));
 
 									$("#button-battleship-delete").show();
+									$("#battleship").hide();
 
 									document.getElementById("cellOG-" + row
 											+ "-" + i).style.background = '#16a085';
@@ -644,6 +647,7 @@ function drop(ev) {
 											.getElementById(data));
 
 									$("#button-aircraft-delete").show();
+									$("#aircraft").hide();
 
 									document.getElementById("cellOG-" + row
 											+ "-" + i).style.background = '#e74c3c';
@@ -670,7 +674,7 @@ function drop(ev) {
 											.getElementById(data));
 
 									$("#button-submarine-delete").show();
-
+									$("#submarine").hide();
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = '#4aa3df';
 
@@ -690,7 +694,7 @@ function drop(ev) {
 											.getElementById(data));
 
 									$("#button-cruiser-delete").show();
-
+									$("#cruiser").hide();
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = '#4aa3df';
 
@@ -698,7 +702,7 @@ function drop(ev) {
 											.html(
 													"<h2>The Cruiser take 4 cells</h2>");
 									document.getElementById("hint").style.color = '#4aa3df';
-
+										
 									setTimeout(function() {
 										$("#hint").html("");
 									}, 2000);
@@ -711,7 +715,7 @@ function drop(ev) {
 											.getElementById(data));
 
 									$("#button-destroyer-delete").show();
-
+									$("#destroyer").hide();
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = '#e67e22';
 
@@ -731,7 +735,7 @@ function drop(ev) {
 											.getElementById(data));
 
 									$("#button-battleship-delete").show();
-
+									$("#battleship").hide();
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = '#16a085';
 
@@ -750,7 +754,7 @@ function drop(ev) {
 											.getElementById(data));
 
 									$("#button-aicraft-delete").show();
-
+									$("#aicraft").hide();
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = '#e74c3c';
 

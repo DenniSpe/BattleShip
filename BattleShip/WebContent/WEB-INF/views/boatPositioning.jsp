@@ -331,18 +331,18 @@ body {
 
 
 		<div class="col-md-4">
-			<div class="row">
+			<div class="row" style="margin-left: 0px; margin-right: 0px;">
 
-				<div class="col-md-2"
-					style="text-align: center; padding-right: 55%;">
+				<div class="col-md-6"
+					style="text-align: center;">
 					<h3 class="nameShip">Submarine</h3>
 
 					<div class="row">
 						<div class="row" id="rowImageSubmarine">
 							<img id="submarine"
-								src="resources/assetsGame/images/submarine.png"
-								draggable="true" ondragstart="drag(event)"
-								style="transform: rotate(0deg); height: 15%; width: 80%; padding-bottom: 30%;" />
+								src="resources/assetsGame/images/submarine.png" draggable="true"
+								ondragstart="drag(event)"
+								style="transform: rotate(0deg); height: 15%; width: 60%; " />
 
 
 
@@ -351,8 +351,8 @@ body {
 
 						<div class="row">
 							<!--  button rotate -->
-							<button id="button-submarine">Rotate</button>
-							<button id="button-submarine-delete">Delete</button>
+							<button id="button-submarine" class="btn btn-info">Rotate</button>
+							<button id="button-submarine-delete" class="btn btn-info">Delete</button>
 						</div>
 
 
@@ -361,7 +361,7 @@ body {
 				</div>
 				<!--  end ship2 -->
 
-				<div class="col-md-2" style="text-align: center;">
+				<div class="col-md-6" style="text-align: center;">
 					<h3 class="nameShip">Cruiser</h3>
 
 					<div class="row">
@@ -369,7 +369,7 @@ body {
 
 							<img id="cruiser" src="resources/assetsGame/images/cruiser.png"
 								draggable="true" ondragstart="drag(event)"
-								style="transform: rotate(0deg); height: 15%; width: 60%; padding-bottom: 30%;" />
+								style="transform: rotate(0deg); height: 15%; width: 60%;" />
 
 
 
@@ -378,8 +378,8 @@ body {
 
 						<div class="row">
 							<!--  button rotate -->
-							<button id="button-cruiser">Rotate</button>
-							<button id="button-cruiser-delete">Delete</button>
+							<button id="button-cruiser" class="btn btn-info">Rotate</button>
+							<button id="button-cruiser-delete" class="btn btn-info">Delete</button>
 						</div>
 
 
@@ -391,9 +391,9 @@ body {
 			</div>
 
 
-			<div class="row">
-				<div class="col-md-2"
-					style="text-align: center; padding-right: 55%;">
+			<div class="row" style="margin-left: 0px; margin-right: 0px;">
+				<div class="col-md-6"
+					style="text-align: center;">
 					<h3 class="nameShip">Battleship</h3>
 
 					<div class="row">
@@ -401,7 +401,7 @@ body {
 							<img id="battleship"
 								src="resources/assetsGame/images/battleship.png"
 								draggable="true" ondragstart="drag(event)"
-								style="transform: rotate(0deg); height: 15%; width: 80%; padding-bottom: 30%;" />
+								style="transform: rotate(0deg); height: 15%; width: 60%;" />
 
 
 
@@ -410,8 +410,8 @@ body {
 
 						<div class="row">
 							<!--  button rotate -->
-							<button id="button-battleship">Rotate</button>
-							<button id="button-battleship-delete">Delete</button>
+							<button id="button-battleship" class="btn btn-info">Rotate</button>
+							<button id="button-battleship-delete" class="btn btn-info">Delete</button>
 						</div>
 
 
@@ -420,14 +420,14 @@ body {
 				</div>
 				<!--  end ship4 -->
 
-				<div class="col-md-2" style="text-align: center;">
+				<div class="col-md-6" style="text-align: center;">
 					<h3 class="nameShip">Aircraft</h3>
 
 					<div class="row">
 						<div class="row" id="rowImageAircraft">
 							<img id="aircraft" src="resources/assetsGame/images/aircraft.png"
 								draggable="true" ondragstart="drag(event)"
-								style="transform: rotate(0deg); height: 15%; width: 60%; padding-bottom: 30%;" />
+								style="transform: rotate(0deg); height: 15%; width: 60%;" />
 
 
 
@@ -436,8 +436,8 @@ body {
 
 						<div class="row">
 							<!--  button rotate -->
-							<button id="button-aircraft">Rotate</button>
-							<button id="button-aircraft-delete">Delete</button>
+							<button id="button-aircraft" class="btn btn-info">Rotate</button>
+							<button id="button-aircraft-delete" class="btn btn-info">Delete</button>
 						</div>
 
 
@@ -447,9 +447,9 @@ body {
 				<!--  end ship5 -->
 			</div>
 
-			<div class="row" style="padding-left: 28%">
-				<div class="col-md-2"
-					style="text-align: center; padding-right: 55%;">
+			<div class="row" style="margin-left: 0px; margin-right: 0px;">
+				<div class="col-md-12"
+					style="text-align: center;">
 					<h3 class="nameShip">Destroyer</h3>
 
 					<div class="row">
@@ -457,7 +457,7 @@ body {
 							<img id="destroyer"
 								src="resources/assetsGame/images/destroyer.png" draggable="true"
 								ondragstart="drag(event)"
-								style="transform: rotate(0deg); height: 15%; width: 80%; padding-bottom: 30%;" />
+								style="transform: rotate(0deg); height: 15%; width: 40%;" />
 
 
 
@@ -466,8 +466,8 @@ body {
 
 						<div class="row">
 							<!--  button rotate -->
-							<button id="button-destroyer">Rotate</button>
-							<button id="button-destroyer-delete">Delete</button>
+							<button id="button-destroyer" class="btn btn-info">Rotate</button>
+							<button id="button-destroyer-delete" class="btn btn-info">Delete</button>
 						</div>
 
 
@@ -485,184 +485,184 @@ body {
 
 		</div>
 
-</div>
+	</div>
 
-		<div class="row" id="loading">
+	<div class="row" id="loading">
 
-			<div class='container'>
-				<div class='row'>
-					<div class='loaderPixel'>
+		<div class='container'>
+			<div class='row'>
+				<div class='loaderPixel'>
 
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-						<div class='pixels'></div>
-					</div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
+					<div class='pixels'></div>
 				</div>
-
-				<h1 style="text-align: center">Waiting your challenger finish
-					to place the ship</h1>
 			</div>
+
+			<h1 style="text-align: center">Waiting your challenger finish to
+				place the ship</h1>
 		</div>
+	</div>
 
 
 
 
-		<!--  End choose ships -->
+	<!--  End choose ships -->
 
-		<c:forEach var="i" begin="1" end="10">
-			<c:forEach var="j" begin="1" end="10">
-				<c:if test="${grid.hasShip(i,j)}">
-					<c:choose>
+	<c:forEach var="i" begin="1" end="10">
+		<c:forEach var="j" begin="1" end="10">
+			<c:if test="${grid.hasShip(i,j)}">
+				<c:choose>
 
-						<c:when test="${grid.tipeShip(i,j) == 2}">
-							<script>
+					<c:when test="${grid.tipeShip(i,j) == 2}">
+						<script>
 					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat destroyer");
 			</script>
-						</c:when>
-						<c:when test="${grid.tipeShip(i,j) == 3}">
-							<script>
+					</c:when>
+					<c:when test="${grid.tipeShip(i,j) == 3}">
+						<script>
 					$("#cellOG-"+${i}+"-"+${j}).attr("class","class showBoat cruiser");
 			</script>
-						</c:when>
-						<c:when test="${grid.tipeShip(i,j) == 4}">
-							<script>
+					</c:when>
+					<c:when test="${grid.tipeShip(i,j) == 4}">
+						<script>
 					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat battleship");
 			</script>
-						</c:when>
-						<c:when test="${grid.tipeShip(i,j) == 5}">
-							<script>
+					</c:when>
+					<c:when test="${grid.tipeShip(i,j) == 5}">
+						<script>
 					$("#cellOG-"+${i}+"-"+${j}).attr("class","cell showBoat aircraft-carrier");
 			</script>
-						</c:when>
-						<c:otherwise>
+					</c:when>
+					<c:otherwise>
 
-						</c:otherwise>
-					</c:choose>
+					</c:otherwise>
+				</c:choose>
 
-				</c:if>
+			</c:if>
 
 
-			</c:forEach>
 		</c:forEach>
+	</c:forEach>
 </body>
 
 </html>
