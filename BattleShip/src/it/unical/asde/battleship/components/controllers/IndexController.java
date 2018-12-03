@@ -29,6 +29,8 @@ public class IndexController {
 		
 		if (session.getAttribute("username") != null) {
 			
+			utilService.clearGrid((String) session.getAttribute("username"));
+			
 			model.addAttribute("welcome", "Welcome "+session.getAttribute("username"));
 			return "redirect:/lobbies";
 		

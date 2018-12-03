@@ -22,6 +22,9 @@ public class UtilService {
 	@Autowired
 	private MatchDAOImpl matchDAO;
 	
+	@Autowired
+	private GameService gameService;
+	
 	//K=username, v=User
 	HashMap<String, User> playingUsers;
 
@@ -183,6 +186,7 @@ public class UtilService {
 	
 	public void deletePlayingUser(User u) {
 		playingUsers.remove(u.getUsername());
+		clearGrid(u.getUsername());
 	}
 	
 	public long numUsers() {
@@ -208,4 +212,7 @@ public class UtilService {
 
 	}
 
+	public void clearGrid(String username) {
+		gameService.clearGrid(username);
+	}
 }

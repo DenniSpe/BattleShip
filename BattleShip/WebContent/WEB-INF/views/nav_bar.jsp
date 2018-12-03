@@ -26,7 +26,7 @@
     </div>
     <div class="collapse navbar-collapse" id="navMain">
       <ul class="nav navbar-nav pull-right">
-      <li class="active"><a href='<c:url value="/"></c:url>'>Home</a></li>
+      <li class="active" id="homeButton"><a href='<c:url value="/"></c:url>'>Home</a></li>
         <c:if test="${user!=null}">
      		<li><a href="#">Welcome ${user.username }</a>
      		

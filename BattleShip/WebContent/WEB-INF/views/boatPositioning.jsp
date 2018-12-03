@@ -622,26 +622,6 @@ body {
 					to place the ship</h1>
 			</div>
 		</div>
-<<<<<<< HEAD
-		
-		<h1 style="text-align:center">Waiting your challenger finish to place the ship</h1>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-	
-=======
->>>>>>> branch 'master' of https://github.com/DenniSpe/BattleShip.git
-
-
-
 
 
 

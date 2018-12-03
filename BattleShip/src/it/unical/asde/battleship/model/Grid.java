@@ -126,20 +126,23 @@ public class Grid {
 		ship.setLength(numShip);
 		ship.setDirection(direction);
 		
-		if (direction == 0) { // horizontal
-				for(int i = col; i < col + numShip; i++) {
-						grid[row][i] = numShip;
-						ship.setOccupiedCells(row, i);
+		
+		if(!ships.containsKey(boatName)) {
+			if (direction == 0) { // horizontal
+					for(int i = col; i < col + numShip; i++) {
+							grid[row][i] = numShip;
+							ship.setOccupiedCells(row, i);
+					}
+				}
+				if (direction == 1) { // vertical
+					for(int j = row; j < row + numShip; j++) {
+						grid[j][col] = numShip;
+						ship.setOccupiedCells(j, col);
 				}
 			}
-			if (direction == 1) { // vertical
-				for(int j = row; j < row + numShip; j++) {
-					grid[j][col] = numShip;
-					ship.setOccupiedCells(j, col);
-			}
+				
+			ships.put(ship.getName(), ship);
 		}
-			
-		ships.put(ship.getName(), ship);
 	}
 	
 	public void deleteShip(int row, int col, int numShip, int direction, String boatName) {
@@ -159,14 +162,14 @@ public class Grid {
 	}
 }
 	
-	public List<Tupla> getAllBoats(){
+	public HashMap<String,List<Tupla>> getAllBoats(){
 		
-		List<Tupla> l = new ArrayList<>();
+		HashMap<String,List<Tupla>> map = new HashMap<>();
 		
 		for(String boatName : ships.keySet()) {
-			l.addAll((ships.get(boatName).getOccupiedCells()));
+			map.put(boatName, ships.get(boatName).getOccupiedCells());
 		}
-		return l;
+		return map;
 	}
 	
 	public void print() {

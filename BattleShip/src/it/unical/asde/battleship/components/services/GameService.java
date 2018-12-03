@@ -105,22 +105,6 @@ public class GameService
     	}
     }
     
-	// ++ REFACTORED ++ 
-//    public void challengerIsReady(final int lobbyID)
-//    {
-//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-//
-//        isReadyChallenger.put(currentLobby.getChallenger(), true);
-//    }
-//    
-//    public void ownerIsReady(final int lobbyID)
-//    {
-//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-//
-//        isReadyOwner.put(currentLobby.getOwner(), true);
-//    }
-	// ++ REFACTORED ++ 
-
     // The two player have finished the game
     public void deleteGame(final int lobbyID)
     {
@@ -133,7 +117,7 @@ public class GameService
         isReadyChallenger.remove(currentLobby.getChallenger());
     }
 
-    //++ REFACTORED ++
+  
     public Grid getGrid(int lobbyID, boolean isOwner) {
     	Lobby currentLobby = lobbyService.getLobby(lobbyID);
     	
@@ -144,56 +128,6 @@ public class GameService
     		return gridChallenger.get(currentLobby.getChallenger());
     	}
     }
-    //++ REFACTORED ++
-    
-  //++REFACTORED
-//    public Grid getChallengerGrid(final int lobbyID)
-//    {
-//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-//
-//        return gridChallenger.get(currentLobby.getChallenger());
-//    }
-//
-//    public Grid getOwnerGrid(final int lobbyID)
-//    {
-//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-//
-//        return gridOwner.get(currentLobby.getOwner());
-//    }
-
-	// ++ REFACTORED ++ 
-//    public boolean hasShipChallenger(final int lobbyID, final int row, final int col)
-//    {
-//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-//
-//        return gridChallenger.get(currentLobby.getChallenger()).hasShip(row, col);
-//    }
-//
-//    public boolean hasShipOwner(final int lobbyID, final int row, final int col)
-//    {
-//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-//
-//        return gridOwner.get(currentLobby.getOwner()).hasShip(row, col);
-//    }
-	 
-
-   
-
-//    public boolean isAlreadyGuessedChallenger(final int lobbyID, final int row, final int col)
-//    {
-//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-//
-//        return gridChallenger.get(currentLobby.getChallenger()).alreadyGuessed(row, col);
-//    }
-//
-//    public boolean isAlreadyGuessedOwner(final int lobbyID, final int row, final int col)
-//    {
-//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-//
-//        return gridOwner.get(currentLobby.getOwner()).alreadyGuessed(row, col);
-//    }
-	// ++ REFACTORED ++ 
-    
 
     public void putShip(int lobbyID, int row, int col, int numShip, int dir, boolean isOwner, String boatName) {
     	final Lobby currentLobby = lobbyService.getLobby(lobbyID);
@@ -206,22 +140,6 @@ public class GameService
     	}
     }
     
- // ++REFACTORED++
-//    public void putShipChallenger(final int lobbyID, final int row, final int col, final int numShip, final int dir)
-//    {
-//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-//
-//        gridChallenger.get(currentLobby.getChallenger()).setShip(row, col, numShip, dir);
-//    }
-//
-//    public void putShipOwner(final int lobbyID, final int row, final int col, final int numShip, final int dir)
-//    {
-//        final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-//        gridOwner.get(currentLobby.getOwner()).setShip(row, col, numShip, dir);
-//    }
- // ++REFACTORED++
-
-    
    
     // Check if the users have positioned their boats
     public boolean usersAreReady(final int lobbyID)
@@ -229,6 +147,16 @@ public class GameService
         final Lobby currentLobby = lobbyService.getLobby(lobbyID);
 
         return isReadyOwner.get(currentLobby.getOwner()) && isReadyChallenger.get(currentLobby.getChallenger());
+    }
+    
+    public void clearGrid(String username) {
+    	
+    	if(gridOwner.containsKey(username)) {
+    		gridOwner.remove(username);
+    	}
+    	if(gridChallenger.containsKey(username)){
+    		gridChallenger.remove(username);
+    	}
     }
 
 }

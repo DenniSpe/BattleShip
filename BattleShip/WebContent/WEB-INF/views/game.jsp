@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="resources/assets/css/modal.css" />
 <style>
 body{
-padding-top: 15%;
+	padding-top: 8%;
 	padding-left: 2%;
 
 }

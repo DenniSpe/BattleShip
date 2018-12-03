@@ -209,8 +209,9 @@ function deleteShip(id) {
 		var row = rowDestroyer;
 		var col = colDestroyer;
 		var direction = dirDestroyer;
-		var size = 3;
+		var size = 2;
 		$("#destroyer").appendTo("#rowImageDestroyer");
+		$("#destroyer").show();
 		$("#button-destroyer").show();
 	} else if (id == "submarine") {
 		var row = rowSubmarine;
@@ -218,27 +219,31 @@ function deleteShip(id) {
 		var direction = dirSubmarine;
 		var size = 3;
 		$("#submarine").appendTo("#rowImageSubmarine");
+		$("#submarine").show();
 		$("#button-submarine").show();
 	} else if (id == "aircraft") {
 		var row = rowAircraft;
 		var col = colAircraft;
 		var direction = dirAircraft;
-		var size = 3;
+		var size = 5;
 		$("#aircraft").appendTo("#rowImageAircraft");
+		$("#aircraft").show();
 		$("#button-aircraft").show();
 	} else if (id == "battleship") {
 		var row = rowBattleShip;
 		var col = colBattleShip;
 		var direction = dirBattleShip;
-		var size = 5;
+		var size = 4;
 		$("#battleship").appendTo("#rowImageBattleship");
+		$("#battleship").show();
 		$("#button-battleship").show();
 	} else if (id == "cruiser") {
 		var row = rowCruiser;
 		var col = colCruiser;
 		var direction = dirCruiser;
-		var size = 5;
+		var size = 3;
 		$("#cruiser").appendTo("#rowImageCruiser");
+		$("#cruiser").show();
 		$("#button-cruiser").show();
 	}
 
@@ -255,11 +260,11 @@ function deleteShip(id) {
 	}
 
 }
+var json = [];
 
-
-function onRefreshGrid(){
+function onRefreshGrid() {
 	var lobbyID = $("#lobbyId").attr("value");
-	
+
 	$.ajax({
 		url : "onRefreshGrid",
 		type : "POST",
@@ -267,43 +272,143 @@ function onRefreshGrid(){
 		data : {
 			"lobbyID" : lobbyID
 		},
-		
-		success : function(result){
-			
-			for (var i = 0; i < result.refreshGrid.length; i++) {
-				
-				if (result.refreshGrid[i].value === 2) {
-					alert("IL VALORE E' "+result.refreshGrid[i].value);
-					$("#cellOG-" + result.refreshGrid[i].row + "-" +result.refreshGrid[i].col)
-							.css("background-color","orange");
-				}
-				if (result.refreshGrid[i].value === 3) {
-					$("#cellOG-" + result.refreshGrid[i].row + "-" +result.refreshGrid[i].col)
-						.css("background-color","blue");
-				}
-				if (result.refreshGrid[i].value === 4) {
-					$("#cellOG-" + result.refreshGrid[i].row + "-" +result.refreshGrid[i].col)
-						.css("background-color","green");
-				}
-				if (result.refreshGrid[i].value === 5) {
-					$("#cellOG-" + result.refreshGrid[i].row + "-" +result.refreshGrid[i].col)
-						.css("background-color","red");	
+
+		success : function(result) {
+			json = result; 
+			if (result.refreshGrid.hasOwnProperty("destroyer")) {
+				for (var i = 0; i < result.refreshGrid.destroyer.length; i++) {
+						$("#cellOG-" + result.refreshGrid.destroyer[i].row + "-" + result.refreshGrid.destroyer[i].col).css("background-color", "#e67e22");
+						$("#destroyer").hide();
+						$("#button-destroyer-delete").show();
+						$("#button-destroyer").hide();
 				}
 				
+				if(result.refreshGrid.destroyer[0].row != result.refreshGrid.destroyer[1].row) {
+					dirDestroyer = 1;
+				}else{
+					dirDestroyer = 0;
+				}				
+				rowDestroyer = result.refreshGrid.destroyer[0].row;
+				colDestroyer = result.refreshGrid.destroyer[0].col;
+				nBoatsPositioned++;
+			} 
+			if (result.refreshGrid.hasOwnProperty("cruiser")) {
+				for (var i = 0; i < result.refreshGrid.cruiser.length; i++) {
+					$("#cellOG-" + result.refreshGrid.cruiser[i].row + "-" + result.refreshGrid.cruiser[i].col).css("background-color", "#4aa3df");
+					$("#cruiser").hide();
+					$("#button-cruiser-delete").show();
+					$("#button-cruiser").hide();
+				}
+				
+				if(result.refreshGrid.cruiser[0].row != result.refreshGrid.cruiser[1].row) {
+					dirCruiser = 1;
+				}else{
+					dirCruiser = 0;
+				}					
+				rowCruiser = result.refreshGrid.cruiser[0].row;
+				colCruiser = result.refreshGrid.cruiser[0].col;
+				nBoatsPositioned++;
+				
+			}  if (result.refreshGrid.hasOwnProperty("submarine")) {
+				for (var i = 0; i < result.refreshGrid.submarine.length; i++) {
+					$("#cellOG-" + result.refreshGrid.submarine[i].row + "-" + result.refreshGrid.submarine[i].col).css("background-color", "#4aa3df");
+					$("#submarine").hide();
+					$("#button-submarine-delete").show();
+					$("#button-submarine").hide();
+				}
+				
+				if(result.refreshGrid.submarine[0].row != result.refreshGrid.submarine[1].row) {
+					dirSubmarine = 1;
+				}else{
+					dirSubmarine = 0;
+				}					
+				rowSubmarine = result.refreshGrid.submarine[0].row;
+				colSubmarine = result.refreshGrid.submarine[0].col;
+				nBoatsPositioned++;
+
+			}  if (result.refreshGrid.hasOwnProperty("aircraft")) {
+
+				for (var i = 0; i < result.refreshGrid.aircraft.length; i++) {
+					$("#cellOG-" + result.refreshGrid.aircraft[i].row + "-" + result.refreshGrid.aircraft[i].col).css("background-color", "#e74c3c");
+					$("#aircraft").hide();
+					$("#button-aircraft-delete").show();
+					$("#button-aircraft").hide();
+				}
+				
+				if(result.refreshGrid.aircraft[0].row != result.refreshGrid.aircraft[1].row) {
+					dirAircraft = 1;
+				}else{
+					dirAircraft = 0;
+				}					
+				rowAircraft = result.refreshGrid.aircraft[0].row;
+				colAircraft = result.refreshGrid.aircraft[0].col;
+				nBoatsPositioned++;
+				
+			}  if (result.refreshGrid.hasOwnProperty("battleship")) {
+				for (var i = 0; i < result.refreshGrid.battleship.length; i++) {
+					$("#cellOG-" + result.refreshGrid.battleship[i].row + "-" + result.refreshGrid.battleship[i].col).css("background-color", "#16a085");
+					$("#battleship").hide();
+					$("#button-battleship-delete").show();
+					$("#button-battleship").hide();
+				}
+				
+				if(result.refreshGrid.battleship[0].row != result.refreshGrid.battleship[1].row) {
+					dirBattleShip = 1;
+				}else{
+					dirBattleShip = 0;
+				}					
+				rowBattleShip = result.refreshGrid.battleship[0].row;
+				colBattleShip = result.refreshGrid.battleship[0].col;
+				nBoatsPositioned++;
 			}
-			
-		
-			setTimeout(function() {
-				checkTurn();
-			}, 1000);
+			checkUserIsReady(nBoatsPositioned);
+
+			// for (var i = 0; i < result.refreshGrid.length; i++) {
+			//
+			//				
+			// if (result.refreshGrid[i].value === 2) {
+			// $(
+			// "#cellOG-" + result.refreshGrid[i].row + "-"
+			// + result.refreshGrid[i].col).css(
+			// "background-color", "orange");
+			// $("#destroyer").hide();
+			// $("#button-destroyer-delete").show();
+			// $("#button-destroyer").hide();
+			// }
+			// if (result.refreshGrid[i].value === 3) {
+			// $(
+			// "#cellOG-" + result.refreshGrid[i].row + "-"
+			// + result.refreshGrid[i].col).css(
+			// "background-color", "blue");
+			// // $("#destroyer").hide();
+			// }
+			// if (result.refreshGrid[i].value === 4) {
+			// $(
+			// "#cellOG-" + result.refreshGrid[i].row + "-"
+			// + result.refreshGrid[i].col).css(
+			// "background-color", "green");
+			// $("#battleship").hide();
+			// }
+			// if (result.refreshGrid[i].value === 5) {
+			// $(
+			// "#cellOG-" + result.refreshGrid[i].row + "-"
+			// + result.refreshGrid[i].col).css(
+			// "background-color", "red");
+			// $("#aircraft").hide();
+			// }
+			//
+			// }
+
+//			setTimeout(function() {
+//				onRefreshGrid();
+//			}, 1000);
 		},
-		
-		error : function(res){
-			
+
+		error : function(res) {
+
 		}
 	});
 }
-
 
 function checkAlive() {
 	var lobbyID = $("#lobbyId").attr("value");
@@ -385,8 +490,6 @@ function allowDrop(ev) {
 function drag(ev) {
 	ev.dataTransfer.setData("text", ev.target.id);
 }
-
-
 
 function drop(ev) {
 	ev.preventDefault();
@@ -471,12 +574,12 @@ function drop(ev) {
 									$("#button-submarine-delete").show();
 
 									document.getElementById("cellOG-" + row
-											+ "-" + i).style.background = 'green';
+											+ "-" + i).style.background = '#4aa3df';
 
 									$("#hint")
 											.html(
-													"<h2>The Submarine take 345 cells</h2>");
-									document.getElementById("hint").style.color = 'green';
+													"<h2>The Submarine take 3 cells</h2>");
+									document.getElementById("hint").style.color = '#4aa3df';
 
 									setTimeout(function() {
 										$("#hint").html("");
@@ -490,12 +593,12 @@ function drop(ev) {
 									$("#button-cruiser-delete").show();
 
 									document.getElementById("cellOG-" + row
-											+ "-" + i).style.background = 'red';
+											+ "-" + i).style.background = '#4aa3df';
 
 									$("#hint")
 											.html(
 													"<h2>The Cruiser take 3 cells</h2>");
-									document.getElementById("hint").style.color = 'red';
+									document.getElementById("hint").style.color = '#4aa3df';
 
 									setTimeout(function() {
 										$("#hint").html("");
@@ -506,12 +609,12 @@ function drop(ev) {
 											.getElementById(data));
 									$("#button-destroyer-delete").show();
 									document.getElementById("cellOG-" + row
-											+ "-" + i).style.background = 'yellow';
+											+ "-" + i).style.background = '#e67e22';
 
 									$("#hint")
 											.html(
 													"<h2>The Destroyer take 2 cells</h2>");
-									document.getElementById("hint").style.color = 'yellow';
+									document.getElementById("hint").style.color = '#e67e22';
 
 									setTimeout(function() {
 										$("#hint").html("");
@@ -524,12 +627,12 @@ function drop(ev) {
 									$("#button-battleship-delete").show();
 
 									document.getElementById("cellOG-" + row
-											+ "-" + i).style.background = 'blue';
+											+ "-" + i).style.background = '#16a085';
 
 									$("#hint")
 											.html(
 													"<h2>The Battleship take 4 cells</h2>");
-									document.getElementById("hint").style.color = 'blue';
+									document.getElementById("hint").style.color = '#16a085';
 
 									setTimeout(function() {
 										$("#hint").html("");
@@ -543,12 +646,12 @@ function drop(ev) {
 									$("#button-aircraft-delete").show();
 
 									document.getElementById("cellOG-" + row
-											+ "-" + i).style.background = 'orange';
+											+ "-" + i).style.background = '#e74c3c';
 
 									$("#hint")
 											.html(
 													"<h2>The Aircraft take 5 cells</h2>");
-									document.getElementById("hint").style.color = 'orange';
+									document.getElementById("hint").style.color = '#e74c3c';
 
 									setTimeout(function() {
 										$("#hint").html("");

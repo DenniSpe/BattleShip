@@ -28,6 +28,9 @@ public class HistoryController {
 		if (session.getAttribute("user") != null) {
 
 			User user = (User) session.getAttribute("user");
+			
+			utilService.clearGrid(user.getUsername());
+			
 			long totalRows = utilService.getCountMatches(user);
 			int pageNo = 1;
 			int count = 20;

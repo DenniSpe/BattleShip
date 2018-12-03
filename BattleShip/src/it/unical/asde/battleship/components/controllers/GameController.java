@@ -109,9 +109,9 @@ public class GameController {
     	
     	final Map<String, Object> response = new HashMap<>();
     	
-    	 List<Tupla> refreshGrid = new ArrayList<>();
-         
-         refreshGrid.addAll(gameService.getGrid(currentLobby.getId(), isOwner).getAllBoats());
+    	 HashMap<String, List<Tupla>> refreshGrid = new HashMap<>();
+
+   		 refreshGrid.putAll(gameService.getGrid(currentLobby.getId(), isOwner).getAllBoats());
          
          response.put("refreshGrid", refreshGrid);
          
@@ -346,27 +346,15 @@ public class GameController {
 	public DeferredResult<String> putBoat(final String ID, final String cella, final HttpSession session,
 			final String dir, final String boatName) {
 
-		final int lobbyID = Integer.parseInt(ID);
+		final int lobbyID = Integer.parseInt(ID); 	 
 		final Lobby currentLobby = lobbyService.getLobby(lobbyID);
-
 		final int row = Integer.parseInt(cella.split("-")[1]);
 		final int col = Integer.parseInt(cella.split("-")[2]);
-
 		final int direction = dir.split("\\([^0-9]*")[1].split("deg")[0].equals("0") ? 0 : 1;
-
 		final DeferredResult<String> output = new DeferredResult<>();
-
 		final String username = (String) session.getAttribute("username");
-
 		final boolean isOwner = username.equals(currentLobby.getOwner());
 
-		// ++REFACTORED++
-		// if (username.equals(currentLobby.getOwner())) {
-		// isOwner = true;
-		// }
-		// ++REFACTORED++
-
-		// ================================================
 		if (hasErrorOnPositioning(row, col, direction, gameService.getGrid(lobbyID, isOwner), getLength(boatName))) {
 			ForkJoinPool.commonPool().submit(() -> {
 				output.setResult("ERROR");
@@ -380,63 +368,7 @@ public class GameController {
 				output.setResult(row + " , " + col + " , " + direction + " , " + getLength(boatName));
 			});
 		}
-		// ================================================
-
-		// ++REFACTORED++
-		// if (isOwner) {
-		// if (hasErrorOnPositioning(row, col, direction,
-		// gameService.getOwnerGrid(lobbyID), getLength(boatName))) {
-		// System.out.println("==========================ERROREEEEE, SFORI");
-		// ForkJoinPool.commonPool().submit(() -> {
-		// output.setResult("ERROR");
-		// });
-		// } else {
-		// // ++REFACTORED++
-		// //gameService.putShipOwner(lobbyID, row, col, getLength(boatName),
-		// direction);
-		// // ++REFACTORED++
-		//
-		// gameService.putShip(lobbyID, row, col, getLength(boatName), direction,
-		// isOwner);
-		//
-		// System.out.println("============= OWNER GRID ==========");
-		// gameService.getOwnerGrid(lobbyID).print();
-		// System.out.println("============= FINE OWNER GRID ==========");
-		// ForkJoinPool.commonPool().submit(() -> {
-		// output.setResult(row + " , " + col + " , " + direction + " , " +
-		// getLength(boatName));
-		// });
-		// }
-		// } else {// if is not owner
-		// if (hasErrorOnPositioning(row, col, direction,
-		// gameService.getChallengerGrid(lobbyID),
-		// getLength(boatName))) {
-		// System.out.println("==========================ERROREEEEE, SFORI");
-		// ForkJoinPool.commonPool().submit(() -> {
-		// output.setResult("ERROR");
-		// });
-		// } else {
-		// // ++REFACTORED++
-		// //gameService.putShipChallenger(lobbyID, row, col, getLength(boatName),
-		// direction);
-		// // ++REFACTORED++
-		//
-		// gameService.putShip(lobbyID, row, col, getLength(boatName), direction,
-		// isOwner);
-		//
-		// System.out.println("============= CHALLENGER GRID ==========");
-		// System.out.println("ID = " + lobbyID + " row = " + row + " col = " + col + "
-		// boatSize = "
-		// + getLength(boatName) + " direction = " + direction);
-		// gameService.getChallengerGrid(lobbyID).print();
-		// System.out.println("============= FINE CHALLENGER GRID ==========");
-		// ForkJoinPool.commonPool().submit(() -> {
-		// output.setResult(row + " , " + col + " , " + direction + " , " +
-		// getLength(boatName));
-		// });
-		// }
-		// }
-		// ++REFACTORED++
+		
 		return output;
 	}
 
@@ -491,67 +423,6 @@ public class GameController {
 						currentLobby.setWhoPlays(isOwner ? currentLobby.getChallenger() : currentLobby.getOwner());
 					}
 				}
-				// ++REFACTORED
-				// if (currentLobby.getOwner().equals(user.getUsername())) {
-				// if (!gameService.getChallengerGrid(currentLobby.getId()).alreadyGuessed(row,
-				// col)) {
-				// response.put("row", row);
-				// response.put("col", col);
-				// if (gameService.getChallengerGrid(currentLobby.getId()).hasShip(row, col)) {
-				// gameService.getChallengerGrid(currentLobby.getId()).markHit(row, col);
-				// // output.setResult("hit-" + row + "-" + col);
-				//
-				// System.out.println("CHALLENGER GRID AFTER SHOOT");
-				// gameService.getChallengerGrid(currentLobby.getId()).print();
-				// System.out.println("END CHALLENGER GRID AFTER SHOOT");
-				//
-				// shot = "hit-" + row + "-" + col;
-				// response.put("hit", true);
-				// if (!gameService.hasMoreShips(currentLobby.getId(), true)) {
-				// // OWNER WIN
-				// currentLobby.setWinner(user.getUsername());
-				// shot += "-OWNERWIN";
-				// response.put("youWin", true);
-				// }
-				// } else {
-				// gameService.getChallengerGrid(currentLobby.getId()).markMiss(row, col);
-				// // output.setResult("miss-" + row + "-" + col);
-				// shot = "miss-" + row + "-" + col;
-				// response.put("hit", false);
-				// currentLobby.setWhoPlays(currentLobby.getChallenger());
-				// }
-				// }
-				// } else if (currentLobby.getChallenger().equals(user.getUsername())) {
-				// if (!gameService.getOwnerGrid(currentLobby.getId()).alreadyGuessed(row, col))
-				// {
-				// response.put("row", row);
-				// response.put("col", col);
-				// if (gameService.getOwnerGrid(currentLobby.getId()).hasShip(row, col)) {
-				// gameService.getOwnerGrid(currentLobby.getId()).markHit(row, col);
-				// // output.setResult("hit-" + row + "-" + col);
-				//
-				// System.out.println("OWNER GRID AFTER SHOOT");
-				// gameService.getOwnerGrid(currentLobby.getId()).print();
-				// System.out.println("END OWNER GRID AFTER SHOOT");
-				//
-				// shot = "hit-" + row + "-" + col;
-				// response.put("hit", true);
-				// if (!gameService.hasMoreShips(currentLobby.getId(), false)) {
-				// // CHALLENGER WIN
-				// shot += "-CHALLENGERWIN";
-				// currentLobby.setWinner(user.getUsername());
-				// response.put("youWin", true);
-				// }
-				// } else {
-				// gameService.getOwnerGrid(currentLobby.getId()).markMiss(row, col);
-				// // output.setResult("miss-" + row + "-" + col);
-				// shot = "miss-" + row + "-" + col;
-				// currentLobby.setWhoPlays(currentLobby.getOwner());
-				// response.put("hit", false);
-				// }
-				// }
-				// }
-				// ++REFACTORED
 			} else {
 				response.put("waitTurn", true);
 			}
