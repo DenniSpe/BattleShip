@@ -15,7 +15,7 @@
 <style type="text/css">
 body {
 	min-height: 75rem;
-	padding-top: 14.5rem;
+	padding-top: 9rem;
 	padding-left: 8.5rem;
 }
 </style>
