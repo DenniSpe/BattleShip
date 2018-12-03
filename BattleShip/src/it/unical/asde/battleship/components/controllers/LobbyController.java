@@ -73,21 +73,10 @@ public class LobbyController
             final HttpSession session)
     {
 
-        //System.out.println("===================================== INIZIO NEW LOBBY =====================================");
-
         final Lobby myLobby = new Lobby(lobbyService.assignLobbyID(), lobby_name, lobby_owner);
         myLobby.setLobbyStarted(false);
 
         lobbyService.addLobby(myLobby);
-        
-
-//        model.addAttribute("lobbies", lobbyService.getLobbies());
-
-        //E' necessario salvarlo in "currentLobbyID" ?
-//        model.addAttribute("lobby", myLobby);
-//        model.addAttribute("currentLobbyID", myLobby.getId());
-
-        //System.out.println("===================================== FINE NEW LOBBY =====================================");
 
         return "redirect:/insideLobby?id=" + myLobby.getId();
 
@@ -100,9 +89,8 @@ public class LobbyController
 	        final int idLobby = Integer.parseInt(id);
 	        final Lobby mylobby = lobbyService.getLobby(idLobby);
 
-//	        model.addAttribute("lobbies", lobbyService.getLobbies());
 	        model.addAttribute("lobby", mylobby);
-//	        model.addAttribute("currentLobbyID", mylobby.getId());
+
 	        return "lobby";
     	}
     	return "redirect:/";
