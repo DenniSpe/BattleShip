@@ -32,7 +32,7 @@
       </c:if>
       
            <c:if test="${user!=null &&  lobby!=null}}">
-      <li class="active" id="homeButton"><a href='<c:url value="/"></c:url>'>Home</a></li>
+      <li class="active" id="homeButton"><a href='<c:url value="#"></c:url>'>Home</a></li>
       </c:if>
       
       
