@@ -26,7 +26,17 @@
     </div>
     <div class="collapse navbar-collapse" id="navMain">
       <ul class="nav navbar-nav pull-right">
+      
+      <c:if test="${user!=null &&  lobby==null}}">
       <li class="active" id="homeButton"><a href='<c:url value="/"></c:url>'>Home</a></li>
+      </c:if>
+      
+           <c:if test="${user!=null &&  lobby!=null}}">
+      <li class="active" id="homeButton"><a href='<c:url value="/"></c:url>'>Home</a></li>
+      </c:if>
+      
+      
+      
         <c:if test="${user!=null}">
      		<li><a href="#">Welcome ${user.username }</a>
      		
@@ -34,9 +44,15 @@
      		</li>
      	</c:if>
         
-     	<c:if test="${user!=null}">
+     	<c:if test="${user!=null &&  lobby==null}}">
      		<li><a href='<c:url value="/userHistory"></c:url>'>History</a></li>
-     	</c:if>     	
+     	</c:if>   
+     	
+     	<c:if test="${user!=null && && lobby!=null}}">
+     		<li><a href='<c:url value="/#"></c:url>'>History</a></li>
+     	</c:if>    	
+     	
+     	
      	<c:if test="${user==null}">
         <li><a href="#" data-toggle="modal" data-target=".log-sign">Log in</a></li> 
            </c:if>
