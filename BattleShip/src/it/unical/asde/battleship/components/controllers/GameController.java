@@ -30,6 +30,7 @@ import it.unical.asde.battleship.model.User;
 @Controller
 public class GameController {
 
+	// Function to check if a boat can be positioned or not
 	private static boolean hasErrorOnPositioning(final int row, final int col, final int dir, final Grid grid,
 			final int boatSize) {
 
@@ -76,6 +77,7 @@ public class GameController {
 	@Autowired
 	private LobbyService lobbyService;
 
+	// Check if the lobby still exists or kick out the player
 	@PostMapping("/checkAlive")
 	@ResponseBody
 	public boolean checkPlayerAreStillAlive(final Model model, final HttpSession session,
@@ -91,6 +93,7 @@ public class GameController {
 
 	}
 
+	// Don't loose information on the grid after pressing refresh button 
 	@PostMapping("/onRefreshGrid")
 	@ResponseBody
 	public Map<String, Object> onRefreshGrid(String lobbyID, HttpSession session) {
@@ -103,6 +106,7 @@ public class GameController {
 
 		final Map<String, Object> response = new HashMap<>();
 
+		// K = boatName, V = occupied cells
 		HashMap<String, List<Tupla>> refreshGrid = new HashMap<>();
 
 		refreshGrid.putAll(gameService.getGrid(currentLobby.getId(), isOwner).getAllBoats());
@@ -113,6 +117,7 @@ public class GameController {
 
 	}
 
+	// Check the turn of the game and give the updated grid 
 	@PostMapping("/checkTurn")
 	@ResponseBody
 	public Map<String, Object> checkTurn(final Optional<Integer> lobbyid, final HttpSession session) {
@@ -141,6 +146,7 @@ public class GameController {
 				List<Tupla> refreshGrid = new ArrayList<>();
 				List<Tupla> refreshGridI = new ArrayList<>();
 
+				// Take the list cells hitted or missed 
 				refreshGrid.addAll(gameService.getGrid(current.getId(), isOwner).getHitteds());
 				refreshGrid.addAll(gameService.getGrid(current.getId(), isOwner).getMisseds());
 				refreshGridI.addAll(gameService.getGrid(current.getId(), !isOwner).getHitteds());
@@ -157,6 +163,7 @@ public class GameController {
 		return Collections.singletonMap("turn", false);
 	}
 
+	// Delete a boat from the grid when the button "delete" is pressed
 	@PostMapping("/deleteBoatFromGrid")
 	@ResponseBody
 	public boolean deleteBoatFromGrid(@RequestParam final String boatID, @RequestParam final String ID,
@@ -217,6 +224,7 @@ public class GameController {
 		return "boatPositioning";
 	}
 
+	// Quit from the lobby 
 	@GetMapping("/leaveGame")
 	public String leaveGame(final Model model, final HttpSession session, @RequestParam final String lobby_id) {
 
@@ -226,6 +234,7 @@ public class GameController {
 		return "index";
 	}
 
+	
 	@GetMapping("/game")
 	public String playGame(final Model model, final HttpSession session, final String id) {
 
@@ -251,6 +260,7 @@ public class GameController {
 		return "redirect:/";
 	}
 
+	// Set the cells that contain the boats
 	@GetMapping("/putBoat")
 	@ResponseBody
 	public DeferredResult<String> putBoat(final String ID, final String cella, final HttpSession session,
@@ -282,6 +292,7 @@ public class GameController {
 		return output;
 	}
 
+	// Update the grid after a shoot and check if the turn should change
 	@PostMapping("/shoot")
 	@ResponseBody
 	public Map<String, Object> shoot(final String cella, final HttpSession session, final String id) {
@@ -297,15 +308,18 @@ public class GameController {
 					&& currentLobby.getWinner() == null/* There is no winner yet? */) {
 
 				final boolean isOwner = currentLobby.getOwner().equals(user.getUsername());
-
+				
+				// If the cell was not selected before
 				if (!gameService.getGrid(currentLobby.getId(), !isOwner).alreadyGuessed(row, col)) {
 					response.put("row", row);
 					response.put("col", col);
+					// If there is a Ship, the cell is marked
 					if (gameService.getGrid(currentLobby.getId(), !isOwner).hasShip(row, col)) {
 
 						gameService.getGrid(currentLobby.getId(), !isOwner).mark(row, col);
 						gameService.getGrid(currentLobby.getId(), !isOwner).addHitCell(new Tupla(row, col, 1));
-
+						
+						// If a boat is destroyed 
 						if (gameService.getGrid(currentLobby.getId(), !isOwner).isBoatDestroyed(row, col)) {
 							response.put("boatDestroyed", true);
 						} else {
@@ -340,6 +354,7 @@ public class GameController {
 		return response;
 	}
 
+	// The lobby is full so it's possible to play
 	@GetMapping("/startPositioning")
 	public String startPositioning(final Model model, final HttpSession session, @RequestParam final String ID) {
 		final User user = (User) session.getAttribute("user");
@@ -363,6 +378,7 @@ public class GameController {
 
 	}
 
+	// Wait the player position his boats
 	@GetMapping("/waitingStart")
 	@ResponseBody
 	public DeferredResult<String> waitingStart(@RequestParam final String ID, final HttpSession session) {
