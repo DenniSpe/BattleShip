@@ -50,9 +50,6 @@ public class GameController {
 		// Check if overlapping with another ship
 		if (dir == 0) // Hortizontal
 		{
-			// if (col + boatSize - 1 > 10) {
-			// return true;
-			// }
 			// For each location a ship occupies, check if ship is already there
 			for (int i = col; i < col + boatSize; i++) {
 				if (grid.hasShip(row, i)) {
@@ -62,9 +59,6 @@ public class GameController {
 		} else if (dir == 1) // Vertical
 		{
 
-			// if (row + boatSize - 1 > 10) {
-			// return true;
-			// }
 			// For each location a ship occupies, check if ship is already there
 			for (int i = row; i < row + boatSize; i++) {
 				if (grid.hasShip(i, col)) {
@@ -138,13 +132,10 @@ public class GameController {
 				final Map<String, Object> response = new HashMap<>();
 				if (current.getWhoPlays() != null && current.getWhoPlays().equals(user.getUsername())) {
 					response.put("turn", true);
-					// return Collections.singletonMap("turn", true);
 				} else {
 					response.put("turn", false);
-					// return Collections.singletonMap("turn", false);
 				}
 
-				// ====================================================================
 				final boolean isOwner = current.getOwner().equals(user.getUsername());
 
 				List<Tupla> refreshGrid = new ArrayList<>();
@@ -155,60 +146,10 @@ public class GameController {
 				refreshGridI.addAll(gameService.getGrid(current.getId(), !isOwner).getHitteds());
 				refreshGridI.addAll(gameService.getGrid(current.getId(), !isOwner).getMisseds());
 
-//                      
-//            for (int i = 1; i <= 10; i++)
-//            {
-//                for (int j = 1; j <= 10; j++)
-//                {
-//                    if (gameService.getGrid(current.getId(), isOwner).getContent(i, j) == 1)
-//                    {
-//                        list.add(new Tupla(i, j, 1));
-//                    }
-//                    else if (gameService.getGrid(current.getId(), isOwner).getContent(i, j) == -1)
-//                    {
-//                        list.add(new Tupla(i, j, -1));
-//                    }
-//                }
-//            }
 
 				response.put("refreshGrid", refreshGrid);
 				response.put("refreshGridI", refreshGridI);
-				// ========================================================================
 
-				// ++ REFACTORED ++
-				// if (current.getOwner().equals(user.getUsername())) {
-				// List<Tupla> ownerList = new ArrayList<>();
-				// for (int i = 1; i <= 10; i++) {
-				// for (int j = 1; j <= 10; j++) {
-				// if (gameService.getOwnerGrid(current.getId()).getContent(i, j) == 1) {
-				// Tupla tupla = new Tupla(i, j, 1);
-				// ownerList.add(tupla);
-				// } else if (gameService.getOwnerGrid(current.getId()).getContent(i, j) == -1)
-				// {
-				// Tupla tupla = new Tupla(i, j, -1);
-				// ownerList.add(tupla);
-				// }
-				// }
-				// }
-				// response.put("refreshGrid", ownerList);
-				// }
-				// else {
-				// List<Tupla> challengerList = new ArrayList<>();
-				// for (int i = 1; i <= 10; i++) {
-				// for (int j = 1; j <= 10; j++) {
-				// if (gameService.getChallengerGrid(current.getId()).getContent(i, j) == 1) {
-				// Tupla tupla = new Tupla(i, j, 1);
-				// challengerList.add(tupla);
-				// } else if (gameService.getChallengerGrid(current.getId()).getContent(i, j) ==
-				// -1) {
-				// Tupla tupla = new Tupla(i, j, -1);
-				// challengerList.add(tupla);
-				// }
-				// }
-				// }
-				// response.put("refreshGrid", challengerList);
-				// }
-				// ++ REFACTORED ++
 				return response;
 			}
 		}
@@ -238,23 +179,6 @@ public class GameController {
 
 			grid.deleteShip(boatRow, boatCol, length, direction, boatID);
 
-			// ++REFACTORED++
-			// if(user.getUsername().equals(currentLobby.getOwner())) {
-			// grid = gameService.getOwnerGrid(currentLobby.getId());
-			//
-			// grid.deleteShip(boatRow, boatCol, length, direction);
-			// System.out.println("CANCELLO LA BARCA DI OWNER ED OTTENGO");
-			// grid.print();
-			//
-			// }
-			// else { //If you are the challenger
-			// grid = gameService.getChallengerGrid(currentLobby.getId());
-			//
-			// grid.deleteShip(boatRow, boatCol, length, direction);
-			// System.out.println("CANCELLO LA BARCA DI CHALLENGER ED OTTENGO");
-			// grid.print();
-			// }
-			// ++REFACTORED++
 		} catch (final Exception e) {
 			e.printStackTrace();
 			return false;
@@ -321,20 +245,6 @@ public class GameController {
 				model.addAttribute("grid", gameService.getGrid(currentLobby.getId(), isOwner));
 			}
 
-			// ++REFACTORED++
-			// if (currentLobby.getOwner()!=null &&
-			// currentLobby.getOwner().equals(user.getUsername())) {
-			// model.addAttribute("grid", gameService.getOwnerGrid(currentLobby.getId()));
-			// if (currentLobby.getWhoPlays() == null ||
-			// currentLobby.getWhoPlays().isEmpty()) {
-			// currentLobby.setWhoPlays(currentLobby.getOwner());
-			// }
-			// } else if (currentLobby.getChallenger()!=null &&
-			// currentLobby.getChallenger().equals(user.getUsername())) {
-			// model.addAttribute("grid",
-			// gameService.getChallengerGrid(currentLobby.getId()));
-			// }
-			// ++REFACTORED++
 			model.addAttribute("lobby", currentLobby);
 			return "game";
 		}
@@ -393,7 +303,6 @@ public class GameController {
 					response.put("col", col);
 					if (gameService.getGrid(currentLobby.getId(), !isOwner).hasShip(row, col)) {
 
-						// gameService.getGrid(currentLobby.getId(), !isOwner).markHit(row, col);
 						gameService.getGrid(currentLobby.getId(), !isOwner).mark(row, col);
 						gameService.getGrid(currentLobby.getId(), !isOwner).addHitCell(new Tupla(row, col, 1));
 
@@ -413,7 +322,6 @@ public class GameController {
 							response.put("youWin", true);
 						}
 					} else {
-						// gameService.getGrid(currentLobby.getId(), !isOwner).markMiss(row, col);
 						gameService.getGrid(currentLobby.getId(), !isOwner).mark(row, col);
 						gameService.getGrid(currentLobby.getId(), !isOwner).addMissedCell(new Tupla(row, col, -1));
 
@@ -468,14 +376,6 @@ public class GameController {
 
 		gameService.userIsReady(lobbyID, isOwner);
 
-		// ++ REFACTORED ++
-		// if (isOwner) {
-		// gameService.ownerIsReady(lobbyID);
-		// } else {
-		// //gameService.challengerIsReady(lobbyID);
-		//
-		// }
-		// ++ REFACTORED ++
 
 		if (gameService.usersAreReady(lobbyID)) {
 

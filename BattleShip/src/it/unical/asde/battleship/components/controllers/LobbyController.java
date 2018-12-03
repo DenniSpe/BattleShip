@@ -103,7 +103,6 @@ public class LobbyController
         if (session.getAttribute("user") != null)
         {
             final User user = (User) session.getAttribute("user");
-            //System.out.println("===================================== INIZIO JOIN LOBBY =====================================");
             final int id = Integer.parseInt(lobby_id);
             final Lobby myLobby = lobbyService.getLobby(id);
 
@@ -113,11 +112,7 @@ public class LobbyController
                 lobbyService.addLobby(myLobby);
 
 
-                // con ${ lobby.id }
                 model.addAttribute("lobby", myLobby);
-//                model.addAttribute("currentLobbyID", myLobby.getId());
-
-                //System.out.println("===================================== FINE JOIN LOBBY =====================================");
 
                 return "lobby";
             }
@@ -161,7 +156,6 @@ public class LobbyController
     	if(lobbyService.getLobbies().contains(lobbyService.getLobby(id)))
     	{
     		try {
-    		//System.out.println("++++и+и+и+и+и+и+и+ INSIDE DESTROY LOBBY +и+и+ии+и+и+и+ии+и+и");
 	    	gameService.deleteGame(id);
 	        lobbyService.deleteLobby(id);
 	        
@@ -184,16 +178,13 @@ public class LobbyController
     public DeferredResult<String> refresh(final Model model)
     {
 
-        //System.out.println("===================================== INIZIO REFRESH =====================================");
         model.addAttribute("lobbies", lobbyService.getLobbies());
-        //System.out.println("SIZE DELLE LOBBIES = "+lobbyService.getLobbies())
         final DeferredResult<String> output = new DeferredResult<>();
         final ObjectMapper obj = new ObjectMapper();
 
         try
         {
             final String jsonArray = obj.writeValueAsString(lobbyService.getLobbies());
-            //System.out.println(jsonArray);
             ForkJoinPool.commonPool().submit(() ->
                 {
                     output.setResult(jsonArray);
@@ -203,8 +194,6 @@ public class LobbyController
         {
             e.printStackTrace();
         }
-
-        //System.out.println("===================================== FINE REFRESH =====================================");
 
         return output;
 
@@ -216,14 +205,11 @@ public class LobbyController
 
         if (session.getAttribute("user") != null)
         {
-            //System.out.println("===================================== INIZIO LOBBIES =====================================");
-
             model.addAttribute("lobbies", lobbyService.getLobbies());
             if(session.getAttribute("firstTime")!=null) {
             	model.addAttribute("fTime", session.getAttribute("firstTime"));
             	session.removeAttribute("firstTime");
             }
-            //System.out.println("===================================== FINE LOBBIES =====================================");
 
             return "index";
         }
@@ -238,7 +224,6 @@ public class LobbyController
     public DeferredResult<String> waiting(final Model model, final HttpSession session, @RequestParam final String lobbyID)
             throws InterruptedException
     {
-        //System.out.println("===================================== INIZIO WAITING =====================================");
         final int ID = Integer.parseInt(lobbyID);
         final Lobby l = lobbyService.getLobby(ID);
 
@@ -250,8 +235,6 @@ public class LobbyController
                 output.setResult(l.getChallenger() == null ? "" : l.getChallenger() + ":" + l.isLobbyStarted());
 
             });
-
-        //System.out.println("===================================== FINE WAITING =====================================");
 
         return output;
     }

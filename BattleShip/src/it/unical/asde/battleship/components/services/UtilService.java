@@ -207,7 +207,6 @@ Calendar cal = new GregorianCalendar();
 
 	public List<Match> getUserMatches(User user, int page, int amount) {
 
-//		long total = matchDAO.countUserMatches(user);
 		int start = (page - 1) * amount;
 
 		return matchDAO.getUserMatches(user, start, amount);

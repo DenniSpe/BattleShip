@@ -67,7 +67,6 @@ public class Lobby
         this.id = id;
         this.name = name;
         this.owner = owner;
-        //lobbyStarted = false;
     }
 
     public Lobby(final int id, final String name, final String owner, final String challenger, final boolean lobbyStarted)

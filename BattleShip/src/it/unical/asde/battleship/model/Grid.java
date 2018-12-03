@@ -68,15 +68,6 @@ public class Grid {
 		}
 		return false;
 	}
-//	// Mark this location
-//	public void markHit(int row, int col) {
-//		grid[row][col] = 1;
-//	}
-//
-//	// Mark a miss on this location.
-//	public void markMiss(int row, int col) {
-//		grid[row][col] = -1;
-//	}
 
 	// Get the status of this location in the grid
 	public int getContent(int row, int col) {
