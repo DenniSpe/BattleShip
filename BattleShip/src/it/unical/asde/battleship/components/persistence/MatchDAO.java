@@ -13,5 +13,11 @@ public interface MatchDAO extends BaseDAO<Match, Long> {
 	public List<Match> getUserMatches(User user, int start, int count);
 
 	public long countUserMatches(User user);
+	
+	public long countUserWins(User user);
+	
+	public long countUserLooses(User user);
+	
+	public List matchTimes(User user);
 
 }

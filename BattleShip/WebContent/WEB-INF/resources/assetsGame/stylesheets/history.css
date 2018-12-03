@@ -1,0 +1,23 @@
+body {
+	min-height: 75rem;
+	padding-top: 4.5rem;
+}
+
+.table .thead-dark th {
+	color: #fff;
+	background-color: #212529;
+	border-color: #32383e;
+}
+
+.history-title {
+	margin-bottom: 10px;
+}
+
+.btn-toolbar .btn-group {
+	float: none;
+}
+
+select#amount {
+	width: 20%;
+	display: inline;
+}

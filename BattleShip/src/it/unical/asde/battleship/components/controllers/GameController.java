@@ -97,64 +97,63 @@ public class GameController {
 
 	}
 
-    @PostMapping("/onRefreshGrid")
-    @ResponseBody
-    public Map<String, Object> onRefreshGrid(String lobbyID, HttpSession session){
-    	
-    	User user = (User) session.getAttribute("user");
-    	
-    	Lobby currentLobby = lobbyService.getLobby(Integer.parseInt(lobbyID));
-    	
-    	boolean isOwner = user.getUsername().equals(currentLobby.getOwner());
-    	
-    	final Map<String, Object> response = new HashMap<>();
-    	
-    	 HashMap<String, List<Tupla>> refreshGrid = new HashMap<>();
+	@PostMapping("/onRefreshGrid")
+	@ResponseBody
+	public Map<String, Object> onRefreshGrid(String lobbyID, HttpSession session) {
 
-   		 refreshGrid.putAll(gameService.getGrid(currentLobby.getId(), isOwner).getAllBoats());
-         
-         response.put("refreshGrid", refreshGrid);
-         
-         return response;
-    	
-    }
-    
-    
-    
+		User user = (User) session.getAttribute("user");
+
+		Lobby currentLobby = lobbyService.getLobby(Integer.parseInt(lobbyID));
+
+		boolean isOwner = user.getUsername().equals(currentLobby.getOwner());
+
+		final Map<String, Object> response = new HashMap<>();
+
+		HashMap<String, List<Tupla>> refreshGrid = new HashMap<>();
+
+		refreshGrid.putAll(gameService.getGrid(currentLobby.getId(), isOwner).getAllBoats());
+
+		response.put("refreshGrid", refreshGrid);
+
+		return response;
+
+	}
 
 	@PostMapping("/checkTurn")
 	@ResponseBody
 	public Map<String, Object> checkTurn(final Optional<Integer> lobbyid, final HttpSession session) {
 
 		final User user = (User) session.getAttribute("user");
-		final Lobby current = lobbyService.getLobby(lobbyid.get());
 		if (user != null && lobbyid.isPresent()) {
-			if (current.getWinner() != null && !current.getWinner().isEmpty()) {
-				if (current.getWinner().equals(user.getUsername())) {
-					return Collections.singletonMap("youWin", true);
-				} else {
-					return Collections.singletonMap("youWin", false);
+			final Lobby current = lobbyService.getLobby(lobbyid.get());
+			if (current != null) {
+				if (current.getWinner() != null && !current.getWinner().isEmpty()) {
+					if (current.getWinner().equals(user.getUsername())) {
+						return Collections.singletonMap("youWin", true);
+					} else {
+						return Collections.singletonMap("youWin", false);
+					}
 				}
-			}
-			final Map<String, Object> response = new HashMap<>();
-			if (current.getWhoPlays() != null && current.getWhoPlays().equals(user.getUsername())) {
-				response.put("turn", true);
-				// return Collections.singletonMap("turn", true);
-			} else {
-				response.put("turn", false);
-				// return Collections.singletonMap("turn", false);
-			}
 
-			// ====================================================================
-			final boolean isOwner = current.getOwner().equals(user.getUsername());
+				final Map<String, Object> response = new HashMap<>();
+				if (current.getWhoPlays() != null && current.getWhoPlays().equals(user.getUsername())) {
+					response.put("turn", true);
+					// return Collections.singletonMap("turn", true);
+				} else {
+					response.put("turn", false);
+					// return Collections.singletonMap("turn", false);
+				}
 
-			List<Tupla> refreshGrid = new ArrayList<>();
-			List<Tupla> refreshGridI = new ArrayList<>();
+				// ====================================================================
+				final boolean isOwner = current.getOwner().equals(user.getUsername());
 
-			refreshGrid.addAll(gameService.getGrid(current.getId(), isOwner).getHitteds());
-			refreshGrid.addAll(gameService.getGrid(current.getId(), isOwner).getMisseds());
-			refreshGridI.addAll(gameService.getGrid(current.getId(), !isOwner).getHitteds());
-			refreshGridI.addAll(gameService.getGrid(current.getId(), !isOwner).getMisseds());
+				List<Tupla> refreshGrid = new ArrayList<>();
+				List<Tupla> refreshGridI = new ArrayList<>();
+
+				refreshGrid.addAll(gameService.getGrid(current.getId(), isOwner).getHitteds());
+				refreshGrid.addAll(gameService.getGrid(current.getId(), isOwner).getMisseds());
+				refreshGridI.addAll(gameService.getGrid(current.getId(), !isOwner).getHitteds());
+				refreshGridI.addAll(gameService.getGrid(current.getId(), !isOwner).getMisseds());
 
 //                      
 //            for (int i = 1; i <= 10; i++)
@@ -172,45 +171,46 @@ public class GameController {
 //                }
 //            }
 
-			response.put("refreshGrid", refreshGrid);
-			response.put("refreshGridI", refreshGridI);
-			// ========================================================================
+				response.put("refreshGrid", refreshGrid);
+				response.put("refreshGridI", refreshGridI);
+				// ========================================================================
 
-			// ++ REFACTORED ++
-			// if (current.getOwner().equals(user.getUsername())) {
-			// List<Tupla> ownerList = new ArrayList<>();
-			// for (int i = 1; i <= 10; i++) {
-			// for (int j = 1; j <= 10; j++) {
-			// if (gameService.getOwnerGrid(current.getId()).getContent(i, j) == 1) {
-			// Tupla tupla = new Tupla(i, j, 1);
-			// ownerList.add(tupla);
-			// } else if (gameService.getOwnerGrid(current.getId()).getContent(i, j) == -1)
-			// {
-			// Tupla tupla = new Tupla(i, j, -1);
-			// ownerList.add(tupla);
-			// }
-			// }
-			// }
-			// response.put("refreshGrid", ownerList);
-			// }
-			// else {
-			// List<Tupla> challengerList = new ArrayList<>();
-			// for (int i = 1; i <= 10; i++) {
-			// for (int j = 1; j <= 10; j++) {
-			// if (gameService.getChallengerGrid(current.getId()).getContent(i, j) == 1) {
-			// Tupla tupla = new Tupla(i, j, 1);
-			// challengerList.add(tupla);
-			// } else if (gameService.getChallengerGrid(current.getId()).getContent(i, j) ==
-			// -1) {
-			// Tupla tupla = new Tupla(i, j, -1);
-			// challengerList.add(tupla);
-			// }
-			// }
-			// }
-			// response.put("refreshGrid", challengerList);
-			// }
-			// ++ REFACTORED ++
-			return response;
+				// ++ REFACTORED ++
+				// if (current.getOwner().equals(user.getUsername())) {
+				// List<Tupla> ownerList = new ArrayList<>();
+				// for (int i = 1; i <= 10; i++) {
+				// for (int j = 1; j <= 10; j++) {
+				// if (gameService.getOwnerGrid(current.getId()).getContent(i, j) == 1) {
+				// Tupla tupla = new Tupla(i, j, 1);
+				// ownerList.add(tupla);
+				// } else if (gameService.getOwnerGrid(current.getId()).getContent(i, j) == -1)
+				// {
+				// Tupla tupla = new Tupla(i, j, -1);
+				// ownerList.add(tupla);
+				// }
+				// }
+				// }
+				// response.put("refreshGrid", ownerList);
+				// }
+				// else {
+				// List<Tupla> challengerList = new ArrayList<>();
+				// for (int i = 1; i <= 10; i++) {
+				// for (int j = 1; j <= 10; j++) {
+				// if (gameService.getChallengerGrid(current.getId()).getContent(i, j) == 1) {
+				// Tupla tupla = new Tupla(i, j, 1);
+				// challengerList.add(tupla);
+				// } else if (gameService.getChallengerGrid(current.getId()).getContent(i, j) ==
+				// -1) {
+				// Tupla tupla = new Tupla(i, j, -1);
+				// challengerList.add(tupla);
+				// }
+				// }
+				// }
+				// response.put("refreshGrid", challengerList);
+				// }
+				// ++ REFACTORED ++
+				return response;
+			}
 		}
 
 		return Collections.singletonMap("turn", false);
@@ -346,7 +346,7 @@ public class GameController {
 	public DeferredResult<String> putBoat(final String ID, final String cella, final HttpSession session,
 			final String dir, final String boatName) {
 
-		final int lobbyID = Integer.parseInt(ID); 	 
+		final int lobbyID = Integer.parseInt(ID);
 		final Lobby currentLobby = lobbyService.getLobby(lobbyID);
 		final int row = Integer.parseInt(cella.split("-")[1]);
 		final int col = Integer.parseInt(cella.split("-")[2]);
@@ -368,7 +368,7 @@ public class GameController {
 				output.setResult(row + " , " + col + " , " + direction + " , " + getLength(boatName));
 			});
 		}
-		
+
 		return output;
 	}
 
@@ -401,7 +401,7 @@ public class GameController {
 							response.put("boatDestroyed", true);
 						} else {
 							response.put("boatDestroyed", false);
-						} 
+						}
 						System.out.println((isOwner ? "CHALLANGER" : "OWNER") + "GRID AFTER SHOOT");
 						gameService.getGrid(currentLobby.getId(), !isOwner).print();
 						System.out.println((isOwner ? "CHALLANGER" : "OWNER") + "END GRID AFTER SHOOT");
@@ -432,31 +432,26 @@ public class GameController {
 		return response;
 	}
 
-	  @GetMapping("/startPositioning")
-	    public String startPositioning(final Model model, final HttpSession session, @RequestParam final String ID)
-	    {
-	        final User user = (User) session.getAttribute("user");
-	        final Lobby lobb = lobbyService.getLobby(Integer.parseInt(ID));
-	        if (lobb.getWhoPlays() != null && !lobb.getWhoPlays().isEmpty())
-	        {
-	            return "redirect:/game?id=" + lobb.getId();
-	        }
-	        if (user != null && lobb != null)
-	        {
-	            if (user.getUsername().equals(lobb.getChallenger()) || user.getUsername().equals(lobb.getOwner()))
-	            {
-	                if (user.getUsername().equals(lobb.getOwner()))
-	                {
-	                    lobb.setLobbyStarted(true);
-	                    if(gameService.getGrid(lobb.getId(), true) == null) {
-	                    		gameService.startGame(lobb.getId());
-	                    }
-	                }
-	                model.addAttribute("lobby", lobb);
-	                return "boatPositioning";
-	            }
-	        }
-	        return "redirect:/";
+	@GetMapping("/startPositioning")
+	public String startPositioning(final Model model, final HttpSession session, @RequestParam final String ID) {
+		final User user = (User) session.getAttribute("user");
+		final Lobby lobb = lobbyService.getLobby(Integer.parseInt(ID));
+		if (lobb.getWhoPlays() != null && !lobb.getWhoPlays().isEmpty()) {
+			return "redirect:/game?id=" + lobb.getId();
+		}
+		if (user != null && lobb != null) {
+			if (user.getUsername().equals(lobb.getChallenger()) || user.getUsername().equals(lobb.getOwner())) {
+				if (user.getUsername().equals(lobb.getOwner())) {
+					lobb.setLobbyStarted(true);
+					if (gameService.getGrid(lobb.getId(), true) == null) {
+						gameService.startGame(lobb.getId());
+					}
+				}
+				model.addAttribute("lobby", lobb);
+				return "boatPositioning";
+			}
+		}
+		return "redirect:/";
 
 	}
 

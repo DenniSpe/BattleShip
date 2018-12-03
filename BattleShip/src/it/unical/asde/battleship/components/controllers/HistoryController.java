@@ -1,6 +1,10 @@
 package it.unical.asde.battleship.components.controllers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
@@ -9,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import it.unical.asde.battleship.components.services.UtilService;
 import it.unical.asde.battleship.model.Match;
@@ -71,6 +77,51 @@ public class HistoryController {
 			return "user_history";
 		}
 		return "redirect:/";
+	}
+	
+	@PostMapping("/winLooseData")
+	@ResponseBody
+	public List<Long> winLooseData(HttpSession session) {
+
+		User user = (User) session.getAttribute("user");
+
+		if (user != null) {
+			long looses = utilService.getUserLooses(user);
+			long wins = utilService.getUserWins(user);
+			List<Long> response = new ArrayList<Long>();
+			response.add(wins);
+			response.add(looses);
+			return response;
+		}
+
+		return new ArrayList();
+	}
+
+	@PostMapping("/matchesDuration")
+	@ResponseBody
+	public Map<String, Object> matchesDuration(HttpSession session) {
+
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			List<Object[]> values = utilService.matchesDuration(user);
+			int sum = 0;
+			List<Integer> times = new LinkedList<>();
+			List<String> labels = new LinkedList<>();
+			for (Object[] tupla : values) {
+					times.add((Integer)tupla[0]);
+					sum += ((int)tupla[0]);
+					labels.add((String)tupla[1]);
+			}			
+			int avg = sum/times.size();
+			Map<String, Object> response = new HashMap<String, Object>();
+			response.put("times", times);
+			response.put("labels", labels);
+			response.put("avg", avg);
+
+			return response;
+		}
+
+		return new HashMap<String, Object>();
 	}
 
 }

@@ -215,4 +215,18 @@ public class UtilService {
 	public void clearGrid(String username) {
 		gameService.clearGrid(username);
 	}
+	
+	public long getUserWins(User user) {
+		return matchDAO.countUserWins(user);
+	}
+
+	public long getUserLooses(User user) {
+		return matchDAO.countUserLooses(user);
+	}
+
+	public List matchesDuration(User user) {
+
+		return matchDAO.matchTimes(user);
+
+	}
 }
