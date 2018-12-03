@@ -46,7 +46,7 @@ $(document).ready(function() {
 	 * Delete button
 	 */
 
-	// $("#button-destroyer-delete").hide();
+	$("#button-destroyer-delete").hide();
 	$("#button-destroyer-delete").click(function() {
 		var ID = $("#lobbyId").attr("value");
 		nBoatsPositioned--;
@@ -72,9 +72,11 @@ $(document).ready(function() {
 			}
 
 		});
+		$("#button-destroyer-delete").hide();
 
-		// $("#destroyer").show();
 	});
+
+	$("#button-submarine-delete").hide();
 
 	$("#button-submarine-delete").click(function() {
 		var ID = $("#lobbyId").attr("value");
@@ -100,8 +102,11 @@ $(document).ready(function() {
 
 			}
 		});
-		// $("#submarine").show();
+		$("#button-submarine-delete").hide();
+
 	});
+
+	$("#button-cruiser-delete").hide();
 
 	$("#button-cruiser-delete").click(function() {
 		var ID = $("#lobbyId").attr("value");
@@ -126,8 +131,11 @@ $(document).ready(function() {
 
 			}
 		});
-		// $("#cruiser").show();
+		$("#button-cruiser-delete").hide();
+
 	});
+	$("#button-battleship-delete").hide();
+
 	$("#button-battleship-delete").click(function() {
 		var ID = $("#lobbyId").attr("value");
 		nBoatsPositioned--;
@@ -151,10 +159,10 @@ $(document).ready(function() {
 
 			}
 		});
+		$("#button-battleship-delete").hide();
 
-		// $("#battleship").show();
 	});
-
+	$("#button-aircraft-delete").hide();
 	$("#button-aircraft-delete").click(function() {
 		var ID = $("#lobbyId").attr("value");
 		nBoatsPositioned--;
@@ -179,7 +187,8 @@ $(document).ready(function() {
 
 			}
 		});
-		// $("#aircraft").show();
+		$("#button-aircraft-delete").hide();
+
 	});
 
 	$("#IR").click(function() {
@@ -402,15 +411,12 @@ function drop(ev) {
 										+ data);
 
 								if (boatName == "submarine") {
-									/*
-									 * $("#button-submarine").hide();
-									 * /*$("#submarine").hide();
-									 */
+									$("#button-submarine").hide();
 
 									ev.target.appendChild(document
 											.getElementById(data));
 
-									$("#button-destroyer-delete").show();
+									$("#button-submarine-delete").show();
 
 									document.getElementById("cellOG-" + row
 											+ "-" + i).style.background = 'green';
@@ -426,9 +432,10 @@ function drop(ev) {
 
 								} else if (boatName == "cruiser") {
 									$("#button-cruiser").hide();
-									// $("#cruiser").hide();
 									ev.target.appendChild(document
 											.getElementById(data));
+
+									$("#button-cruiser-delete").show();
 
 									document.getElementById("cellOG-" + row
 											+ "-" + i).style.background = 'red';
@@ -443,10 +450,9 @@ function drop(ev) {
 									}, 2000);
 								} else if (boatName == "destroyer") {
 									$("#button-destroyer").hide();
-									// $("#destroyer").hide();
 									ev.target.appendChild(document
 											.getElementById(data));
-
+									$("#button-destroyer-delete").show();
 									document.getElementById("cellOG-" + row
 											+ "-" + i).style.background = 'yellow';
 
@@ -460,9 +466,10 @@ function drop(ev) {
 									}, 2000);
 								} else if (boatName == "battleship") {
 									$("#button-battleship").hide();
-									// $("#battleship").hide();
 									ev.target.appendChild(document
 											.getElementById(data));
+
+									$("#button-battleship-delete").show();
 
 									document.getElementById("cellOG-" + row
 											+ "-" + i).style.background = 'blue';
@@ -477,10 +484,11 @@ function drop(ev) {
 									}, 2000);
 								} else if (boatName == "aircraft") {
 									$("#button-aircraft").hide();
-									// $("#aircraft").hide();
 
 									ev.target.appendChild(document
 											.getElementById(data));
+
+									$("#button-aircraft-delete").show();
 
 									document.getElementById("cellOG-" + row
 											+ "-" + i).style.background = 'orange';
@@ -502,10 +510,11 @@ function drop(ev) {
 										+ " e col = " + col);
 								if (boatName == "submarine") {
 									$("#button-submarine").hide();
-									// $("#submarine").hide();
 
 									ev.target.appendChild(document
 											.getElementById(data));
+
+									$("#button-submarine-delete").show();
 
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = 'green';
@@ -521,10 +530,11 @@ function drop(ev) {
 
 								} else if (boatName == "cruiser") {
 									$("#button-cruiser").hide();
-									// $("#cruiser").hide();
 
 									ev.target.appendChild(document
 											.getElementById(data));
+
+									$("#button-cruiser-delete").show();
 
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = 'red';
@@ -541,10 +551,11 @@ function drop(ev) {
 								} else if (boatName == "destroyer") {
 
 									$("#button-destroyer").hide();
-									// $("#destroyer").hide();
 
 									ev.target.appendChild(document
 											.getElementById(data));
+
+									$("#button-destroyer-delete").show();
 
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = 'yellow';
@@ -560,10 +571,11 @@ function drop(ev) {
 
 								} else if (boatName == "battleship") {
 									$("#button-battleship").hide();
-									// $("#battleship").hide();
 
 									ev.target.appendChild(document
 											.getElementById(data));
+
+									$("#button-battleship-delete").show();
 
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = 'blue';
@@ -578,10 +590,11 @@ function drop(ev) {
 									}, 2000);
 								} else if (boatName == "aircraft") {
 									$("#button-aircraft").hide();
-									// $("#aircraft").hide();
 
 									ev.target.appendChild(document
 											.getElementById(data));
+
+									$("#button-aicraft-delete").show();
 
 									document.getElementById("cellOG-" + j + "-"
 											+ col).style.background = 'orange';

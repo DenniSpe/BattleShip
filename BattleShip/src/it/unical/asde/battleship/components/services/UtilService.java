@@ -22,6 +22,7 @@ public class UtilService {
 	@Autowired
 	private MatchDAOImpl matchDAO;
 	
+	//K=username, v=User
 	HashMap<String, User> playingUsers;
 
 	@PostConstruct
