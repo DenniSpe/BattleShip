@@ -35,14 +35,20 @@
      	</c:if>
         
      	<c:if test="${user!=null}">
-     		<li class="active"><a href='<c:url value="/userHistory"></c:url>'>History</a></li>
+     		<li><a href='<c:url value="/userHistory"></c:url>'>History</a></li>
      	</c:if>     	
      	<c:if test="${user==null}">
         <li><a href="#" data-toggle="modal" data-target=".log-sign">Log in</a></li> 
            </c:if>
             
-            <c:if test="${user!=null}">
+           <c:if test="${user!=null && lobby==null}">
             <li><a href="logout">Logout</a></li>
+         	</c:if>
+         
+          <c:if test="${user!=null && lobby!=null}">
+            <li><a href="<c:url value="/leaveGame">
+				 				<c:param name="lobby_id" value="${lobby.id}" />
+				 		  </c:url>">Logout</a></li>
          	</c:if>
          
         
