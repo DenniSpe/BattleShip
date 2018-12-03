@@ -1,5 +1,6 @@
 package it.unical.asde.battleship.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -158,7 +159,15 @@ public class Grid {
 	}
 }
 	
-	
+	public List<Tupla> getAllBoats(){
+		
+		List<Tupla> l = new ArrayList<>();
+		
+		for(String boatName : ships.keySet()) {
+			l.addAll((ships.get(boatName).getOccupiedCells()));
+		}
+		return l;
+	}
 	
 	public void print() {
 		for (int i = 1; i < grid.length; i++) {

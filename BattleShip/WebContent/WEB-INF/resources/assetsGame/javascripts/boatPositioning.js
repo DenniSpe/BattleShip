@@ -24,6 +24,7 @@ var dirAircraft = 0;
 
 $(document).ready(function() {
 	checkAlive();
+	onRefreshGrid();
 	$("#IR").hide();
 	$("#loading").hide();
 	
@@ -258,6 +259,54 @@ function deleteShip(id)
 }
 
 
+function onRefreshGrid(){
+	var lobbyID = $("#lobbyId").attr("value");
+	
+	$.ajax({
+		url : "onRefreshGrid",
+		type : "POST",
+		dataType : "json",
+		data : {
+			"lobbyID" : lobbyID
+		},
+		
+		success : function(result){
+			
+			for (var i = 0; i < result.refreshGrid.length; i++) {
+				
+				if (result.refreshGrid[i].value === 2) {
+					alert("IL VALORE E' "+result.refreshGrid[i].value);
+					$("#cellOG-" + result.refreshGrid[i].row + "-" +result.refreshGrid[i].col)
+							.css("background-color","orange");
+				}
+				if (result.refreshGrid[i].value === 3) {
+					$("#cellOG-" + result.refreshGrid[i].row + "-" +result.refreshGrid[i].col)
+						.css("background-color","blue");
+				}
+				if (result.refreshGrid[i].value === 4) {
+					$("#cellOG-" + result.refreshGrid[i].row + "-" +result.refreshGrid[i].col)
+						.css("background-color","green");
+				}
+				if (result.refreshGrid[i].value === 5) {
+					$("#cellOG-" + result.refreshGrid[i].row + "-" +result.refreshGrid[i].col)
+						.css("background-color","red");	
+				}
+				
+			}
+			
+		
+			setTimeout(function() {
+				checkTurn();
+			}, 1000);
+		},
+		
+		error : function(res){
+			
+		}
+	});
+}
+
+
 
 function checkAlive() {
 	var lobbyID = $("#lobbyId").attr("value");
@@ -281,7 +330,7 @@ function checkAlive() {
 				
 			setTimeout(function() {
 				checkAlive();
-			}, 1000);
+			}, 3000);
 		},
 		error : function(result) {
 			console.log("ERRORE CHECK OWNER" + result);
@@ -289,7 +338,7 @@ function checkAlive() {
 			//call events again after some time
 			setTimeout(function() {
 				checkAlive();
-			}, 1000);
+			}, 3000);
 		}
 	});
 }
@@ -338,9 +387,6 @@ function allowDrop(ev) {
 function drag(ev) {
 	ev.dataTransfer.setData("text", ev.target.id);
 }
-
-
-
 
 
 

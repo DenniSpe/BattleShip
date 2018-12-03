@@ -10,7 +10,7 @@ public class Ship {
 	private String name; // destroyer (length 3),submarine(length 3),
 							// cruiser(length3),battleship(length4),aircraft(length5)
 	
-	List<Tupla> occupiedCells;
+	private List<Tupla> occupiedCells;
 
 	// Constructor
 	public Ship(String name) {
@@ -101,6 +101,10 @@ public class Ship {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public List<Tupla> getOccupiedCells(){
+		return occupiedCells;
 	}
 
 }

@@ -470,14 +470,7 @@ body {
 
 </div>
 
-
-
-
-
-
-
-
-
+</div>
 
 <div class="row" id="loading">
 
@@ -613,6 +606,15 @@ body {
 		<h1 style="text-align:center">Waiting your challenger finish to place the ship</h1>
 </div>
 </div>
+
+
+
+
+
+
+
+
+
 	
 
 
